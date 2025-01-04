@@ -68,6 +68,7 @@
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-primary">Update</button>
+                                    <a href="{{ url('panel/role') }}" class="btn btn-outline-secondary">Cancel</a>
                                 </div>
                             </div>
                         </form>

@@ -23,19 +23,22 @@
                                 <h5 class="card-title">User List</h5>
                             </div>
                             <div class="col-md-6 text-end">
-                                <a href="{{ url('panel/user/add') }}" class="btn btn-outline-primary mt-3">Add</a>
+                                @if (!@empty($PermissionAdd))
+                                    <a href="{{ url('panel/user/add') }}" class="btn btn-outline-primary mt-3">Add</a>
+                                @endif
                             </div>
                         </div>
 
-                        <table class="table table-hover">
+                        <table class="table table-hover datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Role</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
+                                    @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
+                                        <th scope="col">Action</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,12 +48,15 @@
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->email }}</td>
                                         <td>{{ $value->role_name }}</td>
-                                        <td>{{ $value->created_at }}</td>
                                         <td>
-                                            <a href="{{ url('panel/user/edit/' . $value->id) }}"
-                                                class="btn btn-outline-success btn-sm">Edit</a>
-                                            <a href="{{ url('panel/user/delete/' . $value->id) }}"
-                                                class="btn btn-outline-danger btn-sm">Delete</a>
+                                            @if (!@empty($PermissionEdit))
+                                                <a href="{{ url('panel/user/edit/' . $value->id) }}"
+                                                    class="btn btn-outline-success btn-sm">Edit</a>
+                                            @endif
+                                            @if (!@empty($PermissionDelete))
+                                                <a href="{{ url('panel/user/delete/' . $value->id) }}"
+                                                    class="btn btn-outline-danger btn-sm">Delete</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

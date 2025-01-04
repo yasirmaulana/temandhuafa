@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Permission;
-use App\Models\Role;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\PermissionRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -253,6 +254,26 @@ class DatabaseSeeder extends Seeder
             'name' => 'Delete Keuangan',
             'slug' => 'Delete Keuangan',
             'groupby' => 8
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 6
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 7
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 8
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 9
         ]);
     }
 }

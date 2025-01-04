@@ -5,7 +5,6 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Administrator</a></li>
-                {{-- <li class="breadcrumb-item">Tables</li> --}}
                 <li class="breadcrumb-item active">Role</li>
             </ol>
         </nav>
@@ -34,7 +33,6 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Date</th>
                                     @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
                                         <th scope="col">Action</th>
                                     @endif
@@ -45,7 +43,6 @@
                                     <tr>
                                         <th scope="row">{{ $value->id }}</th>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->created_at }}</td>
                                         <td>
                                             @if (!@empty($PermissionEdit))
                                                 <a href="{{ url('panel/role/edit/' . $value->id) }}"

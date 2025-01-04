@@ -24,6 +24,11 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/dashboard', [DashboardController::class, 'dashboard']);
 
     Route::get('/panel/category', [CategoryController::class, 'list']);
+    Route::get('/panel/category/add', [CategoryController::class, 'add']);
+    Route::post('/panel/category/add', [CategoryController::class, 'insert']);
+    Route::get('/panel/category/edit/{id}', [CategoryController::class, 'edit']);
+    Route::post('/panel/category/edit/{id}', [CategoryController::class, 'update']);
+    Route::get('/panel/category/delete/{id}', [CategoryController::class, 'delete']);
 
     Route::get('/panel/campaign', [CampaignController::class, 'list']);
 
