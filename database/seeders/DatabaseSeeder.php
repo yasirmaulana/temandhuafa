@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
+        // ========================================================
         Role::create([
             'name' => 'Admin'
         ]);
@@ -58,6 +59,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Program'
         ]);
 
+        // ========================================================
         Permission::create([
             'name' => 'Dashboard',
             'slug' => 'Dashboard',
@@ -256,6 +258,56 @@ class DatabaseSeeder extends Seeder
             'groupby' => 8
         ]);
 
+        Permission::create([
+            'name' => 'Slider',
+            'slug' => 'Slider',
+            'groupby' => 9
+        ]);
+
+        Permission::create([
+            'name' => 'Add Slider',
+            'slug' => 'Add Slider',
+            'groupby' => 9
+        ]);
+
+        Permission::create([
+            'name' => 'Edit Slider',
+            'slug' => 'Edit Slider',
+            'groupby' => 9
+        ]);
+
+        Permission::create([
+            'name' => 'Delete Slider',
+            'slug' => 'Delete Slider',
+            'groupby' => 9
+        ]);
+
+        // ========================================================
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 1
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 2
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 3
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 4
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 5
+        ]);
+
         PermissionRole::create([
             'role_id' => 1,
             'permission_id' => 6
@@ -274,6 +326,146 @@ class DatabaseSeeder extends Seeder
         PermissionRole::create([
             'role_id' => 1,
             'permission_id' => 9
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 10
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 11
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 12
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 13
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 14
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 15
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 16
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 17
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 18
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 19
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 20
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 21
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 22
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 23
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 24
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 25
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 26
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 27
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 28
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 29
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 30
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 31
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 32
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 33
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 34
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 35
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 36
+        ]);
+
+        PermissionRole::create([
+            'role_id' => 1,
+            'permission_id' => 37
         ]);
     }
 }

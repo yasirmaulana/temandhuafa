@@ -2,16 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CampaignController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonasiController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\DonaturController;
-use App\Http\Controllers\FundraiserController;
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FundraiserController;
 
 Route::get('/', [HomeController::class, 'home']);
 
@@ -31,6 +32,13 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/category/delete/{id}', [CategoryController::class, 'delete']);
 
     Route::get('/panel/campaign', [CampaignController::class, 'list']);
+    Route::get('/panel/campaign/add', [CampaignController::class, 'add']);
+    Route::post('/panel/campaign/add', [CampaignController::class, 'insert']);
+    Route::get('/panel/campaign/edit/{id}', [CampaignController::class, 'edit']);
+    Route::post('/panel/campaign/edit/{id}', [CampaignController::class, 'update']);
+    Route::get('/panel/campaign/delete/{id}', [CampaignController::class, 'delete']);
+    Route::get('/panel/campaign/approve/{id}', [CampaignController::class, 'approve']);
+    Route::get('/panel/campaign/complate/{id}', [CampaignController::class, 'complate']);
 
     Route::get('/panel/donatur', [DonaturController::class, 'list']);
 
@@ -39,6 +47,13 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/fundraiser', [FundraiserController::class, 'list']);
 
     Route::get('/panel/keuangan', [KeuanganController::class, 'list']);
+
+    Route::get('/panel/slider', [SliderController::class, 'list']);
+    Route::get('/panel/slider/add', [SliderController::class, 'add']);
+    Route::post('/panel/slider/add', [SliderController::class, 'insert']);
+    Route::get('/panel/slider/edit/{id}', [SliderController::class, 'edit']);
+    Route::post('/panel/slider/edit/{id}', [SliderController::class, 'update']);
+    Route::get('/panel/slider/delete/{id}', [SliderController::class, 'delete']);
 
     Route::get('/panel/role', [RoleController::class, 'list']);
     Route::get('/panel/role/add', [RoleController::class, 'add']);

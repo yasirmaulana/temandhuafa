@@ -11,7 +11,9 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
-        'image'
+        'image',
+        'is_active',
+        'is_delete',
     ];
 
     // Relationships
@@ -33,6 +35,11 @@ class Category extends Model
         return Category::get();
     }
 
+    static public function getRecordActive()
+    {
+        return Category::where('is_active', '=', 1)->get();
+    }
+
     static public function getSingle($id)
     {
         return Category::find($id);
@@ -44,6 +51,7 @@ class Category extends Model
         $save->image = $hashImage;
         $save->name = $request->name;
         $save->slug = Str::slug($request->name, '-');
+        $save->is_active = 1;
         $save->save();
     }
 
@@ -52,6 +60,7 @@ class Category extends Model
         $save = Category::find($id);
         $save->name = $request->name;
         $save->slug = Str::slug($request->name, '-');
+        $save->is_active = $request->is_active;
         $save->save();
     }
 
@@ -61,6 +70,7 @@ class Category extends Model
         $save->image = $hashImage;
         $save->name = $request->name;
         $save->slug = Str::slug($request->name, '-');
+        $save->is_active = $request->is_active;
         $save->save();
     }
 }

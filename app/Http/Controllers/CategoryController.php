@@ -6,7 +6,6 @@ use Auth;
 use App\Models\Category;
 use App\Models\Permission;
 use App\Models\PermissionRole;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,8 +33,7 @@ class CategoryController extends Controller
             abort(404);
         }
 
-        $getPermission = Permission::getRecord();
-        $data['getPermission'] = $getPermission;
+        $data['getPermission'] = Permission::getRecord();
 
         return view('panel.category.add', $data);
     }
@@ -71,7 +69,7 @@ class CategoryController extends Controller
 
     public function update($id, Request $request)
     {
-        $PermissionRole = PermissionRole::getPermission('Edit Role', Auth::user()->role_id);
+        $PermissionRole = PermissionRole::getPermission('Edit Category', Auth::user()->role_id);
         if (empty($PermissionRole)) {
             abort(404);
         }
@@ -92,12 +90,12 @@ class CategoryController extends Controller
             Category::updateRecord($id, $hashImage, $request);
         }
 
-        return redirect('panel/category')->with('success', "Category successfully created");
+        return redirect('panel/category')->with('success', "Category successfully updated");
     }
 
     public function delete($id)
     {
-        $PermissionRole = PermissionRole::getPermission('Delete Role', Auth::user()->role_id);
+        $PermissionRole = PermissionRole::getPermission('Delete Category', Auth::user()->role_id);
         if (empty($PermissionRole)) {
             abort(404);
         }
@@ -106,9 +104,9 @@ class CategoryController extends Controller
 
         $path = parse_url($category->image, PHP_URL_PATH);
         $relativePath = str_replace('/storage/', '', $path);
-        Storage::disk('public')->delete($relativePath);
 
         $category->delete();
+        Storage::disk('public')->delete($relativePath);
 
         return redirect('panel/category')->with('success', "Category successfully deleted");
     }

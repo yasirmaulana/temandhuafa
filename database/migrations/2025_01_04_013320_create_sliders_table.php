@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('link');
+            $table->boolean('is_active');
+            $table->boolean('is_delete');
             $table->timestamps();
         });
     }

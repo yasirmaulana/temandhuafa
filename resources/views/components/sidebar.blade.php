@@ -82,6 +82,16 @@
             </li>
         @endif
 
+        @if (!empty($PermissionRole))
+            <li class="nav-item">
+                <a class="nav-link @if (Request::segment(2) != 'slider') collapsed @endif"
+                    href="{{ url('panel/slider') }}">
+                    <i class="bi bi-layout-text-sidebar"></i>
+                    <span>Slider</span>
+                </a>
+            </li>
+        @endif
+
         @if (!empty($PermissionUser))
             <li class="nav-heading">Administrator</li>
 

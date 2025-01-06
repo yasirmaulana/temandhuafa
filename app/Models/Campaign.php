@@ -8,17 +8,18 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Campaign extends Model
 {
     protected $fillable = [
+        'image',
         'title',
-        'slug',
-        'description',
         'category_id',
         'target_amount',
-        'collected_amount',
-        'image',
-        'start_date',
         'end_date',
-        'status',
-        'fundraiser_id'
+        'description',
+        'status', // pending, approved, rejected, completed
+        'fundraiser_id',
+        'start_date',
+        'slug',
+        'collected_amount',
+        'is_delete',
     ];
 
     // Relationships
@@ -55,7 +56,90 @@ class Campaign extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => url('/storage/campaigns/' . $value),
+            get: fn($value) => url('/storage/assets/img/campaigns/' . $value),
         );
+    }
+
+    static public function getCampaigns()
+    {
+        // return Campaign::where('is_delete', '<>', 1)->get();
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'users.name as fundraiser_name')
+            ->join('categories', 'categories.id', '=', 'campaigns.category_id')
+            ->join('users', 'users.id', '=', 'campaigns.fundraiser_id')
+            ->where('campaigns.is_delete', '<>', 1)->get();
+    }
+
+    static public function getCampaignByUserId($userId)
+    {
+        return Campaign::where('is_delete', '<>', 1)
+            ->where('fundraiser_id', '=', $userId)
+            ->get();
+    }
+
+    static public function getSingle($id)
+    {
+        return Campaign::find($id);
+    }
+
+    static public function insertRecord($hashImage, $request)
+    {
+        $save = new Campaign;
+        $save->image = $hashImage;
+        $save->title = $request->title;
+        $save->category_id = $request->category_id;
+        $save->target_amount = $request->target_amount;
+        $save->description = $request->description;
+        $save->status = $request->status;
+        $save->start_date = $request->start_date;
+        $save->end_date = $request->end_date;
+        $save->fundraiser_id = $request->fundraiser_id;
+        $save->slug = $request->slug;
+        $save->save();
+    }
+
+    static public function approve($id)
+    {
+        $update = Campaign::find($id);
+        $update->status = "approved";
+        $update->save();
+    }
+
+    static public function complate($id)
+    {
+        $update = Campaign::find($id);
+        $update->status = "completed";
+        $update->save();
+    }
+
+    static public function updateRecordWithoutImage($id, $request)
+    {
+        $save = Campaign::find($id);
+        dd($save);
+        $save->title = $request->title;
+        $save->category_id = $request->category_id;
+        $save->target_amount = $request->target_amount;
+        $save->description = $request->description;
+        $save->status = $request->status;
+        $save->start_date = $request->start_date;
+        $save->end_date = $request->end_date;
+        $save->fundraiser_id = $request->fundraiser_id;
+        $save->slug = $request->slug;
+        $save->save();
+    }
+
+    static public function updateRecord($id, $hashImage, $request)
+    {
+        $save = Campaign::find($id);
+        $save->image = $hashImage;
+        $save->title = $request->title;
+        $save->category_id = $request->category_id;
+        $save->target_amount = $request->target_amount;
+        $save->description = $request->description;
+        $save->status = $request->status;
+        $save->start_date = $request->start_date;
+        $save->end_date = $request->end_date;
+        $save->fundraiser_id = $request->fundraiser_id;
+        $save->slug = $request->slug;
+        $save->save();
     }
 }

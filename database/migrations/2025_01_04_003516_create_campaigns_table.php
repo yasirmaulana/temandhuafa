@@ -17,13 +17,14 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description');
             $table->foreignId('category_id')->constrained('categories');
-            $table->decimal('target_amount', 15, 2);
-            $table->decimal('collected_amount', 15, 2)->default(0);
+            $table->bigInteger('target_amount');
+            $table->bigInteger('collected_amount')->default(0);
             $table->string('image');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', ['pending', 'approved', 'rejected', 'completed']);
             $table->foreignId('fundraiser_id')->constrained('users');
+            $table->boolean('is_delete');
             $table->timestamps();
         });
     }

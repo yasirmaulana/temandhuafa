@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('image');
+            $table->boolean('is_active');
+            $table->boolean('is_delete');
             $table->timestamps();
         });
     }
