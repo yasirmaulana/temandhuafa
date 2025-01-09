@@ -38,7 +38,6 @@
                                 @foreach ($getRecord as $value)
                                     <tr>
                                         <td>
-                                            {{ $value->image }}
                                             <img src="{{ $value->image }}" alt="" class="img-thumbnail"
                                                 style="width: 50px; height: 50px;">
                                         </td>
