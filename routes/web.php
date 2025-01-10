@@ -13,12 +13,19 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FundraiserController;
+use App\Http\Controllers\SocialiteController;
 
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);
 Route::get('logout', [AuthController::class, 'logout']);
+
+Route::controller(SocialiteController::class)->group(function () {
+    Route::get('auth/google', 'googleLogin')->name('auth.google');
+    Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback');
+});
+
 
 Route::group(['middleware' => 'useradmin'], function () {
 

@@ -23,10 +23,10 @@ class Campaign extends Model
     ];
 
     // Relationships
-    // public function fundraiser()
-    // {
-    //     return $this->belongsTo(User::class, 'fundraiser_id');
-    // }
+    public function fundraiser()
+    {
+        return $this->belongsTo(User::class, 'fundraiser_id');
+    }
 
     public function category()
     {

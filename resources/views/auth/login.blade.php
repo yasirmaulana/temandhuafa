@@ -100,6 +100,16 @@
                                         </div>
                                     </form>
 
+                                    <p class="my-4">OR</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a href="{{ route('auth.google') }}" class="btn btn-danger w-100">
+                                                <i class="bi bi-google me-2"></i>
+                                                Login with Google
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
