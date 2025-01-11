@@ -43,7 +43,7 @@
 
         {{ $slot }}
 
-    </main><!-- End #main -->
+    </main>
 
     <x-footer></x-footer>
 

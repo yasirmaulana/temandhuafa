@@ -14,8 +14,13 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FundraiserController;
 use App\Http\Controllers\SocialiteController;
+use App\Livewire\Campaign;
+use App\Livewire\Home;
+use App\Livewire\Posts\Index;
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', function () {
+    return view('front.home');
+});
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);
