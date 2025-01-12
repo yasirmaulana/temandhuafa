@@ -25,7 +25,7 @@
                 <li><a href="javascript:void(0)" class="menu-setting-box">
                         <div class="setting-icon"><i class="ri-information-line"></i></div>
                         <div class="setting-name">
-                            <h4>Tentang Tarahum</h4><i class="ri-arrow-right-s-line"></i>
+                            <h4>Tentang Temandhuafa</h4><i class="ri-arrow-right-s-line"></i>
                         </div>
                     </a></li>
             </ul>

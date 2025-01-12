@@ -21,6 +21,15 @@ use App\Livewire\Posts\Index;
 Route::get('/', function () {
     return view('front.home');
 });
+Route::get('/campaign/1', function () {
+    return view('front.detail');
+});
+Route::get('/pembayaran', function () {
+    return view('front.detail');
+});
+Route::get('/metodepembayaran', function () {
+    return view('front.detail');
+});
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);
