@@ -21,7 +21,7 @@ use App\Livewire\Posts\Index;
 Route::get('/', function () {
     return view('front.home');
 });
-Route::get('/campaign/1', function () {
+Route::get('/campaign/{slug}', function () {
     return view('front.detail');
 });
 Route::get('/pembayaran', function () {

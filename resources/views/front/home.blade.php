@@ -32,9 +32,9 @@
 
     {{-- <link rel="stylesheet" type="text/css" href="https://tarahum.id/member/assets/css/remixicon.css"
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"> --}}
-    <link rel="stylesheet" type="text/css" href="https://tarahum.id/member/assets/css/custom.css?version=1.1">
+    {{-- <link rel="stylesheet" type="text/css" href="https://tarahum.id/member/assets/css/custom.css?version=1.1"> --}}
     <link rel="stylesheet" type="text/css" href="https://tarahum.id/member/assets/css/style.css">
-    <link rel="stylesheet" href="https://tarahum.id/extensions/sweetalert2/sweetalert2.min.css">
+    {{-- <link rel="stylesheet" href="https://tarahum.id/extensions/sweetalert2/sweetalert2.min.css"> --}}
     {{-- <link rel="manifest" href="https://tarahum.id/manifest.json?v=1.1"> --}}
 
     <title>temandhuafa.id</title>

@@ -4,17 +4,17 @@
             <li class="">
                 <a href="#" class="mobile-box">
                     <div class="mobile-icon">
-                        <i class="ri-file-text-line"></i>
+                        <i class="bi bi-house-door-fill ms-2"></i>
                     </div>
                     <div class="mobile-name">
                         <h5>Beranda</h5>
                     </div>
                 </a>
             </li>
-            <li class="active">
+            <li class="">
                 <a href="#" class="mobile-box">
                     <div class="mobile-icon">
-                        <i class="ri-hand-heart-line"></i>
+                        <i class="bi bi-wallet-fill ms-2"></i>
                     </div>
                     <div class="mobile-name">
                         <h5>Donasi Saya</h5>
@@ -24,7 +24,7 @@
             <li class="">
                 <a href="#" class="mobile-box">
                     <div class="mobile-icon">
-                        <i class="ri-chat-3-line"></i>
+                        <i class="bi bi-flag-fill ms-2"></i>
                     </div>
                     <div class="mobile-name">
                         <h5>Campaign</h5>
@@ -34,7 +34,7 @@
             <li class="">
                 <a href="#" class="mobile-box">
                     <div class="mobile-icon">
-                        <i class="ri-user-3-line"></i>
+                        <i class="bi bi-person-circle ms-2"></i>
                     </div>
                     <div class="mobile-name">
                         <h5>Akun</h5>
