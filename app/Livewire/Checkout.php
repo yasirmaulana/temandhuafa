@@ -2,11 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Campaign;
 use Livewire\Component;
+use App\Models\Campaign;
 
-class CampaignDetail extends Component
+class Checkout extends Component
 {
+
     public $campaign;
 
     public function mount($slug)
@@ -16,6 +17,6 @@ class CampaignDetail extends Component
 
     public function render()
     {
-        return view('livewire.front.detail');
+        return view('livewire.front.checkout');
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Livewire\Home;
+use App\Livewire\Checkout;
+use App\Livewire\CampaignDetail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonasiController;
@@ -12,21 +14,12 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FundraiserController;
 use App\Http\Controllers\SocialiteController;
-use App\Livewire\Campaign;
-use App\Livewire\Home;
-use App\Livewire\Posts\Index;
+use App\Http\Controllers\FundraiserController;
 
-Route::get('/', function () {
-    return view('front.home');
-});
-Route::get('/campaign/{slug}', function () {
-    return view('front.detail');
-});
-Route::get('/pembayaran', function () {
-    return view('front.detail');
-});
+Route::get('/', Home::class);
+Route::get('/campaign/{slug}', CampaignDetail::class);
+Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/metodepembayaran', function () {
     return view('front.detail');
 });

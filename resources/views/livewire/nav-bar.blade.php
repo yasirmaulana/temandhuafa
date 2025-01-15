@@ -1,5 +1,5 @@
 <div>
-    <div class="mobile-style-1 border">
+    <div class="mobile-style-1 border p-4 bg-light">
         <ul>
             <li class="">
                 <a href="#" class="mobile-box">

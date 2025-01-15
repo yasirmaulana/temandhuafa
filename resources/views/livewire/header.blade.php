@@ -22,23 +22,23 @@
             <div class="top-header d-flex align-items-center justify-content-between">
                 <!-- Logo di kiri atas -->
                 <div class="header-left d-flex align-items-center">
-                    <a class="text-dark me-3" data-bs-toggle="offcanvas" href="#sideMenu" role="button">
+                    {{-- <a class="text-dark me-3" data-bs-toggle="offcanvas" href="#sideMenu" role="button">
                         <i class="ri-menu-2-fill"></i>
-                    </a>
-                    <a href="https://temandhuafa.id" class="header-logo">
+                    </a> --}}
+                    <a href="/" class="header-logo">
                         <img src="{{ asset('assets/img/logo-td.png') }}" alt="Logo" style="width: 100px;">
                     </a>
                 </div>
 
                 <!-- Input Search Full Width -->
-                <div class="flex-grow-1 ms-3">
+                {{-- <div class="flex-grow-1 ms-3">
                     <input type="text" class="form-control" placeholder="Cari di sini..." />
-                </div>
+                </div> --}}
 
                 <!-- Notification Box -->
-                <div class="header-right ms-3">
+                {{-- <div class="header-right ms-3">
                     <div class="notification-box"></div>
-                </div>
+                </div> --}}
             </div>
 
             <div class="header-bottom"></div>

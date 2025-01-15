@@ -81,6 +81,11 @@ class Campaign extends Model
         return Campaign::find($id);
     }
 
+    static public function getCampaignBySlug($slug)
+    {
+        return Campaign::where('slug', $slug)->first();
+    }
+
     static public function insertRecord($hashImage, $request)
     {
         $save = new Campaign;
@@ -114,7 +119,7 @@ class Campaign extends Model
     static public function updateRecordWithoutImage($id, $request)
     {
         $save = Campaign::find($id);
-        dd($save);
+        // dd($save);
         $save->title = $request->title;
         $save->category_id = $request->category_id;
         $save->target_amount = $request->target_amount;

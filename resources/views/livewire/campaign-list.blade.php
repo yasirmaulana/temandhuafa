@@ -30,7 +30,8 @@
                                     <span class="text-muted small">
                                         BAZNAS Hub
                                     </span>
-                                    <i class="bi bi-check-circle-fill text-success ms-2"></i>
+                                    {{-- <i class="bi bi-check-circle-fill text-success ms-2"></i> --}}
+                                    <i class="ri-shield-check-line text-success fw-bolder"></i>
                                     <div class="progress mt-2" style="height: 3px;">
                                         <div class="progress-bar" role="progressbar" style="width: 71%;"></div>
                                     </div>
