@@ -19,12 +19,12 @@
                         <div class="popular-box p-0">
                             <div class="d-flex">
                                 <div class="p-2 w-25 flex-fill bd-highlight align-self-center">
-                                    <a href="{{ url('campaign/' . $campaign->slug) }}">
+                                    <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
                                         <img src="{{ $campaign->image }}" class="img-fluid rounded" alt="">
                                     </a>
                                 </div>
                                 <div class="popular-detail ms-2 m-2 p-2 flex-fill bd-highlight">
-                                    <a href="{{ url('campaign/' . $campaign->slug) }}">
+                                    <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
                                         <h5 class=" fw-bold">{{ $campaign->title }}</h5>
                                     </a>
                                     <span class="text-muted small">

@@ -120,13 +120,16 @@
     <div class="mobile-style-1 border p-3 bg-light">
         <div class="row position-fixed bottom-0 start-0 end-0 bg-white p-3 shadow g-1">
             <div class="col-2">
-                <a href="/" class="btn btn-secondary w-100">
+                <a href="/" wire:navigate class="btn btn-secondary w-100">
                     <i class="ri-arrow-go-back-line"></i>
                 </a>
             </div>
             <div class="col-10">
-                <a href="{{ url('checkout/' . $campaign->slug) }}" class="btn btn-success w-100">
-                    <i class="ri-hand-heart-line"></i> Donasi Sekarang
+                <a href="{{ url('checkout/' . $campaign->slug) }}" wire:navigate class="btn btn-success w-100">
+                    <i class="ri-hand-heart-line"></i>
+                    <span class="fw-bold">
+                        Donasi Sekarang
+                    </span>
                 </a>
             </div>
         </div>

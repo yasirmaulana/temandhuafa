@@ -1,8 +1,9 @@
 <?php
 
 use App\Livewire\Home;
-use App\Livewire\Checkout;
 use App\Livewire\CampaignDetail;
+use App\Livewire\Checkout;
+use App\Livewire\Payment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
@@ -20,9 +21,7 @@ use App\Http\Controllers\FundraiserController;
 Route::get('/', Home::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
-Route::get('/metodepembayaran', function () {
-    return view('front.detail');
-});
+Route::get('/payment', Payment::class);
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);

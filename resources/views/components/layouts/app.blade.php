@@ -27,21 +27,22 @@
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
 
     <title>{{ $title ?? 'Page Title' }}</title>
+    @livewireStyles
 </head>
 
 <body>
     {{ $slot }}
 
-    <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
+    {{-- <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
     <script src="https://tarahum.id/member/assets/js/custom_swiper.js?version=1.1" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
-    </script>
+    </script> --}}
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"
-        nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
-    </script>
+        nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
+    </script> --}}
     {{-- <script src="https://tarahum.id/member/assets/js/script.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
     <script src="https://tarahum.id/member/assets/js/hide-show.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
     <script src="https://tarahum.id/member/assets/js/otp-5.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
@@ -49,6 +50,9 @@
     <script src="https://tarahum.id/extensions/sweetalert2/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script> --}}
+
+    @livewireScripts
+
 </body>
 
 </html>
