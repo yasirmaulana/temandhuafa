@@ -11,10 +11,14 @@
             color: #ff5e57;
         }
     </style>
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
+
     @livewire('header')
 
     <section class="section-t-space">
-        <form>
+        <form wire:submit="createPayment">
+            {{ csrf_field() }}
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">
                     <div class="bd-highlight">
@@ -59,7 +63,7 @@
                     <div class="col">
                         <div class="input-group mb-3 rounded-0">
                             <span class="input-group-text rounded-0 fw-bold">Rp</span>
-                            <input type="number" wire:model="amount"
+                            <input type="number" wire:model.change="amount"
                                 class="form-control rounded-0 form-control-lg fw-bold" placeholder="0" required>
                         </div>
                     </div>
@@ -67,7 +71,7 @@
 
                 <div class="d-flex flex-fill bd-highlight">
                     <div class="form-check">
-                        <input wire:model="infaqSistem" class="form-check-input" type="checkbox">
+                        <input wire:model="infaqSistem" wire:click="togle" class="form-check-input" type="checkbox">
                         <label class="form-check-label small">Infaq sistem 2.000</label>
                     </div>
                 </div>
@@ -107,14 +111,17 @@
                         placeholder="Tulis doa untuk penggalang dana atau dirimu"></textarea>
                 </div>
             </div>
-            <div class="border p-3 bg-light">
-                <div class="row g-1">
-                    <div class="col-3">
+
+            <div class="mobile-style-1 border p-3 bg-light">
+                <div class="row g-1 align-items-center justify-content-between">
+                    <div class="col-auto">
                         <span class="text-muted small">Total Donasi</span>
-                        <div class="fw-bold text-danger fs-5">Rp{{ $totalAmount }}</div>
+                        <div class="fw-bold text-danger fs-5">Rp
+                            {{ number_format($totalAmount, 0, ',', '.') }}
+                        </div>
                     </div>
-                    <div class="col-9">
-                        <button wire:click="bayar" class="btn btn-success w-100">
+                    <div class="col-7 col-md-8">
+                        <button type="submit" class="btn btn-success" id="pay-button">
                             <span class="fw-bold">Lanjut Pembayaran</span>
                         </button>
                     </div>

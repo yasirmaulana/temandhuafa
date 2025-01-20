@@ -11,12 +11,16 @@ class Donation extends Model
     protected $fillable = [
         'invoice',
         'campaign_id',
-        'donor_id',
         'amount',
         'pray',
         'snap_token',
         'message',
-        'status'
+        'status',
+        'infaq_sistem',
+        'donor_name',
+        'email',
+        'phone',
+        'anonim',
     ];
 
     // Relationships
@@ -25,10 +29,10 @@ class Donation extends Model
         return $this->belongsTo(Campaign::class);
     }
 
-    public function donor()
-    {
-        return $this->belongsTo(User::class, 'donor_id');
-    }
+    // public function donor()
+    // {
+    //     return $this->belongsTo(User::class, 'donor_id');
+    // }
 
     /**
      * createdAt

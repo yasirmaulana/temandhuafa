@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="QjKqYhanGtcKrSkqC6zwqNTCPVs26Sns6axjFjaK">
+    {{-- <meta name="csrf-token" content="QjKqYhanGtcKrSkqC6zwqNTCPVs26Sns6axjFjaK"> --}}
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="theme-color" content="#ff8d2f">
@@ -31,6 +31,8 @@
 </head>
 
 <body>
+    @livewireScripts
+
     {{ $slot }}
 
     {{-- <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
@@ -51,7 +53,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script> --}}
 
-    @livewireScripts
 
 </body>
 

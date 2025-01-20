@@ -4,27 +4,31 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Campaign;
+use Illuminate\Http\Request;
 
 class Checkout extends Component
 {
     // #[Title('Checkout')]
 
     public $campaign;
+    public $campaignId;
     public $amount = 0;
     public $infaqSistem = true;
-    public $anonim = false;
     public $namaLengkap = '';
     public $email = '';
     public $phone = '';
-    public $totalAmount = 0;
+    public $anonim = false;
     public $doa = '';
-    public $infaqSistemAmount = 2000;
+    public $infaqSistemAmount = 0;
+    public $totalAmount = 0;
+    public $snapToken = '';
 
     public function mount($slug)
     {
         $this->campaign = Campaign::getCampaignBySlug($slug);
-
-        $this->updateTotalAmount();
+        $this->campaignId = $this->campaign->id;
+        $this->infaqSistemAmount = 2000;
+        $this->totalAmount = $this->infaqSistemAmount;
     }
 
     public function render()
@@ -32,36 +36,61 @@ class Checkout extends Component
         return view('livewire.front.checkout');
     }
 
-    public function updated($propertyName)
+    public function createPayment()
     {
-        // Memperbarui totalAmount setiap kali properti tertentu diubah
-        if (in_array($propertyName, ['amount', 'infaqSistem'])) {
-            $this->updateTotalAmount();
+
+        try {
+            \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+            \Midtrans\Config::$isProduction = config('midtrans.isProduction');
+            \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
+            \Midtrans\Config::$is3ds = config("midtrans.is3ds");
+
+            $params = [
+                'transaction_details' => [
+                    'order_id' => rand(),
+                    'gross_amount' => $this->totalAmount,
+                ],
+                'customer_details' => [
+                    'first_name' => $this->namaLengkap,
+                    'email' => $this->email,
+                    'phone' => $this->phone
+                ]
+            ];
+
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            // Redirect ke halaman Payment dengan Snap Token
+            return redirect()->route('payment', ['snapToken' => $snapToken]);
+        } catch (\Exception $e) {
+            logger()->error('Error generating snapToken: ' . $e->getMessage());
+            $this->addError('snapToken', 'Gagal mendapatkan Snap Token. Silakan coba lagi.');
         }
     }
 
-    public function setAmount($value)
+    // public function updatedSnapToken($value)
+    // {
+    //     if (!empty($value)) {
+    //         $this->dispatch('updateSnapToken', ['snapToken' => $value]);
+    //     }
+    // }
+
+    public function setAmount($amount)
     {
-        $this->amount = $value;
-        $this->updateTotalAmount(); // Memperbarui totalAmount secara dinamis
+        $this->amount = $amount;
+        $this->totalAmount = $this->infaqSistemAmount + $this->amount;
     }
 
-
-    private function updateTotalAmount()
+    public function togle()
     {
-        $this->totalAmount = $this->amount + ($this->infaqSistem ? $this->infaqSistemAmount : 0);
+        if ($this->infaqSistem) {
+            $this->infaqSistemAmount = 2000;
+        } else {
+            $this->infaqSistemAmount = 0;
+        }
+        $this->totalAmount = $this->amount + $this->infaqSistemAmount; // Tambahkan 2000
     }
 
-    public function bayar()
+    public function updatedAmount($value)
     {
-        // Debugging data
-        dd([
-            'nama' => $this->namaLengkap,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'infaqSistem' => $this->infaqSistem,
-            'totalAmount' => $this->totalAmount,
-            'doa' => $this->doa,
-        ]);
+        $this->totalAmount = $this->infaqSistemAmount + (int)$value;
     }
 }

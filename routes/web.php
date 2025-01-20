@@ -21,7 +21,7 @@ use App\Http\Controllers\FundraiserController;
 Route::get('/', Home::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
-Route::get('/payment', Payment::class);
+Route::get('/payment/{snapToken}', Payment::class)->name('payment');
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);

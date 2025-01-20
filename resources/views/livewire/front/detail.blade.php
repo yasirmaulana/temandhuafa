@@ -5,7 +5,7 @@
     <header class="learning-header overflow-hidden">
         <div class="watch-video">
             <div class="video-header" id="video-header">
-                <img src="{{ $campaign->image }}" class="img-fluid" alt="">
+                <img src="{{ $campaign?->image ?? '' }}" class="img-fluid" alt="">
             </div>
         </div>
     </header>
@@ -13,12 +13,12 @@
     <section class="video-name-section pt-3">
         <div class="custom-container">
             <div class="name-title">
-                <h4>{{ $campaign->title }}</h4>
+                <h4>{{ $campaign?->title ?? '' }}</h4>
                 <h5 class="fw-bolder text-success">Rp 0</h5>
                 <div class="popular-detail">
                     <div class="d-flex justify-content-between mt-2">
                         <p class="theme-color">Terkumpul dari kebutuhan
-                            <strong>{{ 'Rp. ' . number_format($campaign->target_amount, 0, ',', '.') }}</strong>
+                            <strong>{{ 'Rp. ' . number_format($campaign?->target_amount ?? 0, 0, ',', '.') }}</strong>
                         </p>
                     </div>
                     <div class="progress" style="height: 3px;">
@@ -33,7 +33,7 @@
         <div id="social-links">
             <ul>
                 <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign->slug) }}"
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign?->slug ?? '') }}"
                         class="social-button " id="" title="" rel="">
                         <i class="ri-facebook-box-fill"></i>
                     </a>
@@ -44,12 +44,12 @@
                 <li><a href="https://www.linkedin.com/sharing/share-offsite?mini=true&amp;url=https://temandhuafa.id/campaign/wakaf-air-alirkan-pahala-selamanya&amp;title=Muliakan+Guru%2C+Jalan+Keberkahan&amp;summary=Extra+linkedin+summary+can+be+passed+here"
                         class="social-button " id="" title="" rel=""><span
                             class="fab fa-linkedin"></span></a></li> --}}
-                <li><a target="_blank" href="https://wa.me/?text={{ url('/campaign/' . $campaign->slug) }}"
+                <li><a target="_blank" href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
                         class="social-button " id="" title="" rel="">
                         <i class="ri-whatsapp-fill"></i>
                     </a></li>
                 <li><a target="_blank"
-                        href="https://telegram.me/share/url?url={{ url('/campaign/' . $campaign->slug) }}"
+                        href="https://telegram.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}"
                         class="social-button " id="" title="" rel="">
                         <i class="ri-telegram-fill"></i></a></li>
             </ul>
@@ -101,7 +101,7 @@
                                         <div class="col-2 py-2"></div>
                                     </div>
                                     <div class="quotes-details">
-                                        {!! $campaign->description !!}
+                                        {!! $campaign?->description ?? '' !!}
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                 </a>
             </div>
             <div class="col-10">
-                <a href="{{ url('checkout/' . $campaign->slug) }}" wire:navigate class="btn btn-success w-100">
+                <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate class="btn btn-success w-100">
                     <i class="ri-hand-heart-line"></i>
                     <span class="fw-bold">
                         Donasi Sekarang
