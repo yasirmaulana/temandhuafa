@@ -22,13 +22,14 @@
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">
                     <div class="bd-highlight">
-                        <a href="{{ url('campaign/' . $campaign->slug) }}" class="btn btn-default border shadow-sm">
+                        <a href="{{ $isZiswaf ? url('ziswaf/') : url('campaign/' . $campaign->slug) }}"
+                            class="btn btn-default border shadow-sm">
                             <i class="ri-arrow-go-back-line text-warning"></i>
                         </a>
                     </div>
                     <div class="flex-fill bd-highlight justify-content-center text-center">
                         <div class="border shadow-sm rounded height py-3">
-                            <h4 class="fw-bold">{{ $campaign->title }}</h4>
+                            <h4 class="fw-bold">{{ $isZiswaf ? 'ziswaf' : $campaign->title }}</h4>
                         </div>
                     </div>
                 </div>
@@ -36,28 +37,31 @@
                 <div class="title-2 mt-4">
                     <h3>Nominal Donasi</h3>
                 </div>
-                <div class="d-flex bd-highlight">
-                    <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(30000)"
-                        style="cursor: pointer;">
-                        <i class="bi bi-emoji-smile emoji"></i>
-                        <span class="fw-bold">Rp30.000</span>
+
+                @if (!$isZiswaf)
+                    <div class="d-flex bd-highlight">
+                        <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(30000)"
+                            style="cursor: pointer;">
+                            <i class="bi bi-emoji-smile emoji"></i>
+                            <span class="fw-bold">Rp30.000</span>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(50000)"
+                            style="cursor: pointer;">
+                            <i class="bi bi-emoji-laughing emoji"></i>
+                            <span class="fw-bold">Rp50.000</span>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(95000)"
+                            style="cursor: pointer;">
+                            <i class="bi bi-emoji-heart-eyes emoji"></i>
+                            <span class="fw-bold">Rp95.000</span>
+                        </div>
+                        <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(100000)"
+                            style="cursor: pointer;">
+                            <i class="bi bi-heart-fill emoji emoji-love"></i>
+                            <span class="fw-bold">Rp100.000</span>
+                        </div>
                     </div>
-                    <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(50000)"
-                        style="cursor: pointer;">
-                        <i class="bi bi-emoji-laughing emoji"></i>
-                        <span class="fw-bold">Rp50.000</span>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(95000)"
-                        style="cursor: pointer;">
-                        <i class="bi bi-emoji-heart-eyes emoji"></i>
-                        <span class="fw-bold">Rp95.000</span>
-                    </div>
-                    <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(100000)"
-                        style="cursor: pointer;">
-                        <i class="bi bi-heart-fill emoji emoji-love"></i>
-                        <span class="fw-bold">Rp100.000</span>
-                    </div>
-                </div>
+                @endif
 
                 <div class="row">
                     <div class="col">
@@ -96,20 +100,22 @@
                     <input type="text" wire:model="phone" class="form-control" placeholder="Nomor Telepon">
                 </div>
 
-                <div class="d-flex flex-fill bd-highlight">
-                    <div class="form-check">
-                        <input wire:model="anonim" class="form-check-input" type="checkbox">
-                        <label class="form-check-label small">Sembunyikan nama saya (Donasi Anonim)</label>
+                @if (!$isZiswaf)
+                    <div class="d-flex flex-fill bd-highlight">
+                        <div class="form-check">
+                            <input wire:model="anonim" class="form-check-input" type="checkbox">
+                            <label class="form-check-label small">Sembunyikan nama saya (Donasi Anonim)</label>
+                        </div>
                     </div>
-                </div>
 
-                <hr class="my-3">
+                    <hr class="my-3">
 
-                <div class="mb-3">
-                    <label for="doa" class="form-label small fw-bold">Doa dan Dukungan (opsional)</label>
-                    <textarea wire:model="doa" class="form-control" rows="4"
-                        placeholder="Tulis doa untuk penggalang dana atau dirimu"></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label for="doa" class="form-label small fw-bold">Doa dan Dukungan (opsional)</label>
+                        <textarea wire:model="doa" class="form-control" rows="4"
+                            placeholder="Tulis doa untuk penggalang dana atau dirimu"></textarea>
+                    </div>
+                @endif
             </div>
 
             <div class="mobile-style-1 border p-3 bg-light">

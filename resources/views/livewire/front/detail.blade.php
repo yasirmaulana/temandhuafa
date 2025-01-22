@@ -1,7 +1,6 @@
 <main class="position-relative">
 
     @livewire('header')
-    {{-- {{ dd($campaign) }} --}}
     <header class="learning-header overflow-hidden">
         <div class="watch-video">
             <div class="video-header" id="video-header">

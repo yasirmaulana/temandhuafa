@@ -35,9 +35,9 @@
 
     {{ $slot }}
 
-    {{-- <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
+    <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    <script src="https://tarahum.id/member/assets/js/custom_swiper.js?version=1.1" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
+    {{-- <script src="https://tarahum.id/member/assets/js/custom_swiper.js?version=1.1" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
     </script> --}}
 
     {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"

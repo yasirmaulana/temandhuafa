@@ -4,6 +4,7 @@ use App\Livewire\Home;
 use App\Livewire\CampaignDetail;
 use App\Livewire\Checkout;
 use App\Livewire\Payment;
+use App\Livewire\Ziswaf;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
@@ -22,6 +23,7 @@ Route::get('/', Home::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');
+Route::get('/ziswaf', Ziswaf::class);
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);

@@ -22,13 +22,22 @@ class Checkout extends Component
     public $infaqSistemAmount = 0;
     public $totalAmount = 0;
     public $snapToken = '';
+    public $isZiswaf;
 
     public function mount($slug)
     {
-        $this->campaign = Campaign::getCampaignBySlug($slug);
-        $this->campaignId = $this->campaign->id;
+        $parts = explode('-', $slug);
+
         $this->infaqSistemAmount = 2000;
-        $this->totalAmount = $this->infaqSistemAmount;
+        if ($parts[0] <> "ziswaf") {
+            $this->campaign = Campaign::getCampaignBySlug($slug);
+            $this->campaignId = $this->campaign->id;
+            $this->totalAmount = $this->infaqSistemAmount;
+        } else {
+            $this->isZiswaf = true;
+            $this->amount = (int) $parts[1];
+            $this->totalAmount = $this->amount + $this->infaqSistemAmount;
+        }
     }
 
     public function render()
@@ -65,13 +74,6 @@ class Checkout extends Component
             $this->addError('snapToken', 'Gagal mendapatkan Snap Token. Silakan coba lagi.');
         }
     }
-
-    // public function updatedSnapToken($value)
-    // {
-    //     if (!empty($value)) {
-    //         $this->dispatch('updateSnapToken', ['snapToken' => $value]);
-    //     }
-    // }
 
     public function setAmount($amount)
     {
