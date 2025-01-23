@@ -34,6 +34,21 @@
                 aria-labelledby="zakat-tab">
 
                 <div class="accordion" id="accordionExample">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Kalkulator Zakat Profesi
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                belum ada ui nya
+                            </div>
+                        </div>
+                    </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button " type="button" data-bs-toggle="collapse"
@@ -47,7 +62,6 @@
                                 <p>Zakat yang dikeluarkan individu maupun lembaga atas harta/penghasilan yang
                                     diperolehnya dengan syarat dan ketentuan yang sudah ditetapkan</p>
                                 <div class="row g-3">
-                                    {{-- {{ csrf_field() }} --}}
                                     <div class="col-12">
                                         <label class="form-label">Harta dalam bentuk tabungan/giro/deposito
                                             <span class="text-danger">*</span>
@@ -70,12 +84,14 @@
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label">Harta dalam bentuk kendaraan</label>
-                                        <input type="number" class="form-control" wire:model.change="hartaKendaraan">
+                                        <input type="number" class="form-control"
+                                            wire:model.change="hartaKendaraan">
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label">Harta dalam bentuk koleksi seni & barang
                                             antik</label>
-                                        <input type="number" class="form-control" wire:model.change="hartaBarangAntik">
+                                        <input type="number" class="form-control"
+                                            wire:model.change="hartaBarangAntik">
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label">Harta dalam bentuk stok barang dagangan</label>
@@ -179,33 +195,6 @@
                                         </a>
                                     </div>
                                 </div>
-
-                                {{-- <div class="row">
-                                    <div class="col-12">
-                                        <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate
-                                            class="btn btn-success w-100">
-                                            <i class="ri-hand-heart-line"></i>
-                                            <span class="fw-bold">
-                                                Bayar Zakat Sekarang
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div> --}}
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                Kalkulator Zakat Profesi
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                belum ada ui nya
                             </div>
                         </div>
                     </div>
