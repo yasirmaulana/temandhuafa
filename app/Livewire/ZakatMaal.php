@@ -4,9 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class Ziswaf extends Component
+class ZakatMaal extends Component
 {
-
     public $campaign;
     public $hartaTabungan = 0;
     public $hartaLM = 0;
@@ -110,6 +109,6 @@ class Ziswaf extends Component
 
     public function render()
     {
-        return view('livewire.front.ziswaf');
+        return view('livewire.zakat-maal');
     }
 }

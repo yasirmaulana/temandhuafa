@@ -37,20 +37,18 @@
                         <i class="ri-facebook-box-fill"></i>
                     </a>
                 </li>
-                {{-- <li><a href="https://twitter.com/intent/tweet?text=Muliakan+Guru%2C+Jalan+Keberkahan&amp;url=https://temandhuafa.id/campaign/wakaf-air-alirkan-pahala-selamanya"
-                        class="social-button " id="" title="" rel=""><span
-                            class="fab fa-twitter"></span></a></li>
-                <li><a href="https://www.linkedin.com/sharing/share-offsite?mini=true&amp;url=https://temandhuafa.id/campaign/wakaf-air-alirkan-pahala-selamanya&amp;title=Muliakan+Guru%2C+Jalan+Keberkahan&amp;summary=Extra+linkedin+summary+can+be+passed+here"
-                        class="social-button " id="" title="" rel=""><span
-                            class="fab fa-linkedin"></span></a></li> --}}
-                <li><a target="_blank" href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                <li>
+                    <a target="_blank" href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
                         class="social-button " id="" title="" rel="">
                         <i class="ri-whatsapp-fill"></i>
-                    </a></li>
-                <li><a target="_blank"
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank"
                         href="https://telegram.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}"
                         class="social-button " id="" title="" rel="">
-                        <i class="ri-telegram-fill"></i></a></li>
+                        <i class="ri-telegram-fill"></i></a>
+                </li>
             </ul>
         </div>
     </div>
@@ -69,9 +67,6 @@
                             class="nav-link">
                             <i class="ri-booklet-fill"></i>
                             Laporan
-                            <span class="badge rounded-pill bg-danger">
-                                Segera hadir
-                            </span>
                         </a>
                     </li>
                 </ul>

@@ -1,22 +1,13 @@
 <div>
-    <section class="section-t-space popular-course-section shadow pb-4">
+    <div class="mt-4 px-3">
+        <h4><strong>Pengumpulan Dana Darurat</strong></h4>
+    </div>
+    <section class="section-t-space popular-course-section  pb-4">
         <div class="custom-container">
-            <div class="d-flex bd-highlight">
-                <div class="flex-fill bd-highlight title px-15">
-                    <h4>Mau beramal apa hari ini?</h4>
-                </div>
-                <div class="d-flex bd-highlight me-3 title pb-2">
-                    <a href="#">
-                        <i class="ri-align-left"></i>
-                        Lihat semua
-                    </a>
-                </div>
-            </div>
             <div class="row g-4">
-                {{-- {{ dd($campaigns) }} --}}
                 @foreach ($campaigns as $campaign)
                     <div class="col-12">
-                        <div class="popular-box p-0">
+                        <div class="popular-box p-0 shadow">
                             <div class="d-flex">
                                 <div class="p-2 w-25 flex-fill bd-highlight align-self-center">
                                     <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>

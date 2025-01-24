@@ -12,12 +12,12 @@
                 </a>
             </li>
             <li class="">
-                <a href="/ziswaf" wire:navigate class="mobile-box">
+                <a href="/donasi" wire:navigate class="mobile-box">
                     <div class="mobile-icon">
                         <i class="bi bi-wallet-fill ms-2"></i>
                     </div>
                     <div class="mobile-name">
-                        <h5>ZISWAF</h5>
+                        <h5>DONASI</h5>
                     </div>
                 </a>
             </li>

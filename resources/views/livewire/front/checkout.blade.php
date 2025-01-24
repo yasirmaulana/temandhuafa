@@ -21,17 +21,36 @@
             {{ csrf_field() }}
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">
-                    <div class="bd-highlight">
-                        <a href="{{ $isZiswaf ? url('ziswaf/') : url('campaign/' . $campaign->slug) }}"
-                            class="btn btn-default border shadow-sm">
-                            <i class="ri-arrow-go-back-line text-warning"></i>
-                        </a>
-                    </div>
-                    <div class="flex-fill bd-highlight justify-content-center text-center">
-                        <div class="border shadow-sm rounded height py-3">
-                            <h4 class="fw-bold">{{ $isZiswaf ? 'ziswaf' : $campaign->title }}</h4>
+                    @if ($isZiswaf)
+                        <div class="bd-highlight">
+                            @if ($titleBayar == 'Infaq')
+                                <a href="{{ url('/') }}" class="btn btn-default border shadow-sm">
+                                    <i class="ri-arrow-go-back-line text-warning"></i>
+                                </a>
+                            @else
+                                <a href="{{ url('zakat/') }}" class="btn btn-default border shadow-sm">
+                                    <i class="ri-arrow-go-back-line text-warning"></i>
+                                </a>
+                            @endif
                         </div>
-                    </div>
+                        <div class="flex-fill bd-highlight justify-content-center text-center">
+                            <div class="border shadow-sm rounded height py-3">
+                                <h4 class="fw-bold">{{ $titleBayar }}</h4>
+                            </div>
+                        </div>
+                    @else
+                        <div class="bd-highlight">
+                            <a href="{{ url('campaign/' . $campaign->slug) }}" class="btn btn-default border shadow-sm">
+                                <i class="ri-arrow-go-back-line text-warning"></i>
+                            </a>
+                        </div>
+                        <div class="flex-fill bd-highlight justify-content-center text-center">
+                            <div class="border shadow-sm rounded height py-3">
+                                <h4 class="fw-bold">{{ $campaign->title }}</h4>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
 
                 <div class="title-2 mt-4">
@@ -89,15 +108,17 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama Lengkap</label>
-                    <input type="text" wire:model="namaLengkap" class="form-control" placeholder="Nama lengkap">
+                    <input type="text" wire:model="namaLengkap" class="form-control" placeholder="Nama lengkap"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" wire:model="email" class="form-control" placeholder="Alamat Email Anda">
+                    <input type="email" wire:model="email" class="form-control" placeholder="Alamat Email Anda"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Telepon</label>
-                    <input type="text" wire:model="phone" class="form-control" placeholder="Nomor Telepon">
+                    <input type="text" wire:model="phone" class="form-control" placeholder="Nomor Telepon" required>
                 </div>
 
                 @if (!$isZiswaf)

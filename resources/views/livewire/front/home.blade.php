@@ -6,6 +6,12 @@
 
     @livewire('carousel')
 
+    <div class="divider"></div>
+
+    @livewire('category')
+
+    <div class="divider"></div>
+
     @livewire('campaign-list')
 
     @livewire('footer')

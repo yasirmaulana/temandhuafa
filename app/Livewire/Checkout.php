@@ -23,18 +23,28 @@ class Checkout extends Component
     public $totalAmount = 0;
     public $snapToken = '';
     public $isZiswaf;
+    public $titleBayar;
+    public $titleRowBayar;
 
     public function mount($slug)
     {
         $parts = explode('-', $slug);
-
+        $this->titleRowBayar = $parts[0];
         $this->infaqSistemAmount = 2000;
-        if ($parts[0] <> "ziswaf") {
+        if (!in_array($this->titleRowBayar, ["infaq", "maal", "penghasilan", "fidyah", "kafarat"])) {
             $this->campaign = Campaign::getCampaignBySlug($slug);
             $this->campaignId = $this->campaign->id;
             $this->totalAmount = $this->infaqSistemAmount;
         } else {
             $this->isZiswaf = true;
+            $mapTitle = [
+                "infaq" => "Infaq",
+                "maal" => "Zakat Maal",
+                "penghasilan" => "Zakat Penghasilan",
+                "fidyah" => "Fidyah",
+                "kafarat" => "Kafarat",
+            ];
+            $this->titleBayar = $mapTitle[$this->titleRowBayar] ?? "Campaign";
             $this->amount = (int) $parts[1];
             $this->totalAmount = $this->amount + $this->infaqSistemAmount;
         }
