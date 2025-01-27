@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class ZakatProfesi extends Component
+class ZakatPenghasilan extends Component
 {
     public $campaign;
     public $hartaTabungan = 0;
@@ -109,6 +109,6 @@ class ZakatProfesi extends Component
 
     public function render()
     {
-        return view('livewire.zakat-profesi');
+        return view('livewire.zakat-penghasilan');
     }
 }

@@ -15,13 +15,25 @@
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
     @livewire('header')
+    <div class="header-divider"></div>
 
-    <section class="section-t-space">
+    <section class="">
         <form wire:submit="createPayment">
             {{ csrf_field() }}
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">
-                    @if ($isZiswaf)
+                    @if (!in_array($this->titleRowBayar, ['infaq', 'maal', 'penghasilan', 'fidyah', 'kafarat']))
+                        <div class="bd-highlight">
+                            <a href="{{ url('campaign/' . $campaign->slug) }}" class="btn btn-default border shadow-sm">
+                                <i class="ri-arrow-go-back-line text-warning"></i>
+                            </a>
+                        </div>
+                        <div class="flex-fill bd-highlight justify-content-center text-center">
+                            <div class="border shadow-sm rounded height py-3">
+                                <h4 class="fw-bold">{{ $campaign->title }}</h4>
+                            </div>
+                        </div>
+                    @else
                         <div class="bd-highlight">
                             @if ($titleBayar == 'Infaq')
                                 <a href="{{ url('/') }}" class="btn btn-default border shadow-sm">
@@ -38,17 +50,6 @@
                                 <h4 class="fw-bold">{{ $titleBayar }}</h4>
                             </div>
                         </div>
-                    @else
-                        <div class="bd-highlight">
-                            <a href="{{ url('campaign/' . $campaign->slug) }}" class="btn btn-default border shadow-sm">
-                                <i class="ri-arrow-go-back-line text-warning"></i>
-                            </a>
-                        </div>
-                        <div class="flex-fill bd-highlight justify-content-center text-center">
-                            <div class="border shadow-sm rounded height py-3">
-                                <h4 class="fw-bold">{{ $campaign->title }}</h4>
-                            </div>
-                        </div>
                     @endif
 
                 </div>
@@ -56,7 +57,7 @@
                 <div class="title-2 mt-4">
                     <h3>Nominal Donasi</h3>
                 </div>
-
+                {{ $titleRowBayar }}
                 @if (!$isZiswaf)
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(30000)"
@@ -154,7 +155,7 @@
                     </div>
                 </div>
             </div>
-        </form>
 
+        </form>
     </section>
 </main>

@@ -1,6 +1,8 @@
 <main class="position-relative">
 
     @livewire('header')
+    <div class="header-divider"></div>
+    
     <header class="learning-header overflow-hidden">
         <div class="watch-video">
             <div class="video-header" id="video-header">

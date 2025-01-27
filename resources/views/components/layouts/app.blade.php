@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{-- <meta name="csrf-token" content="QjKqYhanGtcKrSkqC6zwqNTCPVs26Sns6axjFjaK"> --}}
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="theme-color" content="#ff8d2f">
@@ -37,8 +36,10 @@
 
     <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
         nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    {{-- <script src="https://tarahum.id/member/assets/js/custom_swiper.js?version=1.1" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
-    </script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" nonce="yA3wKZJtinkhjAwMjIo0eqLFN7TJ3VDk">
+    </script>
+    <script src="https://tarahum.id/member/assets/js/custom_swiper.js?version=1.1" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
+    </script>
 
     {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"

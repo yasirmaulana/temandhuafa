@@ -35,19 +35,21 @@ class Checkout extends Component
             $this->campaign = Campaign::getCampaignBySlug($slug);
             $this->campaignId = $this->campaign->id;
             $this->totalAmount = $this->infaqSistemAmount;
+        } elseif ($this->titleRowBayar == "infaq") {
+            $this->isZiswaf = false;
         } else {
             $this->isZiswaf = true;
-            $mapTitle = [
-                "infaq" => "Infaq",
-                "maal" => "Zakat Maal",
-                "penghasilan" => "Zakat Penghasilan",
-                "fidyah" => "Fidyah",
-                "kafarat" => "Kafarat",
-            ];
-            $this->titleBayar = $mapTitle[$this->titleRowBayar] ?? "Campaign";
-            $this->amount = (int) $parts[1];
-            $this->totalAmount = $this->amount + $this->infaqSistemAmount;
         }
+        $mapTitle = [
+            "infaq" => "Infaq",
+            "maal" => "Zakat Maal",
+            "penghasilan" => "Zakat Penghasilan",
+            "fidyah" => "Fidyah",
+            "kafarat" => "Kafarat",
+        ];
+        $this->titleBayar = $mapTitle[$this->titleRowBayar] ?? "Campaign";
+        $this->amount = (int) $parts[1];
+        $this->totalAmount = $this->amount + $this->infaqSistemAmount;
     }
 
     public function render()

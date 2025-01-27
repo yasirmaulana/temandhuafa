@@ -12,7 +12,7 @@
                     data-bs-target="#bordered-justified-zakat-maal" type="button" role="tab"
                     aria-controls="zakat-maal" aria-selected="true">
                     <i class="ri-scales-3-fill"></i>
-                    Zakat Maal
+                    {{-- Zakat Maal --}}
                 </button>
             </li>
             <li class="nav-item flex-fill" role="presentation">
@@ -20,7 +20,7 @@
                     data-bs-target="#bordered-justified-zakat-profesi" type="button" role="tab"
                     aria-controls="zakat-profesi" aria-selected="false">
                     <i class="ri-briefcase-fill"></i>
-                    Zakat Penghasilan
+                    {{-- Zakat Penghasilan --}}
                 </button>
             </li>
             <li class="nav-item flex-fill" role="presentation">
@@ -28,7 +28,7 @@
                     data-bs-target="#bordered-justified-fidyah" type="button" role="tab" aria-controls="Fidyah"
                     aria-selected="false">
                     <i class="ri-restaurant-fill"></i>
-                    Fidyah
+                    {{-- Fidyah --}}
                 </button>
             </li>
             <li class="nav-item flex-fill" role="presentation">
@@ -36,7 +36,7 @@
                     data-bs-target="#bordered-justified-kafarat" type="button" role="tab" aria-controls="kafarat"
                     aria-selected="false">
                     <i class="ri-hand-coin-fill"></i>
-                    Kafarat
+                    {{-- Kafarat --}}
                 </button>
             </li>
         </ul>
@@ -47,7 +47,7 @@
             </div>
             <div class="tab-pane fade" id="bordered-justified-zakat-profesi" role="tabpanel"
                 aria-labelledby="zakat-profesi-tab">
-                @livewire('zakat-profesi')
+                @livewire('zakat-penghasilan')
             </div>
             <div class="tab-pane fade" id="bordered-justified-fidyah" role="tabpanel" aria-labelledby="fidyah-tab">
                 @livewire('fidyah')

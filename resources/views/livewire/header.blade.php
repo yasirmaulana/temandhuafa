@@ -1,12 +1,7 @@
-<header class="main-header learning-header bg-white" id="header-top">
-    <div class="custom-container">
-        <div class="top-header d-flex align-items-center justify-content-between">
-            <div class="header-left d-flex align-items-center">
-                <a href="/" wire:navigate class="header-logo">
-                    <img src="{{ asset('assets/img/logo-td.png') }}" alt="Logo" style="width: 100px;">
-                </a>
-            </div>
-        </div>
-        <div class="header-bottom"></div>
+<div class="bg-success fixed-top shadow-sm py-3 d-flex justify-content-center">
+    <div class="container" style="max-width: 600px;">
+        <a href="/" wire:navigate class="header-logo d-block">
+            <img src="{{ asset('assets/img/logo-td.png') }}" alt="Logo" style="width: 100px;">
+        </a>
     </div>
-</header>
+</div>
