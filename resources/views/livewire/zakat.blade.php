@@ -1,6 +1,8 @@
 <main class="position-relative">
 
     @livewire('header')
+    <div class="header-divider"></div>
+
 
     <img src="{{ asset('assets/img/image.jpg') }}" class="img-fluid" alt="">
 

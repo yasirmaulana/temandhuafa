@@ -12,7 +12,12 @@
                 <label class="form-label">Harta dalam bentuk tabungan/giro/deposito
                     <span class="text-danger">*</span>
                 </label>
-                <input type="number" class="form-control" wire:model.change="hartaTabungan" required>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaTabungan" placeholder="0">
+                </div>
+                {{-- <p class="mt-2">Angka mentah: {{ $hartaTabungan }}</p> --}}
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk logam mulia</label>
@@ -132,4 +137,5 @@
             </span>
         </a>
     </div>
+
 </div>

@@ -7,23 +7,32 @@ use Livewire\Component;
 class ZakatMaal extends Component
 {
     public $campaign;
-    public $hartaTabungan = 0;
-    public $hartaLM = 0;
-    public $hartaSuratBerharga = 0;
-    public $hartaProperti = 0;
-    public $hartaKendaraan = 0;
-    public $hartaBarangAntik = 0;
-    public $hartaBarangDagang = 0;
-    public $hartaLainnya = 0;
-    public $hartaPiutangLancar = 0;
-    public $jumlahHarta = 0;
-    public $hutangJatuhTempo = 0;
-    public $hartaDihitungZakat = 0;
-    public $hargaEmas = 0;
-    public $nisab = 0;
+    public $hartaTabungan;
+    public $formattedHartaTabungan;
+
+    public $hartaLM;
+    public $hartaSuratBerharga;
+    public $hartaProperti;
+    public $hartaKendaraan;
+    public $hartaBarangAntik;
+    public $hartaBarangDagang;
+    public $hartaLainnya;
+    public $hartaPiutangLancar;
+    public $jumlahHarta;
+    public $hutangJatuhTempo;
+    public $hartaDihitungZakat;
+    public $hargaEmas;
+    public $nisab;
     public $wajibZakat = "";
     public $persen = 2.5;
-    public $jumlahBayar = 0;
+    public $jumlahBayar;
+
+    public function updatedFormattedHartaTabungan($value)
+    {
+        $this->hartaTabungan = (int) str_replace('.', '', $value);
+        $this->formattedHartaTabungan = number_format((int) $this->hartaTabungan, 0, '', '.');
+        $this->updated('hartaTabungan');
+    }
 
     public function mount()
     {

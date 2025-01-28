@@ -16,6 +16,6 @@ class CampaignDetail extends Component
 
     public function render()
     {
-        return view('livewire.front.detail');
+        return view('livewire.campaign-detail');
     }
 }

@@ -103,7 +103,7 @@
                 <hr class="my-3">
 
                 <p class="text-center fs-6">
-                    <a href="/login" wire:navigate class="text-decoration-underline fw-bold">Masuk</a> atau lengkapi
+                    <a href="" class="text-decoration-underline fw-bold text-success" data-bs-toggle="modal" data-bs-target="#basicModal">Masuk</a> atau lengkapi
                     data dibawah ini:
                 </p>
 
@@ -126,7 +126,7 @@
                     <div class="d-flex flex-fill bd-highlight">
                         <div class="form-check">
                             <input wire:model="anonim" class="form-check-input" type="checkbox">
-                            <label class="form-check-label small">Sembunyikan nama saya (Donasi Anonim)</label>
+                            <label class="form-check-label small">Sembunyikan nama saya (Donasi Hamba Allah)</label>
                         </div>
                     </div>
 
@@ -158,4 +158,30 @@
 
         </form>
     </section>
+
+    @livewire('footer')
+
+<!-- Basic Modal -->
+
+  <div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Basic Modal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+          Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Basic Modal-->
+
+
 </main>

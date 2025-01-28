@@ -12,7 +12,7 @@ class Payment extends Component
 
     public function render()
     {
-        return view('livewire.front.payment');
+        return view('livewire.payment');
     }
 
     public function mount($snapToken)

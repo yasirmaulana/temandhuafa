@@ -9,42 +9,42 @@
                     <div class="col-12">
                         <div class="popular-box p-0 shadow">
                             <div class="d-flex">
-                                <div class="p-2 w-25 flex-fill bd-highlight align-self-center">
+                                <!-- Bagian Gambar -->
+                                <div class="col-6 d-flex align-items-center">
                                     <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
-                                        <img src="{{ $campaign->image }}" class="img-fluid rounded" alt="">
+                                        <img src="{{ $campaign->image }}" class="img-fluid rounded-start" alt="">
                                     </a>
                                 </div>
-                                <div class="popular-detail ms-2 m-2 p-2 flex-fill bd-highlight">
-                                    <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
-                                        <h5 class=" fw-bold">{{ $campaign->title }}</h5>
-                                    </a>
-                                    <span class="text-muted small">
-                                        BAZNAS Hub
-                                    </span>
-                                    {{-- <i class="bi bi-check-circle-fill text-success ms-2"></i> --}}
-                                    <i class="ri-shield-check-line text-success fw-bolder"></i>
-                                    <div class="progress mt-2" style="height: 3px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 71%;"></div>
+                    
+                                <!-- Bagian Konten -->
+                                <div class="col-6 popular-detail m-2 flex-fill d-flex flex-column">
+                                    <!-- Judul dan Badge -->
+                                    <div class="mb-3">
+                                        <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
+                                            <h5 class="fw-bold">{{ $campaign->title }}</h5>
+                                        </a>
+                                        <span class="text-muted small">BAZNAS Hub</span>
+                                        <i class="ri-shield-check-line text-success fw-bolder"></i>
                                     </div>
-                                    <ul class="rating-box mt-2">
-                                        <li>
-                                            <ul class="rating">
-                                                <span class="text-muted small">
-                                                    Terkumpul
-                                                </span>
-                                                <li class="title-color text-primary fw-bold">
-                                                    Rp 1,000,000,000
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                    
+                                    <!-- Progress Bar -->
+                                    <div class="mt-auto">
+                                        <div class="progress" style="height: 3px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 71%;"></div>
+                                        </div>
+                                    </div>
+                    
+                                    <!-- Total Terkumpul -->
+                                    <div class="mt-3">
+                                        <span class="text-muted small">Terkumpul</span>
+                                        <p class="title-color text-primary fw-bold m-0">Rp 1,000,000,000</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                 @endforeach
-
-
             </div>
         </div>
     </section>

@@ -13,7 +13,7 @@ class Home extends Component
 
     public function render()
     {
-        return view('livewire.front.home');
+        return view('livewire.home');
     }
 
     public function mount()

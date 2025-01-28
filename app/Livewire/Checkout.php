@@ -54,7 +54,7 @@ class Checkout extends Component
 
     public function render()
     {
-        return view('livewire.front.checkout');
+        return view('livewire.checkout');
     }
 
     public function createPayment()
