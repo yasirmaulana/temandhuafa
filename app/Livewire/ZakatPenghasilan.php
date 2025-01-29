@@ -7,23 +7,50 @@ use Livewire\Component;
 class ZakatPenghasilan extends Component
 {
     public $campaign;
-    public $hartaTabungan = 0;
-    public $hartaLM = 0;
-    public $hartaSuratBerharga = 0;
-    public $hartaProperti = 0;
-    public $hartaKendaraan = 0;
-    public $hartaBarangAntik = 0;
-    public $hartaBarangDagang = 0;
-    public $hartaLainnya = 0;
-    public $hartaPiutangLancar = 0;
-    public $jumlahHarta = 0;
-    public $hutangJatuhTempo = 0;
-    public $hartaDihitungZakat = 0;
-    public $hargaEmas = 0;
-    public $nisab = 0;
+    public $formattedPenghasilan;
+    public $penghasilan;
+    public $formattedPenghasilanLain;
+    public $penghasilanLain;
+    public $formattedHutangJatuhTempo;
+    public $hutangJatuhTempo;
+    public $formattedPenghasilanPerBulan;
+    public $penghasilanPerBulan;
+    public $formattedHargaEmas;
+    public $hargaEmas;
+    public $formattedNisabPerBulan;
+    public $nisabPerBulan;
+    public $formattedJumlahZakatPenghasilan;
+    public $jumlahZakatPenghasilan;
     public $wajibZakat = "";
     public $persen = 2.5;
-    public $jumlahBayar = 0;
+
+    public function updatedFormattedPenghasilan($value)
+    {
+        $this->penghasilan = (int) str_replace('.', '', $value);
+        $this->formattedPenghasilan = number_format((int) $this->penghasilan, 0, '', '.');
+        $this->updated('penghasilan');
+    }
+
+    public function updatedFormattedPenghasilanLain($value)
+    {
+        $this->penghasilanLain = (int) str_replace('.', '', $value);
+        $this->formattedPenghasilanLain = number_format((int) $this->penghasilanLain, 0, '', '.');
+        $this->updated('penghasilanLain');
+    }
+
+    public function updatedFormattedHutangJatuhTempo($value)
+    {
+        $this->hutangJatuhTempo = (int) str_replace('.', '', $value);
+        $this->formattedHutangJatuhTempo = number_format((int) $this->hutangJatuhTempo, 0, '', '.');
+        $this->updated('hutangJatuhTempo');
+    }
+
+    public function updatedFormattedHargaEmas($value)
+    {
+        $this->hargaEmas = (int) str_replace('.', '', $value);
+        $this->formattedHargaEmas = number_format((int) $this->hargaEmas, 0, '', '.');
+        $this->updated('hargaEmas');
+    }
 
     public function mount()
     {
@@ -32,19 +59,15 @@ class ZakatPenghasilan extends Component
 
     public function updated($propertyName)
     {
+
         $numericProperties = [
-            'hartaTabungan',
-            'hartaLM',
-            'hartaSuratBerharga',
-            'hartaProperti',
-            'hartaKendaraan',
-            'hartaBarangAntik',
-            'hartaBarangDagang',
-            'hartaLainnya',
-            'hartaPiutangLancar',
+            'penghasilan',
+            'penghasilanLain',
             'hutangJatuhTempo',
+            'penghasilanPerBulan',
             'hargaEmas',
-            'persen'
+            'nisabPerBulan',
+            'jumlahZakatPenghasilan',
         ];
 
         if (in_array($propertyName, $numericProperties)) {
@@ -60,50 +83,42 @@ class ZakatPenghasilan extends Component
 
     private function recalculateAll()
     {
-        $this->calculateTotalHarta();
-        $this->calculateHartaDihitungZakat();
+        $this->calculateTotalPenghasilan();
         $this->calculateNisab();
         $this->determineWajibZakat();
         $this->calculateJumlahBayar();
     }
 
-    private function calculateTotalHarta()
+    private function calculateTotalPenghasilan()
     {
-        $this->jumlahHarta =
-            ($this->hartaTabungan ?? 0) +
-            ($this->hartaLM ?? 0) +
-            ($this->hartaSuratBerharga ?? 0) +
-            ($this->hartaProperti ?? 0) +
-            ($this->hartaKendaraan ?? 0) +
-            ($this->hartaBarangAntik ?? 0) +
-            ($this->hartaBarangDagang ?? 0) +
-            ($this->hartaLainnya ?? 0) +
-            ($this->hartaPiutangLancar ?? 0);
-    }
+        $this->penghasilanPerBulan =
+            ($this->penghasilan ?? 0) +
+            ($this->penghasilanLain ?? 0) -
+            ($this->hutangJatuhTempo ?? 0);
 
-    private function calculateHartaDihitungZakat()
-    {
-        $this->hartaDihitungZakat = $this->jumlahHarta - $this->hutangJatuhTempo;
+        $this->formattedPenghasilanPerBulan = number_format((int) $this->penghasilanPerBulan, 0, '', '.');
     }
 
     private function calculateNisab()
     {
-        $this->nisab = $this->hargaEmas * 85;
+        $this->nisabPerBulan = ($this->hargaEmas * 85) / 12;
+        $this->formattedNisabPerBulan = number_format((int) $this->nisabPerBulan, 0, '', '.');
     }
 
     private function determineWajibZakat()
     {
         if ($this->hargaEmas >= 900000) {
-            $this->wajibZakat = $this->hartaDihitungZakat >= $this->nisab ? "Ya" : "Tidak";
+            $this->wajibZakat = $this->penghasilanPerBulan >= $this->nisabPerBulan ? "Ya" : "Tidak";
         }
     }
 
     private function calculateJumlahBayar()
     {
         if ($this->wajibZakat === "Ya") {
-            $this->jumlahBayar = ceil($this->hartaDihitungZakat * ($this->persen / 100));
+            $this->jumlahZakatPenghasilan = ceil($this->penghasilanPerBulan * ($this->persen / 100));
+            $this->formattedJumlahZakatPenghasilan = number_format((int) $this->jumlahZakatPenghasilan, 0, '', '.');
         } else {
-            $this->jumlahBayar = 0;
+            $this->jumlahZakatPenghasilan = 0;
         }
     }
 

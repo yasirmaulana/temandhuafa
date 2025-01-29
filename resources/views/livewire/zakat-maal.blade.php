@@ -17,68 +17,122 @@
                     <input type="text" id="numberInput" class="form-control"
                         wire:model.change="formattedHartaTabungan" placeholder="0">
                 </div>
-                {{-- <p class="mt-2">Angka mentah: {{ $hartaTabungan }}</p> --}}
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk logam mulia</label>
-                <input type="number" class="form-control" wire:model.change="hartaLM">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaLM" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk surat berharga</label>
-                <input type="number" class="form-control" wire:model.change="hartaSuratBerharga">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaSuratBerharga" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk properti</label>
-                <input type="number" class="form-control" wire:model.change="hartaProperti">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaProperti" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk kendaraan</label>
-                <input type="number" class="form-control" wire:model.change="hartaKendaraan">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaKendaraan" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk koleksi seni & barang
                     antik</label>
-                <input type="number" class="form-control" wire:model.change="hartaBarangAntik">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaBarangAntik" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk stok barang dagangan</label>
-                <input type="number" class="form-control" wire:model.change="hartaBarangDagang">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaBarangDagang" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk lainnya</label>
-                <input type="number" class="form-control" wire:model.change="hartaLainnya">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaLainnya" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label">Harta dalam bentuk piutang lancar</label>
-                <input type="number" class="form-control" wire:model.change="hartaPiutangLancar">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaPiutangLancar" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
                 <label class="form-label"><strong>Jumlah Harta</strong></label>
-                <input type="number" class="form-control" wire:model.change="jumlahHarta" disabled>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedJumlahHarta" placeholder="0" disabled>
+                </div>
             </div>
             <div class="col-12">
-                <label class="form-label">Hutang jatuh tempo saat membayar kewajiban
-                    zakat</label>
-                <input type="number" class="form-control" wire:model.change="hutangJatuhTempo">
+                <label class="form-label">Hutang jatuh tempo saat membayar kewajiban zakat</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHutangJatuhTempo" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
-                <label class="form-label"><strong>Jumlah harta yang dihitung
-                        zakatnya</strong></label>
-                <input type="number" class="form-control" wire:model.change="hartaDihitungZakat" disabled>
+                <label class="form-label">
+                    <strong>Jumlah harta yang dihitung zakatnya</strong>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHartaDihitungZakat" placeholder="0" disabled>
+                </div>
             </div>
             <div class="col-12">
-                <label class="form-label">Masukan harga emas saat
-                    ini (dalam gram)<span class="text-danger">*</span></label>
-                <input type="number" class="form-control" wire:model.change="hargaEmas" required>
+                <label class="form-label">Masukan harga emas saat ini (dalam gram)
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedHargaEmas" placeholder="0">
+                </div>
             </div>
             <div class="col-12">
-                <label class="form-label"><strong>Besar nisab zakat maal per tahun (85
-                        gram)</strong></label>
-                <input type="number" class="form-control" wire:model.change="nisab" disabled>
+                <label class="form-label">
+                    <strong>Besar nisab zakat maal per tahun (85 gram)</strong>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedNisab" placeholder="0" disabled>
+                </div>
             </div>
             <div class="col-12">
-                <label class="form-label"><strong>Apakah saya wajib membayar zakat
-                        maal?</strong></label>
+                <label class="form-label">
+                    <strong>Apakah saya wajib membayar zakat maal?</strong>
+                </label>
                 <input type="text" class="form-control" wire:model.change="wajibZakat" disabled>
             </div>
             <div class="col-12">
@@ -86,30 +140,29 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" wire:model.change="persen" id="gridRadios1"
                             value="2.5" checked>
-                        <label class="form-check-label" for="gridRadios1">
-                            2,5%
-                        </label>
+                        <label class="form-check-label" for="gridRadios1">2,5%</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" wire:model.change="persen" id="gridRadios2"
                             value="2.7">
-                        <label class="form-check-label" for="gridRadios2">
-                            2,7%
-                        </label>
+                        <label class="form-check-label" for="gridRadios2">2,7%</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" wire:model.change="persen" id="gridRadios3"
                             value="3.0">
-                        <label class="form-check-label" for="gridRadios3">
-                            3,0%
-                        </label>
+                        <label class="form-check-label" for="gridRadios3">3,0%</label>
                     </div>
                 </div>
             </div>
             <div class="col-12">
-                <label class="form-label"><strong>Jumlah yang saya harus
-                        bayar per tahun </strong></label>
-                <input type="number" class="form-control" wire:model.change="jumlahBayar" disabled>
+                <label class="form-label">
+                    <strong>Jumlah yang saya harus bayar per tahun </strong>
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">Rp.</span>
+                    <input type="text" id="numberInput" class="form-control"
+                        wire:model.change="formattedJumlahBayar" placeholder="0" disabled>
+                </div>
             </div>
         </div>
 

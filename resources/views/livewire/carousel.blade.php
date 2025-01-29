@@ -1,4 +1,4 @@
-<div id="carouselBanner" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselBanner" class="carousel slide shadow" data-bs-ride="carousel">
     <div class="carousel-inner">
         @foreach ($sliderCarousel as $slider)
             <div class="carousel-item active">

@@ -7,18 +7,15 @@
             <div class="row g-4">
                 @foreach ($campaigns as $campaign)
                     <div class="col-12">
-                        <div class="popular-box p-0 shadow">
+                        <div class=" p-0 shadow">
                             <div class="d-flex">
-                                <!-- Bagian Gambar -->
                                 <div class="col-6 d-flex align-items-center">
                                     <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
                                         <img src="{{ $campaign->image }}" class="img-fluid rounded-start" alt="">
                                     </a>
                                 </div>
                     
-                                <!-- Bagian Konten -->
-                                <div class="col-6 popular-detail m-2 flex-fill d-flex flex-column">
-                                    <!-- Judul dan Badge -->
+                                <div class="col-6 m-2 flex-fill d-flex flex-column">
                                     <div class="mb-3">
                                         <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
                                             <h5 class="fw-bold">{{ $campaign->title }}</h5>
@@ -27,14 +24,12 @@
                                         <i class="ri-shield-check-line text-success fw-bolder"></i>
                                     </div>
                     
-                                    <!-- Progress Bar -->
                                     <div class="mt-auto">
                                         <div class="progress" style="height: 3px;">
                                             <div class="progress-bar bg-success" role="progressbar" style="width: 71%;"></div>
                                         </div>
                                     </div>
                     
-                                    <!-- Total Terkumpul -->
                                     <div class="mt-3">
                                         <span class="text-muted small">Terkumpul</span>
                                         <p class="title-color text-primary fw-bold m-0">Rp 1,000,000,000</p>

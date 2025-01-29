@@ -21,8 +21,8 @@
                     </div>
                 </a>
             </li>
-            <li class="">
-                <a href="#" wire:navigate class="mobile-box">
+            <li class="{{ request()->is('ilmu') ? 'active' : '' }}">
+                <a href="/ilmu" wire:navigate class="mobile-box">
                     <div class="mobile-icon">
                         <i class="bi bi-book ms-2"></i>
                     </div>

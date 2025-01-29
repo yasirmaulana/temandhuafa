@@ -86,9 +86,11 @@
                 <div class="row">
                     <div class="col">
                         <div class="input-group mb-3 rounded-0">
-                            <span class="input-group-text rounded-0 fw-bold">Rp</span>
-                            <input type="number" wire:model.change="amount"
-                                class="form-control rounded-0 form-control-lg fw-bold" placeholder="0" required>
+                                <div class="input-group">
+                                    <span class="input-group-text rounded-0 fw-bold" id="basic-addon1">Rp.</span>
+                                    <input type="text" id="numberInput" class="form-control rounded-0 fw-bold"
+                                        wire:model.change="formattedAmount" placeholder="0" required>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +121,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Telepon</label>
-                    <input type="text" wire:model="phone" class="form-control" placeholder="Nomor Telepon" required>
+                    <input type="number" wire:model="phone" class="form-control" placeholder="Nomor Telepon" required>
                 </div>
 
                 @if (!$isZiswaf)

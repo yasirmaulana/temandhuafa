@@ -9,16 +9,16 @@ class CampaignList extends Component
 {
 
     public $campaigns = [];
-
     public $campaign = "";
-
-    public function render()
-    {
-        return view('livewire.campaign-list');
-    }
 
     public function mount()
     {
         $this->campaigns = Campaign::getCampaigns();
     }
+
+    public function render()
+    {
+        return view('livewire.campaign-list');
+    }
+    
 }

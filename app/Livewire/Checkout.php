@@ -12,7 +12,8 @@ class Checkout extends Component
 
     public $campaign;
     public $campaignId;
-    public $amount = 0;
+    public $amount;
+    public $formattedAmount;
     public $infaqSistem = true;
     public $namaLengkap = '';
     public $email = '';
@@ -20,7 +21,7 @@ class Checkout extends Component
     public $anonim = false;
     public $doa = '';
     public $infaqSistemAmount = 0;
-    public $totalAmount = 0;
+    public $totalAmount = 0; 
     public $snapToken = '';
     public $isZiswaf;
     public $titleBayar;
@@ -49,12 +50,9 @@ class Checkout extends Component
         ];
         $this->titleBayar = $mapTitle[$this->titleRowBayar] ?? "Campaign";
         $this->amount = (int) $parts[1];
-        $this->totalAmount = $this->amount + $this->infaqSistemAmount;
-    }
+        $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
 
-    public function render()
-    {
-        return view('livewire.checkout');
+        $this->totalAmount = $this->amount + $this->infaqSistemAmount;
     }
 
     public function createPayment()
@@ -90,7 +88,18 @@ class Checkout extends Component
     public function setAmount($amount)
     {
         $this->amount = $amount;
+        $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
+
         $this->totalAmount = $this->infaqSistemAmount + $this->amount;
+    }
+
+    public function updatedFormattedAmount($value)
+    {
+        $this->amount = (int) str_replace('.', '', $value);
+        $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
+        // $this->updated('nisab');
+        $this->totalAmount = $this->infaqSistemAmount + $this->amount;
+
     }
 
     public function togle()
@@ -100,11 +109,17 @@ class Checkout extends Component
         } else {
             $this->infaqSistemAmount = 0;
         }
-        $this->totalAmount = $this->amount + $this->infaqSistemAmount; // Tambahkan 2000
+        $this->totalAmount = $this->amount + $this->infaqSistemAmount;
     }
 
     public function updatedAmount($value)
     {
         $this->totalAmount = $this->infaqSistemAmount + (int)$value;
     }
+
+    public function render()
+    {
+        return view('livewire.checkout');
+    }
+
 }
