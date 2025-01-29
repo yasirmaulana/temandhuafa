@@ -20,28 +20,28 @@
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="/wakaf">
+                <a href="/category/wakaf">
                     <img src="{{ asset('assets/img/wakaf.webp') }}" width="60px" alt="Rounded circle Image"
                         class="rounded-circle border shadow mb-2">
                     <h6>Wakaf</h6>
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="/kemanusiaan">
+                <a href="/category/kemanusiaan">
                     <img src="{{ asset('assets/img/kemanusiaan.webp') }}" width="60px" alt="Rounded circle Image"
                         class="rounded-circle border shadow mb-2">
                     <h6>Kemanusiaan</h6>
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="/pendidikan">
+                <a href="/category/pendidikan">
                     <img src="{{ asset('assets/img/pendidikan.webp') }}" width="60px" alt="Rounded circle Image"
                         class="rounded-circle border shadow mb-2">
                     <h6>Pendidikan</h6>
                 </a>
             </div>
             <div class="swiper-slide">
-                <a href="/sosial">
+                <a href="/category/sosial">
                     <img src="{{ asset('assets/img/sosial.webp') }}" width="60px" alt="Rounded circle Image"
                         class="rounded-circle border shadow mb-2">
                     <h6>Sosial</h6>

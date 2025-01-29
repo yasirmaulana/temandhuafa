@@ -19,12 +19,11 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use App\Livewire\Zakat;
 
 Route::get('/', Home::class);
-Route::get('/{wakaf}', Home::class);
-Route::get('/{kemanusian}', Home::class);
-Route::get('/{pendidikan}', Home::class);
-Route::get('/{sosial}', Home::class);
+Route::get('/category/{kategori}', Home::class);
+Route::get('/zakat', Zakat::class);
 Route::get('/donasi', Donation::class);
 Route::get('/ilmu', Ilmu::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);

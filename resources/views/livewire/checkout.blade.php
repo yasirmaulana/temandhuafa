@@ -57,7 +57,6 @@
                 <div class="title-2 mt-4">
                     <h3>Nominal Donasi</h3>
                 </div>
-                {{ $titleRowBayar }}
                 @if (!$isZiswaf)
                     <div class="d-flex bd-highlight">
                         <div class="p-2 flex-fill bd-highlight border text-center" wire:click="setAmount(30000)"
