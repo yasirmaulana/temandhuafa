@@ -62,10 +62,17 @@
                     <li class="nav-item">
                         <a href="#home1" data-bs-target="#home1" data-bs-toggle="tab" class="nav-link active">
                             <i class="ri-information-line"></i>
-                            Informasi
+                            Info
                         </a>
                     </li>
-                    <li class="nav-item"><a href="#profile1" data-bs-target="#profile1" data-bs-toggle="tab"
+                    <li class="nav-item">
+                        <a href="#donasi" data-bs-target="#donasi" data-bs-toggle="tab" class="nav-link">
+                            <i class="ri-hand-heart-line"></i>
+                            Donasi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile1" data-bs-target="#profile1" data-bs-toggle="tab"
                             class="nav-link">
                             <i class="ri-booklet-fill"></i>
                             Laporan
@@ -103,6 +110,7 @@
                             </div>
                         </div>
                     </div>
+                    <div id="donasi" class="tab-pane fade">Belum ada laporan</div>
                     <div id="profile1" class="tab-pane fade">Belum ada laporan</div>
                 </div>
             </div>

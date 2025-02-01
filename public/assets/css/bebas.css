@@ -16,7 +16,7 @@ header.learning-header {
 }
 
 .mobile-style-1 ul li.active .mobile-icon i {
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-align: center;
@@ -25,14 +25,22 @@ header.learning-header {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    /* background: #ff9f29 !important; */
-    /* background-color: #39ab8f !important; */
-    background-color: #18705a !important;
-    background: #18705a !important;
+
     width: 50px;
     height: 50px;
     color: white !important;
     border-radius: 100%;
+    background: #18705a !important;
+    background-color: #18705a !important;
+    background: #ff9f29 !important;
+    background-color: #39ab8f !important;
+    /* background: #18705a !important; */
+    /* font-size: 20px;
+    line-height: 1;
+    margin-bottom: 2px;
+    width: 45px;
+    height: 25px;
+    margin: 0 auto; */
 }
 
 .total-box-2 a {
@@ -80,7 +88,7 @@ header.learning-header .search-box {
     flex-wrap: nowrap;
     gap: 12px;
     -webkit-box-align: center;
-    -ms-flex-align: center;
+    -ms-flex-align: center; 
     align-items: center;
 }
 
