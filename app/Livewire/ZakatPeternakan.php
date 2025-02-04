@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class ZakatEmasPerak extends Component
+class ZakatPeternakan extends Component
 {
     public $selectedLogam;
     public $formattedEmasPerak;
@@ -14,6 +14,7 @@ class ZakatEmasPerak extends Component
     public $wajibZakat;
     public $formattedJumlahBayar;
     public $jumlahBayar;
+    public $perairan;
 
     public function updatedSelectedLogam()
     {
@@ -43,7 +44,6 @@ class ZakatEmasPerak extends Component
     public function mount()
     {
         $this->recalculateAll();
-        $this->wajibZakat = "";
     }
 
     public function updated($propertyName)
@@ -85,9 +85,9 @@ class ZakatEmasPerak extends Component
             $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');    
         }
     }
-
+    
     public function render()
     {
-        return view('livewire.zakat-emas-perak');
+        return view('livewire.zakat-peternakan');
     }
 }

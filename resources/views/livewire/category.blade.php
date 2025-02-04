@@ -16,7 +16,21 @@
                 <a href="/checkout/infaq-0">
                     <img src="{{ asset('assets/img/infaq.webp') }}" width="60px" alt="Rounded circle Image"
                         class="rounded-circle border shadow mb-2">
-                    <h6>Infaq</h6>
+                    <h6>Infak</h6>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="/fidyah">
+                    <img src="{{ asset('assets/img/infaq.webp') }}" width="60px" alt="Rounded circle Image"
+                        class="rounded-circle border shadow mb-2">
+                    <h6>Fidyah</h6>
+                </a>
+            </div>
+            <div class="swiper-slide">
+                <a href="/kafarat">
+                    <img src="{{ asset('assets/img/infaq.webp') }}" width="60px" alt="Rounded circle Image"
+                        class="rounded-circle border shadow mb-2">
+                    <h6>Kafarat</h6>
                 </a>
             </div>
             <div class="swiper-slide">

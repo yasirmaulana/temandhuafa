@@ -125,11 +125,11 @@
         <div class="row position-fixed bottom-0 start-0 end-0 bg-white p-3 shadow g-1">
             <div class="col-2">
                 <a href="/" wire:navigate class="btn btn-secondary w-100">
-                    <i class="ri-arrow-go-back-line"></i>
+                    <i class="ri-arrow-go-back-line text-warning"></i>
                 </a>
             </div>
             <div class="col-10">
-                <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate class="btn btn-success w-100">
+                <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate class="btn w-100" style="background-color: #8CC800;">
                     <i class="ri-hand-heart-line"></i>
                     <span class="fw-bold">
                         Donasi Sekarang

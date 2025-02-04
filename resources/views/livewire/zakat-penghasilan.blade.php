@@ -1,8 +1,15 @@
 <div>
     <div class="container">
-        <p>Zakat penghasilan atau yang dikenal juga sebagai zakat profesi adalah bagian dari zakat maal yang wajib dikeluarkan atas harta yang berasal dari pendapatan / penghasilan rutin dari pekerjaan yang tidak melanggar syariah. Nishab zakat penghasilan sebesar 85 gram emas per tahun. Kadar zakat penghasilan senilai 2,5%. Dalam praktiknya, zakat penghasilan dapat ditunaikan setiap bulan dengan nilai nishab per bulannya adalah setara dengan nilai seperduabelas dari 85 gram emas, dengan kadar 2,5%. Jadi apabila penghasilan setiap bulan telah melebihi nilai nishab bulanan, maka wajib dikeluarkan zakatnya sebesar 2,5% dari penghasilannya tersebut.
-            </p>
-            <p>(Sumber: Al Qur'an Surah Al Baqarah ayat 267, Peraturan Menteri Agama Nomor 31 Tahun 2019, Fatwa MUI Nomor 3 Tahun 2003, dan pendapat Shaikh Yusuf Qardawi).</p>
+        <p>Zakat penghasilan atau yang dikenal juga sebagai zakat profesi adalah bagian dari zakat maal yang wajib
+            dikeluarkan atas harta yang berasal dari pendapatan / penghasilan rutin dari pekerjaan yang tidak melanggar
+            syariah. Nishab zakat penghasilan sebesar 85 gram emas per tahun. Kadar zakat penghasilan senilai 2,5%.
+            Dalam praktiknya, zakat penghasilan dapat ditunaikan setiap bulan dengan nilai nishab per bulannya adalah
+            setara dengan nilai seperduabelas dari 85 gram emas, dengan kadar 2,5%. Jadi apabila penghasilan setiap
+            bulan telah melebihi nilai nishab bulanan, maka wajib dikeluarkan zakatnya sebesar 2,5% dari penghasilannya
+            tersebut.
+        </p>
+        <p>(Sumber: Al Qur'an Surah Al Baqarah ayat 267, Peraturan Menteri Agama Nomor 31 Tahun 2019, Fatwa MUI Nomor 3
+            Tahun 2003, dan pendapat Shaikh Yusuf Qardawi).</p>
         <div class="row g-3">
             <div class="col-12">
                 <label class="form-label">
@@ -55,56 +62,75 @@
                         placeholder="0" required>
                 </div>
             </div>
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <label class="form-label"><strong>Besarnya nishab zakat penghasilan per bulan</strong></label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Rp.</span>
                     <input type="text" id="numberInput" class="form-control"
                         wire:model.change="formattedNisabPerBulan" placeholder="0" disabled>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-12">
                 <label class="form-label">
                     <strong>Apakah saya wajib membayar zakat penghasilan?</strong>
                 </label>
                 <input type="text" class="form-control" wire:model.change="wajibZakat" disabled>
             </div>
-            <div class="col-12">
-                <label class="form-label">
-                    <strong>Jumlah yang saya harus bayar per bulan</strong>
-                </label>
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">Rp.</span>
-                    <input type="text" id="numberInput" class="form-control"
-                        wire:model.change="formattedJumlahZakatPenghasilan" placeholder="0" disabled>
+
+            @if ($wajibZakat == 'Ya')
+                <div class="col-12">
+                    <label class="form-label">
+                        <strong>Jumlah yang saya harus bayar per bulan</strong>
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">Rp.</span>
+                        <input type="text" id="numberInput" class="form-control"
+                            wire:model.change="formattedJumlahZakatPenghasilan" placeholder="0" disabled>
+                    </div>
                 </div>
+            @elseif($wajibZakat == 'Tidak')
+                <span class="text-danger">Belum memenuhi syarat wajib zakat, namun tetap dapat beramal dengan
+                    <div class="col-12">
+                        <a href="/checkout/infaq-0" class="btn w-100" style="background-color: #8CC800;">
+                            <i class="ri-hand-heart-line text-white"></i>
+                            <span class="fw-bold text-white">
+                                Berinfak
+                            </span>
+                        </a>
+                    </div>
+                </span>
+            @endif
+        </div>
+
+        <p></p>
+        @if ($wajibZakat == 'Ya')
+            <strong style="font-size: 1.2em;" class="text-success">
+                <i class="ri-hand-heart-fill"></i> Niat Zakat Penghasilan
+            </strong>
+            <p></p>
+            <p style="font-size: 1.5em;">
+                نَوَيْتُ أَنْ أُخْرِجَ زَكاَةَ مَالِي فَرْضًالِلهِ تَعَالَى
+            </p>
+            <div class="fst-italic">
+                “Nawaitu an ukhrija zakata maali fardha llillahi ta’aala”
             </div>
-        </div>
-
-        <p></p>
-        <strong style="font-size: 1.2em;" class="text-success">
-            <i class="ri-hand-heart-fill"></i> Niat Zakat Penghasilan
-        </strong>
-        <p></p>
-        <p style="font-size: 1.5em;">
-            نَوَيْتُ أَنْ أُخْرِجَ زَكاَةَ مَالِي فَرْضًالِلهِ تَعَالَى
-        </p>
-        <div class="fst-italic">
-            “Nawaitu an ukhrija zakata maali fardha llillahi ta’aala”
-        </div>
-        <p>
-            Saya berniat mengeluarkan zakat harta milikku karena Allah Ta’ala
-        </p>
+            <p>
+                Saya berniat mengeluarkan zakat harta milikku karena Allah Ta’ala
+            </p>
+        @endif
     </div>
 
-    <div class="col-12">
-        <a href="/checkout/{{ 'penghasilan-' . $jumlahZakatPenghasilan }}" wire:navigate class="btn btn-success w-100">
-            <i class="ri-hand-heart-line"></i>
-            <span class="fw-bold">
-                Bayar Zakat Sekarang
-            </span>
-        </a>
-    </div>
+    @if ($wajibZakat == 'Ya')
+        <div class="col-12">
+            <a href="/checkout/{{ 'penghasilan-' . $jumlahZakatPenghasilan }}" wire:navigate class="btn w-100"
+                style="background-color: #8CC800;">
+                <i class="ri-hand-heart-line text-white"></i>
+                <span class="fw-bold text-white">
+                    Bayar Zakat Sekarang
+                </span>
+            </a>
+        </div>
+    @endif
 
 
 </div>

@@ -13,14 +13,12 @@
             <div class="col-sm-12">
                 <select class="form-select" wire:model.change="selectedZakat">
                     <option value="">-- Pilih Jenis Zakat --</option>
-                    <option value="zakat-maal">Zakat Maal</option>
-                    <option value="zakat-penghasilan">Zakat Penghasilan</option>
                     <option value="zakat-emas-perak">Zakat Emas & Perak</option>
-                    <option value="zakat-perniagaan">Zakat Perniagaan</option>
-                    <option value="zakat-perusahaan">Zakat Perusahaan</option>
                     <option value="zakat-pertanian">Zakat Pertanian</option>
-                    <option value="zakat-peternakan">Zakat Peternakan</option>
-                    <option value="zakat-pertambangan">Zakat Pertambangan</option>
+                    {{-- <option value="zakat-peternakan">Zakat Peternakan</option> --}}
+                    <option value="zakat-maal">Zakat Maal</option>
+                    <option value="zakat-perniagaan">Zakat Perniagaan</option>
+                    <option value="zakat-penghasilan">Zakat Penghasilan</option>
                 </select>
             </div>
         </div>

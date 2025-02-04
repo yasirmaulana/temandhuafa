@@ -19,13 +19,16 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use App\Livewire\Fidyah;
+use App\Livewire\Kafarat;
 use App\Livewire\Zakat;
 
 Route::get('/', Home::class);
 Route::get('/category/{kategori}', Home::class);
 Route::get('/zakat', Zakat::class);
 Route::get('/donasi', Donation::class);
-Route::get('/ilmu', Ilmu::class);
+Route::get('/fidyah', Fidyah::class);
+Route::get('/kafarat', Kafarat::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');

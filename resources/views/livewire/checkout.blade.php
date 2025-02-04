@@ -32,9 +32,20 @@
             {{ csrf_field() }}
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">
-                    @if (!in_array($this->titleRowBayar, ['infaq', 'maal', 'penghasilan', 'fidyah', 'kafarat']))
+                    @if (
+                        !in_array($this->titleRowBayar, [
+                            'infaq',
+                            'emas',
+                            'perak',
+                            'pertanian',
+                            'maal',
+                            'perniagaan',
+                            'penghasilan',
+                            'fidyah',
+                            'kafarat',
+                        ]))
                         <div class="bd-highlight">
-                            <a href="{{ url('campaign/' . $campaign->slug) }}" class="btn btn-default border shadow-sm ">
+                            <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate class="btn btn-default border shadow-sm ">
                                 <i class="ri-arrow-go-back-line text-warning"></i>
                             </a>
                         </div>
@@ -46,11 +57,19 @@
                     @else
                         <div class="bd-highlight">
                             @if ($titleBayar == 'Infaq')
-                                <a href="{{ url('/') }}" class="btn btn-default border shadow-sm">
+                                <a href="{{ url('/') }}" wire:navigate class="btn btn-default border shadow-sm">
+                                    <i class="ri-arrow-go-back-line text-warning"></i>
+                                </a>
+                            @elseif($titleBayar == 'Fidyah')
+                                <a href="{{ url('/fidyah') }}" wire:navigate class="btn btn-default border shadow-sm">
+                                    <i class="ri-arrow-go-back-line text-warning"></i>
+                                </a>
+                            @elseif($titleBayar == 'Kafarat')
+                                <a href="{{ url('/kafarat') }}" wire:navigate class="btn btn-default border shadow-sm">
                                     <i class="ri-arrow-go-back-line text-warning"></i>
                                 </a>
                             @else
-                                <a href="{{ url('zakat/') }}" class="btn btn-default border shadow-sm">
+                                <a href="{{ url('zakat/') }}" wire:navigate class="btn btn-default border shadow-sm">
                                     <i class="ri-arrow-go-back-line text-warning"></i>
                                 </a>
                             @endif
@@ -195,7 +214,7 @@
                         </div>
                     </div>
                     <div class="col-7 col-md-8">
-                        <button type="submit" class="btn btn-success" id="pay-button">
+                        <button type="submit" class="btn" id="pay-button" style="background-color: #8CC800;">
                             <span class="fw-bold">Lanjut Pembayaran</span>
                         </button>
                     </div>
