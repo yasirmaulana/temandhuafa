@@ -1,13 +1,68 @@
 <x-layout>
 
-    <div class="pagetitle">
-        <h1>Donasi</h1>
-        {{-- <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Administrator</a></li>
-                <li class="breadcrumb-item active">User</li>
-            </ol>
-        </nav> --}}
-    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                @include('_message')
 
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">Transaction List</h5>
+                            </div>
+                            {{-- <div class="col-md-6 text-end">
+                                @if (!@empty($PermissionAdd))
+                                    <a href="{{ url('panel/category/add') }}"
+                                        class="btn btn-outline-primary mt-3">Add</a>
+                                @endif
+                            </div> --}}
+                        </div>
+
+                        <table class="table table-hover datatable">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Donatur</th>
+                                    <th scope="col">Email</th>
+                                    {{-- <th scope="col">Phone</th> --}}
+                                    <th scope="col">OrderId</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    {{-- @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
+                                        <th scope="col">Action</th>
+                                    @endif --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($getRecord as $value)
+                                    <tr>
+                                        <td>{{ $value->donor_name }}</td>
+                                        <td>{{ $value->email }}</td>
+                                        {{-- <td>{{ $value->phone }}</td> --}}
+                                        <td>{{ $value->order_id }}</td>
+                                        <td>{{ number_format($value->gross_amount, 0, ',', '.') }}</td>
+                                        <td>{{ $value->transaction_time }}</td>
+                                        <td>
+                                            @if ($value->transaction_status == 'pending')
+                                                <span class="btn btn-outline-warning btn-sm">Pending</span>
+                                            @elseif ($value->transaction_status == 'settlement')
+                                                <span class="btn btn-outline-success btn-sm">Settlement</span>
+                                            @endif
+                                        </td>
+                                        {{-- <td>{{ $value->is_active == 1 ? 'Active' : 'Not Active' }}</td> --}}
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
 </x-layout>

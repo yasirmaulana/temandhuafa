@@ -2,7 +2,7 @@
 
      <div class="d-flex align-items-center justify-content-between">
          <a href="index.html" class="logo d-flex align-items-center">
-             <img src="{{ asset('assets/img/logo-td.png') }}" alt="">
+             <img src="{{ asset('assets/img/logo-dashboard.png') }}" alt="">
          </a>
          <i class="bi bi-list toggle-sidebar-btn"></i>
      </div>

@@ -10,8 +10,7 @@
         .emoji-love {
             color: #ff5e57;
         }
-    </style>
-    <style>
+
         .custom-font-size {
             font-size: 11px;
         }
@@ -20,15 +19,13 @@
             visibility: hidden;
         }
     </style>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
     @livewire('header')
     <div class="header-divider"></div>
 
     <p></p>
     <section class="">
-        <form wire:submit="createPayment">
+        <form wire:submit="createPayment"> 
             {{ csrf_field() }}
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">

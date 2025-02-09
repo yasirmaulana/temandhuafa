@@ -43,7 +43,7 @@
             </li>
         @endif
 
-        @if (!empty($PermissionDonatur))
+        {{-- @if (!empty($PermissionDonatur))
             <li class="nav-item">
                 <a class="nav-link @if (Request::segment(2) != 'donatur') collapsed @endif"
                     href="{{ url('panel/donatur') }}">
@@ -51,13 +51,13 @@
                     <span>Donatur</span>
                 </a>
             </li>
-        @endif
+        @endif --}}
 
         @if (!empty($PermissionDonasi))
             <li class="nav-item">
                 <a class="nav-link @if (Request::segment(2) != 'donasi') collapsed @endif" href="{{ url('panel/donasi') }}">
                     <i class="bi bi-gift"></i>
-                    <span>Donasi</span>
+                    <span>Transaction</span>
                 </a>
             </li>
         @endif

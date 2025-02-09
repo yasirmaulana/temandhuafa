@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Campaign;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class Checkout extends Component
@@ -12,6 +13,7 @@ class Checkout extends Component
 
     public $campaign;
     public $campaignId;
+    public $fundraiserId;
     public $amount;
     public $formattedAmount;
     public $infaqSistem = true;
@@ -26,6 +28,7 @@ class Checkout extends Component
     public $isZiswaf;
     public $titleBayar;
     public $titleRowBayar;
+    public $orderId;
 
     public function mount($slug)
     {
@@ -36,10 +39,14 @@ class Checkout extends Component
             $this->campaign = Campaign::getCampaignBySlug($slug);
             $this->campaignId = $this->campaign->id;
             $this->totalAmount = $this->infaqSistemAmount;
+            $this->orderId = $this->campaignId . '-' . rand();
+            $this->fundraiserId = $this->campaign->fundraiserId;
         } elseif ($this->titleRowBayar == "infaq") {
             $this->isZiswaf = false;
+            $this->orderId = $this->titleRowBayar . '-' . rand();
         } else {
             $this->isZiswaf = true;
+            $this->orderId = $this->titleRowBayar . '-' . rand();
         }
         $mapTitle = [
             "infaq" => "Infaq",
@@ -70,7 +77,7 @@ class Checkout extends Component
 
             $params = [
                 'transaction_details' => [
-                    'order_id' => rand(),
+                    'order_id' => $this->orderId,
                     'gross_amount' => $this->totalAmount,
                 ],
                 'customer_details' => [
@@ -80,9 +87,12 @@ class Checkout extends Component
                 ]
             ];
 
+            $this->saveTransaction();
+
             $snapToken = \Midtrans\Snap::getSnapToken($params);
-            // Redirect ke halaman Payment dengan Snap Token
+
             return redirect()->route('payment', ['snapToken' => $snapToken]);
+            
         } catch (\Exception $e) {
             logger()->error('Error generating snapToken: ' . $e->getMessage());
             $this->addError('snapToken', 'Gagal mendapatkan Snap Token. Silakan coba lagi.');
@@ -93,7 +103,6 @@ class Checkout extends Component
     {
         $this->amount = $amount;
         $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
-
         $this->totalAmount = $this->infaqSistemAmount + $this->amount;
     }
 
@@ -101,15 +110,13 @@ class Checkout extends Component
     {
         $this->amount = (int) str_replace('.', '', $value);
         $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
-        // $this->updated('nisab');
         $this->totalAmount = $this->infaqSistemAmount + $this->amount;
-
     }
 
     public function togle()
     {
         if ($this->infaqSistem) {
-            $this->infaqSistemAmount = 2000;
+            $this->infaqSistemAmount = 2000; 
         } else {
             $this->infaqSistemAmount = 0;
         }
@@ -119,6 +126,20 @@ class Checkout extends Component
     public function updatedAmount($value)
     {
         $this->totalAmount = $this->infaqSistemAmount + (int)$value;
+    }
+
+    public function saveTransaction() {
+        $transaction = Transaction::create([
+            'order_id' => $this->orderId,
+            'campaign_id' => $this->campaignId ?? null,
+            'fundraiser_id' => $this->fundraiserId ?? null,
+            'infaq_sistem' => $this->infaqSistem,
+            'donor_name' => $this->namaLengkap,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'anonim' => $this->anonim,
+            'pray' => $this->doa,
+        ]);
     }
 
     public function render()

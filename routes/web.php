@@ -1,11 +1,14 @@
 <?php
 
 use App\Livewire\Home;
-use App\Livewire\CampaignDetail;
-use App\Livewire\Checkout;
-use App\Livewire\Payment;
-use App\Livewire\Donation;
 use App\Livewire\Ilmu;
+use App\Livewire\Zakat;
+use App\Livewire\Fidyah;
+use App\Livewire\Kafarat;
+use App\Livewire\Payment;
+use App\Livewire\Checkout;
+use App\Livewire\Donation;
+use App\Livewire\CampaignDetail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
@@ -13,15 +16,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonasiController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\DonaturController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
-use App\Livewire\Fidyah;
-use App\Livewire\Kafarat;
-use App\Livewire\Zakat;
 
 Route::get('/', Home::class);
 Route::get('/category/{kategori}', Home::class);
@@ -33,6 +34,8 @@ Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');
 
+Route::post('/payment/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
+Route::post('/payment/notification', [PaymentController::class, 'handleNotification'])->name('payment.notification');
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);

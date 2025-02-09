@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="#" wire:navigate class="mobile-box">
+                <a href="/login" class="mobile-box">
                     <div class="mobile-icon">
                         <i class="bi bi-person-fill ms-2"></i>
                     </div>

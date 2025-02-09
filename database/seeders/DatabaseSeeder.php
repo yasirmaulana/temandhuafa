@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Permission;
@@ -466,6 +467,37 @@ class DatabaseSeeder extends Seeder
         PermissionRole::create([
             'role_id' => 1,
             'permission_id' => 37
+        ]);
+
+        Category::create([
+            'name' => 'wakaf',
+            'slug' => 'wakaf',
+            'is_active' => true,
+        ]);
+
+        Category::create([
+            'name' => 'kemanusiaan',
+            'slug' => 'kemanusiaan',
+            'is_active' => true,
+        ]);
+
+        Category::create([
+
+            'name' => 'pendidikan',
+            'slug' => 'pendidikan',
+            'is_active' => true,
+        ]);
+
+        Category::create([
+            'name' => 'sosial',
+            'slug' => 'sosial',
+            'is_active' => true,
+        ]);
+
+        Category::create([
+            'name' => 'lingkungan',
+            'slug' => 'lingkungan',
+            'is_active' => true,
         ]);
     }
 }
