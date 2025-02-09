@@ -29,19 +29,23 @@ class SocialiteController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-            // dd($googleUser);
-            $user = User::where('google_id', $googleUser->id)->first();
+
+            // Cari pengguna berdasarkan google_id atau email
+            $user = User::where('google_id', $googleUser->id)->orWhere('email', $googleUser->email)->first();
 
             if ($user) {
+                // Jika pengguna ditemukan, login
                 Auth::login($user);
                 return redirect('panel/dashboard');
-            } else { 
+            } else {
+                // Jika pengguna tidak ditemukan, buat pengguna baru
                 $userData = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'password' => Hash::make('Password@1234'),
                     'google_id' => $googleUser->id,
-                    'role_id' => 2
+                    'role_id' => 2,
+                    'handphone' => '', // Nilai default
                 ]);
 
                 if ($userData) {
@@ -50,6 +54,7 @@ class SocialiteController extends Controller
                 }
             }
         } catch (Exception $e) {
+            // Tangkap dan tampilkan error
             dd($e);
         }
     }

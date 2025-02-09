@@ -101,7 +101,7 @@
 
     @if ($wajibZakat == 'Ya')
         <div class="col-12">
-            <a href="/checkout/{{ 'maal-' . $jumlahBayar }}" class="btn w-100" style="background-color: #8CC800;">
+            <a href="/checkout/{{ 'pertanian-' . $jumlahBayar }}" class="btn w-100" style="background-color: #8CC800;">
                 <i class="ri-hand-heart-line"></i>
                 <span class="fw-bold">
                     Bayar Zakat Sekarang
