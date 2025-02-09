@@ -25,7 +25,7 @@
 
     <p></p>
     <section class="">
-        <form wire:submit="createPayment"> 
+        <form wire:submit="createPayment">
             {{ csrf_field() }}
             <div class="custom-container mb-4">
                 <div class="d-flex bd-highlight align-items-center">
@@ -42,7 +42,8 @@
                             'kafarat',
                         ]))
                         <div class="bd-highlight">
-                            <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate class="btn btn-default border shadow-sm ">
+                            <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate
+                                class="btn btn-default border shadow-sm ">
                                 <i class="ri-arrow-go-back-line text-warning"></i>
                             </a>
                         </div>
@@ -81,15 +82,23 @@
                 </div>
 
                 <div class="title-2 mt-4">
-                    @if ($titleBayar == 'Infaq')
-                        <h3>Nominal Infak</h3>
-                    @elseif($titleBayar == 'Infaq')
-                        <h3>Nominal Zakat</h3>
-                    @elseif($titleBayar == 'Wakaf')
-                        <h3>Nominal Wakaf</h3>
-                    @else
-                        <h3>Nominal Donasi</h3>
-                    @endif
+                    @php
+                        $nominalMapping = [
+                            'Infaq' => 'Nominal Infak',
+                            'Fidyah' => 'Nominal Fidyah',
+                            'Kafarat' => 'Nominal Kafarat',
+                            'Zakat Emas' => 'Nominal Zakat Emas',
+                            'Zakat Perak' => 'Nominal Zakat Perak',
+                            'Zakat Pertanian' => 'Nominal Zakat Pertanian',
+                            'Zakat Maal' => 'Nominal Zakat Maal',
+                            'Zakat Perniagaan' => 'Nominal Zakat Perniagaan',
+                            'Zakat Penghasilan' => 'Nominal Zakat Penghasilan',
+                        ];
+
+                        $nominalTitle = $nominalMapping[$titleBayar] ?? 'Nominal Donasi';
+                    @endphp
+
+                    <h3>{{ $nominalTitle }}</h3>
                 </div>
                 @if (!$isZiswaf)
                     <div class="d-flex bd-highlight">
@@ -156,33 +165,34 @@
                 <div class="d-flex flex-fill bd-highlight">
                     <div class="form-check">
                         <input wire:model="infaqSistem" wire:click="togle" class="form-check-input" type="checkbox">
-                        <label class="form-check-label small">Infaq sistem 2.000</label>
+                        <label class="form-check-label small">Infak sistem 2.000</label>
                     </div>
                 </div>
 
                 <hr class="my-3">
+                @if (empty(Auth::check()))
+                    <p class="text-center fs-6">
+                        <a href="" class="text-decoration-underline fw-bold text-success" data-bs-toggle="modal"
+                            data-bs-target="#basicModal">Masuk</a> atau lengkapi
+                        data dibawah ini:
+                    </p>
 
-                <p class="text-center fs-6">
-                    <a href="" class="text-decoration-underline fw-bold text-success" data-bs-toggle="modal"
-                        data-bs-target="#basicModal">Masuk</a> atau lengkapi
-                    data dibawah ini:
-                </p>
-
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nama Lengkap</label>
-                    <input type="text" wire:model="namaLengkap" class="form-control" placeholder="Nama lengkap"
-                        required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" wire:model="email" class="form-control" placeholder="Alamat Email Anda"
-                        required>
-                </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Telepon</label>
-                    <input type="number" wire:model="phone" class="form-control" placeholder="Nomor Telepon"
-                        required>
-                </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nama Lengkap</label>
+                        <input type="text" wire:model="namaLengkap" class="form-control"
+                            placeholder="Nama lengkap" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" wire:model="email" class="form-control"
+                            placeholder="Alamat Email Anda" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telepon</label>
+                        <input type="number" wire:model="phone" class="form-control" placeholder="Nomor Telepon"
+                            required>
+                    </div>
+                @endif
 
                 @if (!$isZiswaf)
                     <div class="d-flex flex-fill bd-highlight">
@@ -212,7 +222,7 @@
                     </div>
                     <div class="col-7 col-md-8">
                         <button type="submit" class="btn" id="pay-button" style="background-color: #8CC800;">
-                            <span class="fw-bold">Lanjut Pembayaran</span>
+                            <span class="fw-bold text-white">Lanjut Pembayaran</span>
                         </button>
                     </div>
                 </div>
@@ -221,31 +231,42 @@
         </form>
     </section>
 
-    @livewire('footer')
+    {{-- @livewire('footer') --}}
 
     <!-- Basic Modal -->
-
     <div class="modal fade" id="basicModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Basic Modal</h5>
+                    <h5 class="modal-title">Login to Your Account</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
-                    Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit.
-                    Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur
-                    nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+                    <form class="row g-3" wire:submit.prevent="authLogin">
+                        <div class="col-12">
+                            <label for="yourEmail" class="form-label">Email</label>
+                            <input type="text" wire:model="email" class="form-control" id="yourEmail" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="yourPassword" class="form-label">Password</label>
+                            <input type="password" wire:model="password" class="form-control" id="yourPassword"
+                                required>
+                        </div>
+
+                        @if ($errors->has('login'))
+                            <div class="error">{{ $errors->first('login') }}</div>
+                        @endif
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
             </div>
         </div>
-    </div><!-- End Basic Modal-->
-
+    </div>
 
 </main>

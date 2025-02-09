@@ -100,7 +100,7 @@
                                         </div>
                                     </form>
 
-                                    <p class="my-4">OR</p>
+                                    <div class="my-4 text-center">OR</div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <a href="{{ route('auth.google') }}" class="btn btn-danger w-100">

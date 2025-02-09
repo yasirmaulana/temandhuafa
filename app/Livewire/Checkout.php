@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Campaign;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Auth;
 
 class Checkout extends Component
 {
@@ -23,15 +24,19 @@ class Checkout extends Component
     public $anonim = false;
     public $doa = '';
     public $infaqSistemAmount = 0;
-    public $totalAmount = 0; 
+    public $totalAmount = 0;
     public $snapToken = '';
     public $isZiswaf;
     public $titleBayar;
     public $titleRowBayar;
     public $orderId;
+    public $password = '';
+    public $slug;
+    public $addError;
 
     public function mount($slug)
     {
+        $this->slug = $slug;
         $parts = explode('-', $slug);
         $this->titleRowBayar = $parts[0];
         $this->infaqSistemAmount = 2000;
@@ -64,6 +69,13 @@ class Checkout extends Component
         $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
 
         $this->totalAmount = $this->amount + $this->infaqSistemAmount;
+
+        if (!empty(Auth::check())) {
+            // return redirect('panel/dashboard');
+            $this->namaLengkap = Auth::user()->name;
+            $this->email = Auth::user()->email;
+            $this->phone = Auth::user()->handphone;
+        }
     }
 
     public function createPayment()
@@ -92,7 +104,6 @@ class Checkout extends Component
             $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             return redirect()->route('payment', ['snapToken' => $snapToken]);
-            
         } catch (\Exception $e) {
             logger()->error('Error generating snapToken: ' . $e->getMessage());
             $this->addError('snapToken', 'Gagal mendapatkan Snap Token. Silakan coba lagi.');
@@ -116,7 +127,7 @@ class Checkout extends Component
     public function togle()
     {
         if ($this->infaqSistem) {
-            $this->infaqSistemAmount = 2000; 
+            $this->infaqSistemAmount = 2000;
         } else {
             $this->infaqSistemAmount = 0;
         }
@@ -128,7 +139,8 @@ class Checkout extends Component
         $this->totalAmount = $this->infaqSistemAmount + (int)$value;
     }
 
-    public function saveTransaction() {
+    public function saveTransaction()
+    {
         $transaction = Transaction::create([
             'order_id' => $this->orderId,
             'campaign_id' => $this->campaignId ?? null,
@@ -142,9 +154,23 @@ class Checkout extends Component
         ]);
     }
 
+    public function authLogin()
+    {
+        $credentials = [
+            'email' => $this->email,
+            'password' => $this->password,
+        ];
+
+        if (Auth::attempt($credentials)) {
+            // Redirect ke halaman yang sesuai
+            return redirect(url('/checkout/' . $this->slug));
+        } else {
+            $this->addError('login', 'Email atau password salah.');
+        }
+    }
+
     public function render()
     {
         return view('livewire.checkout');
     }
-
 }

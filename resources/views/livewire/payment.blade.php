@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div> --}}
-        <div id="snap-container" class="w-100"></div>
+        <div id="snap-container" class="w-100 h-100"></div>
     </section>
 
 
@@ -83,10 +83,10 @@
                     return response.json();
                 })
                 .then(data => {
-                    // console.log('Response from backend:', data);
+                    console.log('Response from backend:', data);
                 })
                 .catch(error => {
-                    // console.error('Error sending result to backend:', error);
+                    console.error('Error sending result to backend:', error);
                 });
         }
     </script>

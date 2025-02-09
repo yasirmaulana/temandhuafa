@@ -29,18 +29,19 @@ class SocialiteController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
-
+            dd($googleUser);
             $user = User::where('google_id', $googleUser->id)->first();
 
             if ($user) {
                 Auth::login($user);
                 return redirect('panel/dashboard');
-            } else {
+            } else { 
                 $userData = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
                     'password' => Hash::make('Password@1234'),
-                    'google_id' => $googleUser->id
+                    'google_id' => $googleUser->id,
+                    'role_id' => 2
                 ]);
 
                 if ($userData) {

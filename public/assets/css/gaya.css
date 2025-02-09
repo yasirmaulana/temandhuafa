@@ -12147,7 +12147,7 @@ header.locked-header .video-header .video-icon {
     color: rgba(var(--white), 1);
     border-radius: 100%; */
     /* color: rgba(var(--theme-color), 1); */
-    color: #8CC800
+    color: #255C34
 }
 /* [class="dark"] .mobile-style-1 ul li.active .mobile-icon i {
     background: #121924;
@@ -12159,7 +12159,7 @@ header.locked-header .video-header .video-icon {
 .mobile-style-1 ul li.active .mobile-name h5 {
     /* font-weight: 700;  */
     /* color: rgba(var(--theme-color), 1); */
-    color: #8CC800
+    color: #255C34
     /* font-size: 10px; */
 }
 [class="dark"] .mobile-style-1 ul li.active .mobile-name h5 {

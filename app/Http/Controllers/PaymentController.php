@@ -53,7 +53,7 @@ class PaymentController extends Controller
         );
     }
 
-    public function handleNotification(Request $request)
+    public function handleNotification(Request $request) 
     {
         try {
             // Ambil data dari Midtrans webhook
