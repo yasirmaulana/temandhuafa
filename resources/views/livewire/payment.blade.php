@@ -68,7 +68,7 @@
 
         // Fungsi untuk mengirim data result ke backend
         function sendResultToBackend(result) {
-            fetch('/payment/callback', {
+            fetch('/payment-callback', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

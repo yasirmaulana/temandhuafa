@@ -34,8 +34,8 @@ Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');
 
-Route::post('/payment/callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
-Route::post('/payment/notification', [PaymentController::class, 'handleNotification'])->name('payment.notification');
+Route::post('/payment-callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
+Route::post('/payment-notification', [PaymentController::class, 'handleNotification'])->name('payment.notification');
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);
