@@ -46,7 +46,6 @@ Route::controller(SocialiteController::class)->group(function () {
     Route::get('auth/google-callback', 'googleAuthentication')->name('auth.google-callback');
 });
 
-
 Route::group(['middleware' => 'useradmin'], function () {
 
     Route::get('/panel/dashboard', [DashboardController::class, 'dashboard']);
