@@ -36,7 +36,7 @@ class PaymentController extends Controller
         }
     }
 
-    private function saveTransactionData($data)
+    private function saveTransactionData($data) 
     {
         // Gunakan updateOrCreate untuk memastikan data tidak duplikat
         Transaction::updateOrCreate(

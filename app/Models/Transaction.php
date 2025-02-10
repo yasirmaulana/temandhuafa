@@ -30,8 +30,19 @@ class Transaction extends Model
         'pray',
     ];
 
-    static public function getRecord() {
+    public function getRecord() {
         return Transaction::get();
+    }
+
+    public function getTransactionByEmail($email)
+    {
+        $transactions = $this->where('email', $email)->get();
+
+        if($transactions->isEmpty()) {
+            return null;
+        }
+
+        return $transactions;
     }
 
     // Relationships

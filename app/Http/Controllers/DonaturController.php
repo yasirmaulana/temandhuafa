@@ -8,8 +8,7 @@ class DonaturController extends Controller
 {
     public function list()
     {
-        $data['getRecord'] = [];
-
+        $data['getRecord'] = []; 
         return view('panel.donatur.list', $data);
     }
 }

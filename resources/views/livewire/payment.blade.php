@@ -3,20 +3,20 @@
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
     <section>
-        {{-- <div class="custom-container">
+        <div class="custom-container">
             <div class="d-flex bd-highlight align-items-center">
                 <div class="bd-highlight">
-                    <a href="{{ url('campaign/') }}" wire:navigate class="btn btn-default">
+                    <a href="{{ url('/') }}" wire:navigate class="btn btn-default">
                         <i class="ri-arrow-go-back-line text-primary"></i>
                     </a>
                 </div>
                 <div class="flex-fill bd-highlight justify-content-center text-center">
                     <div class="height py-3">
-                        <h4 class="fw-bold">judul</h4>
+                        <h4 class="fw-bold">Lakukan kebaikan lainnya</h4>
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <div id="snap-container" class="w-100 h-100"></div>
     </section>
 
@@ -83,10 +83,10 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from backend:', data);
+                    // console.log('Response from backend:', data);
                 })
                 .catch(error => {
-                    console.error('Error sending result to backend:', error);
+                    // console.error('Error sending result to backend:', error);
                 });
         }
     </script>
