@@ -23,6 +23,7 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', Home::class);
 Route::get('/category/{kategori}', Home::class);
@@ -35,7 +36,9 @@ Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');
 
 Route::post('/payment-callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
-Route::post('/payment-notification', [PaymentController::class, 'handleNotification'])->name('payment.notification');
+Route::post('/payment-notification', [PaymentController::class, 'handleNotification'])
+    ->withoutMiddleware(VerifyCsrfToken::class)
+    ->name('payment.notification');
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);
