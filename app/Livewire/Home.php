@@ -15,7 +15,7 @@ class Home extends Component
     {
         $this->category = $category;
 
-        $this->campaigns = Campaign::getCampaigns();
+        $this->campaigns = Campaign::getCampaigns(); 
     }
     
     public function render()

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class Campaign extends Model
+class Campaign extends Model 
 {
-    protected $fillable = [
+    protected $fillable = [ 
         'image',
         'title',
         'category_id',
@@ -62,10 +62,10 @@ class Campaign extends Model
 
     static public function getCampaigns()
     {
-        // return Campaign::where('is_delete', '<>', 1)->get();
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'users.name as fundraiser_name')
+        // return Campaign::select('campaigns.*', 'categories.name as category_name', 'users.name as fundraiser_name')
+        return Campaign::select('campaigns.*', 'categories.name as category_name')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
-            ->join('users', 'users.id', '=', 'campaigns.fundraiser_id')
+            // ->join('users', 'users.id', '=', 'campaigns.fundraiser_id')
             ->where('campaigns.is_delete', '<>', 1)->get();
     }
 

@@ -30,7 +30,7 @@
                             <tbody>
                                 @foreach ($getRecord as $value)
                                     <tr>
-                                        <th>{{ $value->name }}</th>
+                                        <th>{{ $value->title }}</th>
                                         <td>{{ $value->email }}</td>
                                         <td>{{ $value->handphone }}</td>
                                         <td>{{ number_format($value->target_amount, 0, ',', '.') }}</td>

@@ -39,6 +39,34 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
+        User::create([
+            'name' => 'donatur',
+            'email' => 'donatur@temandhuafa.id',
+            'password' => Hash::make('password'),
+            'role_id' => 2
+        ]);
+
+        User::create([
+            'name' => 'fundraiser',
+            'email' => 'fundraiser@temandhuafa.id',
+            'password' => Hash::make('password'),
+            'role_id' => 3
+        ]);
+
+        User::create([
+            'name' => 'keuangan',
+            'email' => 'keuangan@temandhuafa.id',
+            'password' => Hash::make('password'),
+            'role_id' => 4
+        ]);
+
+        User::create([
+            'name' => 'progaram',
+            'email' => 'progaram@temandhuafa.id',
+            'password' => Hash::make('password'),
+            'role_id' => 5
+        ]);
+
         // ========================================================
         Role::create([
             'name' => 'Admin'

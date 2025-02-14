@@ -24,7 +24,7 @@
     <script>
         // Ambil snapToken yang diteruskan dari backend
         const snapToken = "{{ $snapToken }}";
-
+        
         // Cetak ke console untuk verifikasi
         // console.log('Snap Token:', snapToken);
 

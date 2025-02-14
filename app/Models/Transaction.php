@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Campaign;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Transaction extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'order_id',
         'transaction_id',
@@ -30,20 +31,33 @@ class Transaction extends Model
         'pray',
     ];
 
-    public function getRecord() {
-        return Transaction::get();
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class, 'campaign_id');
+    }
+
+    public function getTransaction()
+    {
+        return $this->select('transactions.*', 'campaigns.title as campaign_title')
+            ->leftJoin('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
+            ->get();
     }
 
     public function getTransactionByEmail($email)
     {
-        $transactions = $this->where('email', $email)->get();
+        $transactions = $this->select('transactions.*', 'campaigns.title as campaign_title')
+            ->leftJoin('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
+            ->where('email', $email)
+            ->get();
 
-        if($transactions->isEmpty()) {
+        if ($transactions->isEmpty()) {
             return null;
         }
 
         return $transactions;
     }
+
+
 
     // Relationships
     // public function campaign()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Auth;
@@ -12,6 +13,7 @@ class DonasiController extends Controller
     
     public $email;
     public $roleId;
+    public $data;
 
     public function __construct()
     {
@@ -20,18 +22,20 @@ class DonasiController extends Controller
             $this->roleId = Auth::user()->role_id;
         }
         
+        $transactionModel = new Transaction(); 
+
+        if($this->roleId == 1) {
+            $this->data['getRecord'] = $transactionModel->getTransaction();
+        } elseif($this->roleId == 2) {
+            $this->data['getRecord'] = $transactionModel->getTransactionByEmail($this->email);
+        }
+        
+        $this->data['getCampaign'] = Campaign::getCampaigns();
     }
 
     public function list()
     {
-        $transactionModel = new Transaction();
-
-        if($this->roleId == 1) {
-            $data['getRecord'] = $transactionModel->getRecord();
-        } elseif($this->roleId == 2) {
-            $data['getRecord'] = $transactionModel->getTransactionByEmail($this->email);
-        }
-        
-        return view('panel.donasi.list', $data);
+        // dd($this->data);
+        return view('panel.donasi.list', $this->data);
     }
 }
