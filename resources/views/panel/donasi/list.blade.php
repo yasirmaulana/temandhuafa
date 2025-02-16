@@ -24,9 +24,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Program</th>
-                                    {{-- <th scope="col">Email</th> --}}
-                                    {{-- <th scope="col">Phone</th> --}}
                                     <th scope="col">OrderId</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Status</th>
@@ -39,12 +40,12 @@
                             <tbody>
                                 @if (!empty($getRecord) && $getRecord->count() > 0)
                                     @foreach ($getRecord as $value)
-                                        <tr>
-                                            {{-- <td>{{ $value->donor_name }}</td> --}}
+                                        <tr>{{ $value }}
                                             <td>{{ $value->campaign_title }}</td>
-                                            {{-- <td>{{ $value->email }}</td> --}}
-                                            {{-- <td>{{ $value->phone }}</td> --}}
                                             <td>{{ $value->order_id }}</td>
+                                            <td>{{ $value->donor_name }}</td>
+                                            <td>{{ $value->email }}</td>
+                                            <td>{{ $value->phone }}</td>
                                             <td>{{ number_format($value->gross_amount, 0, ',', '.') }}</td>
                                             <td>{{ $value->transaction_time }}</td>
                                             <td>

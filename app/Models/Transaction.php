@@ -43,7 +43,7 @@ class Transaction extends Model
             ->get();
     }
 
-    public function getTransactionByEmail($email)
+    public function getTransactionByEmail($email) 
     {
         $transactions = $this->select('transactions.*', 'campaigns.title as campaign_title')
             ->leftJoin('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
