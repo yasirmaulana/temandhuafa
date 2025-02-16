@@ -13,7 +13,8 @@ class CampaignList extends Component
 
     public function mount()
     {
-        $this->campaigns = Campaign::getCampaigns();
+        $this->campaigns = Campaign::getCampaignsPublished();
+
     }
 
     public function render()

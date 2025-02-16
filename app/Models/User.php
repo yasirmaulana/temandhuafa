@@ -63,6 +63,13 @@ class User extends Authenticatable
         return User::find($id);
     }
 
+    static public function setRoleFundraiser($userid)
+    {
+        return User::where('id', $userid)
+            ->update(['role_id' => 3]);
+    }
+
+
     // Relationships
     public function campaigns()
     {

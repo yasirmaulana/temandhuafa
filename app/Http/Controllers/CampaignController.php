@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Campaign;
 use App\Models\Category;
+use App\Models\Fundraiser;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class CampaignController extends Controller
         if (Auth::user()->role_id == 1) {
             $data['getRecord'] = Campaign::getCampaigns();
         } else {
-            $data['getRecord'] = Campaign::getCampaignByUserId(Auth::user()->id);
+            $fundraiser = Fundraiser::getFundraiserByUserid(Auth::user()->id)->first();
+
+            $data['getRecord'] = Campaign::getCampaignByUserId($fundraiser->id);
         }
 
         return view('panel.campaign.list', $data);
@@ -56,22 +59,17 @@ class CampaignController extends Controller
         $image = $request->file('image');
         $hashImage = $image->hashName();
         $image->storeAs('assets/img/campaigns', $hashImage, 'public');
+ 
+        $fundraiser = Fundraiser::getFundraiserByUserid(Auth::user()->id)->first();
 
-        $request['status'] = "pending";
-        $request['fundraiser_id'] = Auth::user()->id;
+        $request['status'] = "draft";
+        $request['fundraiser_id'] = $fundraiser->id;
         $request['start_date'] = now()->format('Y-m-d');;
         $request['slug'] = Str::slug($request->title, '-');
 
         Campaign::insertRecord($hashImage, $request);
 
         return redirect('panel/campaign')->with('success', "Campaign successfully created");
-    }
-
-    public function approve($id)
-    {
-        Campaign::approve($id);
-
-        return redirect('panel/campaign')->with('success', "Campaign approved");
     }
 
     public function complate($id)
@@ -104,6 +102,7 @@ class CampaignController extends Controller
 
         if ($request->file('image') == '') {
             $campaign = Campaign::updateRecordWithoutImage($id, $request);
+            return redirect('panel/campaign')->with('success', "Campaign published");
         } else {
             $campaign = Campaign::getSingle($id);
 
@@ -116,8 +115,9 @@ class CampaignController extends Controller
             $image->storeAs('assets/img/campaigns', $hashImage, 'public');
 
             Campaign::updateRecord($id, $hashImage, $request);
+            
+            return redirect('panel/campaign')->with('success', "Campaign successfully updated");
         }
 
-        return redirect('panel/campaign')->with('success', "Category successfully updated");
     }
 }

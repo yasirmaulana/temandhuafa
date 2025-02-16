@@ -24,8 +24,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($getRecord as $value)
-                                    <tr data-bs-toggle="modal" data-bs-target="#ExtralargeModal"
-                                        data-nama-lembaga="{{ $value->nama_lembaga }}"
+                                    <tr data-nama-lembaga="{{ $value->nama_lembaga }}"
                                         data-jenis-badan-usaha="{{ $value->jenis_badan_usaha }}"
                                         data-kota-domisili="{{ $value->kota_domisili }}"
                                         data-alamat-lembaga="{{ $value->alamat_lembaga }}"
@@ -58,7 +57,22 @@
                                         <td>{{ $value->email_lembaga }}</td>
                                         <td>{{ $value->nomor_telpon }}</td>
                                         <td>{{ $value->register_status }}</td>
-                                        <td></td>
+                                        <td>
+                                            @if ($value->register_status == 'register')
+                                                <!-- Tombol Approve -->
+                                                <form method="POST"
+                                                    action="{{ route('fundraiser.approve', ['id' => $value->user_id]) }}"
+                                                    style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" class="approve-btn btn btn-outline-success btn-sm"
+                                                        onclick="event.stopPropagation();">
+                                                        Approve
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button class="btn btn-outline-warning btn-sm">Non Active</button>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -316,7 +330,6 @@
 
                     };
 
-                    // Isi input modal dengan data yang sesuai
                     // document.getElementById("namaLembaga").value = data.nama_lembaga;
                     document.getElementById("namaLembaga").textContent = data.nama_lembaga;
                     document.getElementById("jenisBadanUsaha").textContent = data.jenis_badan_usaha;
@@ -354,8 +367,6 @@
                         .image_struktur_org;
                     document.getElementById("imageKtp").textContent = data.image_ktp;
 
-                    // Tambahkan pengisian input lain sesuai dengan ID atau class yang digunakan
-
                     // Tampilkan modal
                     new bootstrap.Modal(document.getElementById("ExtralargeModal")).show();
                 });
@@ -374,8 +385,16 @@
 
                 elements.forEach(id => {
                     document.getElementById(id).textContent =
-                    ""; // Kosongkan isi modal saat ditutup
+                        ""; // Kosongkan isi modal saat ditutup
                 });
+            });
+        });
+
+        document.querySelectorAll('.approve-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                if (!confirm('Are you sure you want to approve this fundraiser?')) {
+                    event.preventDefault(); // Cancel the form submission if user cancels
+                }
             });
         });
     </script>

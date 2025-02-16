@@ -2,7 +2,7 @@
     <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
-    <section>
+    {{-- <section>
         <div class="custom-container">
             <div class="d-flex bd-highlight align-items-center">
                 <div class="bd-highlight">
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div id="snap-container" class="w-100 h-100"></div>
-    </section>
+    </section> --}}
 
 
     <script>
@@ -83,10 +83,10 @@
                     return response.json();
                 })
                 .then(data => {
-                    // console.log('Response from backend:', data);
+                    console.log('Response from backend:', data);
                 })
                 .catch(error => {
-                    // console.error('Error sending result to backend:', error);
+                    console.error('Error sending result to backend:', error);
                 });
         }
     </script>

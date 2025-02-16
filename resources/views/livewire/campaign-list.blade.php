@@ -20,7 +20,7 @@
                                         <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
                                             <h5 class="fw-bold">{{ $campaign->title }}</h5>
                                         </a>
-                                        <span class="text-muted small">BAZNAS Hub</span>
+                                        <span class="text-muted small">{{ $campaign->fundraiser }}</span>
                                         <i class="ri-shield-check-line text-success fw-bolder"></i>
                                     </div>
                     
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     
                 @endforeach
             </div>

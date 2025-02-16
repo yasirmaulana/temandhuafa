@@ -13,9 +13,9 @@ class Home extends Component
 
     public function mount($category = '')
     {
-        $this->category = $category;
+        $this->category = $category; 
 
-        $this->campaigns = Campaign::getCampaigns(); 
+        $this->campaigns = Campaign::getCampaignsPublished();
     }
     
     public function render()

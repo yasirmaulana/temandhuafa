@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('image');
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('status', ['pending', 'approved', 'rejected', 'completed']);
+            $table->enum('status', ['draft', 'published', 'rejected', 'completed']);
             $table->foreignId('fundraiser_id')->constrained('users');
             $table->boolean('is_delete');
             $table->timestamps();

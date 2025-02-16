@@ -94,7 +94,7 @@
                                                         class="rounded-circle"> --}}
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <h5 class="text-dark">Temandhuafa
+                                                    <h5 class="text-dark">{{ $campaign->fundraiser }}
                                                         <i class="ri-shield-check-line text-success fw-bolder"></i>
                                                     </h5>
                                                     <p>Identitas terverifikasi</p>

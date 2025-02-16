@@ -75,6 +75,8 @@ Route::group(['middleware' => 'useradmin'], function () {
 
     Route::get('/panel/fundraiser', [FundraiserController::class, 'list']); 
     Route::post('/fundraiser/store', [FundraiserController::class, 'store'])->name('fundraiser.store');
+    Route::post('/fundraiser/approve/{id}', [FundraiserController::class, 'approveFundriserRegister'])->name('fundraiser.approve');
+
 
     Route::get('/panel/keuangan', [KeuanganController::class, 'list']);
 

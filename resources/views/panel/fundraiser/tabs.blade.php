@@ -1,6 +1,7 @@
 <x-layout>
+    @include('_message')
 
-    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
         <div class="card">
             <div class="card-body">
                 {{-- <h5 class="card-title"></h5> --}}
@@ -10,7 +11,7 @@
                             type="button" role="tab" aria-controls="identity"
                             aria-selected="true">Register</button>
                     </li>
-                    @if (Auth::user()->role_id == 3)
+                    {{-- @if (Auth::user()->role_id == 3)
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="campaign-tab" data-bs-toggle="tab" data-bs-target="#campaign"
                                 type="button" role="tab" aria-controls="campaign"
@@ -26,24 +27,23 @@
                                 data-bs-target="#disbursment" type="button" role="tab" aria-controls="disbursment"
                                 aria-selected="false">Disbursment</button>
                         </li>
-                    @endif
+                    @endif --}}
                 </ul>
-                <div class="tab-content pt-2" id="myTabjustifiedContent">
-                    <div class="tab-pane fade show active" id="identity" role="tabpanel"
-                        aria-labelledby="identity-tab">
+                <div class="tab-content p-3" id="myTabjustifiedContent">
+                    <div class="tab-pane fade show active" id="identity" role="tabpanel" aria-labelledby="identity-tab">
 
                         {{-- user role-donatur, sudah melakukan registrasi --}}
-                        @if (Auth::user()->role_id = 2 && $getRecord->count() > 0)
+                        @if ((Auth::user()->role_id == 2 || Auth::user()->role_id == 3) && $getRecord->count() > 0)
                             <x-forms.fundraiser-registered />
                         {{-- user role-donatur, belum melakukan registrasi --}}
-                        @elseif (Auth::user()->role_id = 2)
+                        @elseif (Auth::user()->role_id == 2)
                             <x-forms.fundraiser-register />
                         @endif
 
                     </div>
-                    @if (Auth::user()->role_id == 3)
+                    {{-- @if (Auth::user()->role_id == 3)
                         <div class="tab-pane fade" id="campaign" role="tabpanel" aria-labelledby="campaign-tab">
-                            Campaign
+                            <x-fundraiser-campaign />
                         </div>
                         <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
                             Report
@@ -51,7 +51,7 @@
                         <div class="tab-pane fade" id="disbursment" role="tabpanel" aria-labelledby="disbursment-tab">
                             Disbursment
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
 
             </div>

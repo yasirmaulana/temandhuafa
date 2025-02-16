@@ -69,6 +69,27 @@
                     <i class="bi bi-graph-up"></i>
                     <span>Fundraiser</span>
                 </a>
+                {{-- <a class="nav-link " data-bs-target="#fundraiser-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-graph-up"></i><span>Fundraiser</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="fundraiser-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="fundraiser-alerts.html">
+                            <i class="bi bi-circle"></i><span>List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="fundraiser-accordion.html">
+                            <i class="bi bi-circle"></i><span>Register</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="fundraiser-badges.html">
+                            <i class="bi bi-circle"></i><span>Campaign</span>
+                        </a>
+                    </li>
+                </ul> --}}
             </li>
         @endif
 

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Models\User;
 use App\Models\Fundraiser;
 use Illuminate\Http\Request;
-use Auth;
 
 class FundraiserController extends Controller
 {
@@ -101,5 +102,11 @@ class FundraiserController extends Controller
             $data['getRecord'] = Fundraiser::getFundraiserByUserid(Auth::id());
             return view('panel.fundraiser.tabs', $data);
         }
+    }
+
+    public function approveFundriserRegister($userid) {
+        Fundraiser::setRegisterStatus($userid);
+        User::setRoleFundraiser($userid);
+        return redirect('panel/fundraiser')->with('success', 'Approve success!');
     }
 }

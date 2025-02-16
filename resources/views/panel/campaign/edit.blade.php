@@ -6,7 +6,11 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Update Campaign</h5>
+                        @if (Auth::user()->role_id == 1 && $getRecord->status == 'draft')
+                            <h5 class="card-title">Publish Campaign</h5>
+                        @else
+                            <h5 class="card-title">Update Campaign</h5>
+                        @endif
 
                         <form action="" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -70,7 +74,11 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    @if (Auth::user()->role_id == 1 && $getRecord->status == 'draft')
+                                        <button type="submit" class="btn btn-warning">Publish</button>
+                                    @else
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    @endif
                                     <a href="{{ url('panel/campaign') }}" class="btn btn-outline-secondary">Cancel</a>
                                 </div>
                             </div>
