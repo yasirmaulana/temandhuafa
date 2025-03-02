@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Campaign;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,7 +44,7 @@ class Transaction extends Model
             ->get();
     }
 
-    public function getTransactionByEmail($email) 
+    public function getTransactionByEmail($email)
     {
         $transactions = $this->select('transactions.*', 'campaigns.title as campaign_title')
             ->leftJoin('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
@@ -57,7 +58,20 @@ class Transaction extends Model
         return $transactions;
     }
 
+    static public function getSettlementAmount()
+    {
+        return Transaction::select('campaign_id', DB::raw('SUM(gross_amount) as total_gross_amount'), DB::raw('COUNT(gross_amount) as total_donatur'))
+            ->where('transaction_status', 'settlement')
+            ->groupBy('campaign_id')
+            ->get();
+    }
 
+    static public function getTransactionByCampaignId($campaignId)
+    {
+        return Transaction::where('campaign_id', $campaignId)
+            ->where('transaction_status', 'settlement')
+            ->get();
+    }
 
     // Relationships
     // public function campaign()

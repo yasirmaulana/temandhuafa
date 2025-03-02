@@ -1,141 +1,297 @@
-<main class="position-relative">
+<div class="container">
 
-    @livewire('header')
-    <div class="header-divider"></div>
-    
-    <header class="learning-header overflow-hidden">
-        <div class="watch-video">
-            <div class="video-header" id="video-header">
-                <img src="{{ $campaign?->image ?? '' }}" class="img-fluid" alt="">
-            </div>
+    <!-- loader -->
+    <div id="loader">
+        <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- * loader -->
+
+    <!-- App Header -->
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="javascript:;" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
         </div>
-    </header>
+        <div class="pageTitle"></div>
+        <div class="right">
+            {{-- <a href="javascript:;" class="headerButton">
+                <ion-icon name="bookmark-outline"></ion-icon>
+            </a> --}}
+            <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
+                <ion-icon name="share-outline"></ion-icon>
+            </a>
+        </div>
+    </div>
+    <!-- * App Header -->
 
-    <section class="video-name-section pt-3">
-        <div class="custom-container">
-            <div class="name-title">
-                <h4>{{ $campaign?->title ?? '' }}</h4>
-                <h5 class="fw-bolder text-success">Rp 0</h5>
-                <div class="popular-detail">
-                    <div class="d-flex justify-content-between mt-2">
-                        <p class="theme-color">Terkumpul dari kebutuhan
-                            <strong>{{ 'Rp. ' . number_format($campaign?->target_amount ?? 0, 0, ',', '.') }}</strong>
-                        </p>
+    <!-- App Capsule -->
+    <div id="appCapsule">
+
+        <div class="blog-post">
+            <div class="section full mb-2">
+                <img src="{{ $campaign?->image ?? '' }}" alt="image" class="imaged square w-100">
+            </div>
+
+            <!-- judul galang dana (buat max. 45 karakter -->
+            <h2 class="title mb-3 text-primary">{{ $campaign?->title ?? '' }}</h2>
+
+            <!-- capaian crowdfunding -->
+            <div class="section wide-block pt-2 pb-3 mb-3">
+                <h6 class="">Jumlah Penghimpunan</h6>
+                <span class="text-primary" style="font-size:15pt; font-weight:bold">Rp
+                    {{ number_format($campaign->total_gross_amount, 0, ',', '.') }}</span>
+                <span style="font-size:9pt">dari
+                    {{ 'Rp. ' . number_format($campaign?->target_amount ?? 0, 0, ',', '.') }}</span>
+
+                <div class="progress mt-1 mb-1" style="height:5px;">
+                    <div class="progress-bar" role="progressbar"
+                        style="width: {{ ($campaign->total_gross_amount / $campaign->target_amount) * 100 }}%;"
+                        aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-8">
+                        <span
+                            style="font-size:12pt; font-weight:bold">{{ number_format($campaign->total_donatur, 0, ',', '.') }}</span><span
+                            style="font-size:9pt">&nbsp
+                            Jumlah Donatur</span>
                     </div>
-                    <div class="progress" style="height: 3px;">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 71%;"></div>
+                    <div class="col-4 text-right">
+                        <span
+                            style="font-size:12pt; font-weight:bold">{{ floor(abs(\Carbon\Carbon::parse($campaign->end_date)->diffInDays(now()))) }}</span>
+                        <span style="font-size:9pt">hari lagi</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <div class="mt-4 mb-2 ms-3 mx-3 d-flex justify-content-end">
-        <div id="social-links">
-            <ul>
-                <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign?->slug ?? '') }}"
-                        class="social-button " id="" title="" rel="">
-                        <i class="ri-facebook-box-fill"></i>
+            <!-- informasi campaigner -->
+            <div class="section inset mb-4">
+                <a href="profil-fundriser.html">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="{{ asset('assets/img/contents/avatar.jpg') }}" alt="avatar"
+                                class="imaged w64 rounded mr-05">
+                        </div>
+                        <div class="col-8">
+                            <h6 class="text-secondary mt-1 mb-0">Lembaga/Organisasi</h6>
+                            <h3 class="text-primary mb-0">{{ $campaign->fundraiser }}<span
+                                    class="badge text-success"><ion-icon name="checkmark-circle"></ion-icon></span></h3>
+                            <h5 class="text-secondary">{{ $campaign->domisili_fundraiser }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- tanggal posting dipublish (setelah melewati verifikasi -->
+            <div class="section inset mb-3">
+                <h5 class="">Kategori: {{ $campaign->category_name }}</h5>
+                <div class="row mb-1">
+                    <div class="col-8">
+                        <span style="font-size:10pt; font-weight:normal">Status:</span>
+                        <span>&nbsp</span>
+                        <!-- aktif warna hijau, tidak aktif warna merah, krn sebab sudah selesai -->
+                        <span class="text-success"> Aktif</span>
+                    </div>
+                    <div class="col-4 text-right">
+                        <span
+                            style="font-size:10pt">{{ \Carbon\Carbon::parse($campaign->created_at)->translatedFormat('d F Y') }}</span>
+                    </div>
+                </div>
+                <h5 class="mb-0">Lokasi Penyaluran: xx</h5>
+                <h5>Target Penerima Manfaat: xx orang</h5>
+            </div>
+
+            <!-- konten crowdfunding -->
+            <div class="section inset mb-3">
+                {!! $campaign?->description ?? '' !!}
+            </div>
+
+            <div class="section pt-3 pb-3 mt-3 mb-3">
+                <button type="button" class="btn btn-outline-primary btn-block rounded" data-toggle="modal"
+                    data-target="#actionSheetShare">
+                    <ion-icon name="share-outline"></ion-icon>
+                    Bagikan Informasi Program
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabs Donatur dan Laporan -->
+        <div class="section wide-block mt-1">
+
+            <ul class="nav nav-tabs lined" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#donatur" role="tab">
+                        <span>Donatur</span>
+                        <span>&nbsp</span>
+                        <span
+                            class="badge badge-secondary">{{ number_format($campaign->total_donatur, 0, ',', '.') }}</span>
                     </a>
                 </li>
-                <li>
-                    <a target="_blank" href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
-                        class="social-button " id="" title="" rel="">
-                        <i class="ri-whatsapp-fill"></i>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#laporan2" role="tab">
+                        <span>Laporan</span>
+                        <span>&nbsp</span>
+                        {{-- <span class="badge badge-secondary">3</span> --}}
+                        <span class="badge badge-danger">comming soon</span>
                     </a>
-                </li>
-                <li>
-                    <a target="_blank"
-                        href="https://telegram.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}"
-                        class="social-button " id="" title="" rel="">
-                        <i class="ri-telegram-fill"></i></a>
                 </li>
             </ul>
-        </div>
-    </div>
 
-    <section class="custom-container pt-3">
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                <ul id="tabs" class="nav nav-tabs nav-fill nav-tabs-nostyle">
-                    <li class="nav-item">
-                        <a href="#home1" data-bs-target="#home1" data-bs-toggle="tab" class="nav-link active">
-                            <i class="ri-information-line"></i>
-                            Info
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#donasi" data-bs-target="#donasi" data-bs-toggle="tab" class="nav-link">
-                            <i class="ri-hand-heart-line"></i>
-                            Donasi
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#profile1" data-bs-target="#profile1" data-bs-toggle="tab"
-                            class="nav-link">
-                            <i class="ri-booklet-fill"></i>
-                            Laporan
-                        </a>
-                    </li>
-                </ul>
-                <div id="tabsContent" class="tab-content p-2 border border-top-0 rounded">
-                    <div id="home1" class="tab-pane fade active show">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="single-blog-container p-2">
-                                    <div class="row">
-                                        <div class="col-10">
-                                            <div class="d-inline-flex mt-2">
-                                                <div class="me-2 flex-fill">
-                                                    <img src="{{ asset('assets/img/favicon.png') }}" width="40px"
-                                                        alt="Rounded circle Image" class="rounded-circle border">
-                                                    {{-- <img src="https://placehold.co/40x40" alt="Rounded circle Image"
-                                                        class="rounded-circle"> --}}
-                                                </div>
-                                                <div class="flex-fill">
-                                                    <h5 class="text-dark">{{ $campaign->fundraiser }}
-                                                        <i class="ri-shield-check-line text-success fw-bolder"></i>
-                                                    </h5>
-                                                    <p>Identitas terverifikasi</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2 py-2"></div>
-                                    </div>
-                                    <div class="quotes-details">
-                                        {!! $campaign?->description ?? '' !!}
-                                    </div>
+            <div class="tab-content">
+
+                <!-- Dafar Donatur -->
+                <div class="tab-pane fade show active" id="donatur" role="tabpanel">
+
+                    <ul class="listview no-line">
+                        @foreach ($transactions as $transaction)
+                            <li>
+                                <div class="col-3">
+                                    <img src="{{ asset('assets/img/contents/avatar.jpg') }}" alt="image"
+                                        class="imaged w48 rounded mr-05">
                                 </div>
+                                <div class="col-6">
+                                    <h5 class="text-primary mt-1 mb-0">{{ $transaction->donor_name }}</h5>
+                                    <h6 class="mb-0">{{ \Carbon\Carbon::parse($transaction->transaction_time)->translatedFormat('d F Y') }}</h6>
+                                    <h6 class="">{{ $transaction->pray }}</h6>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="text-right">{{ number_format($transaction->gross_amount, 0, ',', '.') }}</h5>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    <!-- load more post -->
+                    {{-- <div class="section inset pt-2 pb-2 mb-3">
+                        <a href="#" class="btn-block" id="loadMore">
+                            <button type="button"
+                                class="btn btn-outline-primary mr-1 mb-1 btn-sm btn-block rounded">Lihat Lagi</button>
+                        </a>
+                        </a>
+                    </div> --}}
+
+                </div>
+
+
+
+                <!-- * Daftar Donatur -->
+
+                <!-- Laporan -->
+                <div class="tab-pane fade" id="laporan" role="tabpanel">
+
+                    <!-- timeline -->
+                    <div class="timeline timed">
+
+                        <div class="item">
+                            <span class="time">5 April 2020</span>
+                            <div class="dot bg-primary"></div>
+                            <div class="content">
+                                <img src="{{ asset('assets/img/contents/gambar.png') }}" alt="avatar"
+                                    class="imaged w-100 mb-1">
+                                <h4 class="title text-primary">Bagi Sembako di Jalan Kutilang</h4>
+                                <h6 class="sub-title mt-1 mb-0">Penerima Manfaat: 2 orang</h6>
+                                <h6 class="mb-0">Lokasi di: Depok</h6>
+                                <div class="text">Deskripsi laporan penyaluran dana ke penerima manfaat.</div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <span class="time">5 April 2020</span>
+                            <div class="dot bg-primary"></div>
+                            <div class="content">
+                                <img src="{{ asset('assets/img/contents/gambar.png') }}" alt="avatar"
+                                    class="imaged w-100 mb-1">
+                                <h4 class="title text-primary">Kasih makan orang terlantar</h4>
+                                <h6 class="sub-title mt-1 mb-0">Penerima Manfaat: 2 orang</h6>
+                                <h6 class="mb-0">Lokasi di: Depok</h6>
+                                <div class="text">Deskripsi laporan penyaluran dana ke penerima manfaat.</div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <span class="time">5 April 2020</span>
+                            <div class="dot bg-primary"></div>
+                            <div class="content">
+                                <img src="{{ asset('assets/img/contents/gambar.png') }}" alt="avatar"
+                                    class="imaged w-100 mb-1">
+                                <h4 class="title text-primary">Sumbangan Jumat berkah</h4>
+                                <h6 class="sub-title mt-1 mb-0">Penerima Manfaat: 2 orang</h6>
+                                <h6 class="mb-0">Lokasi di: Depok</h6>
+                                <div class="text">Deskripsi laporan penyaluran dana ke penerima manfaat.</div>
                             </div>
                         </div>
                     </div>
-                    <div id="donasi" class="tab-pane fade">Belum ada laporan</div>
-                    <div id="profile1" class="tab-pane fade">Belum ada laporan</div>
+                    <!-- load more post -->
+                    <div class="section inset pt-2 pb-2 mb-3">
+                        <a href="#" class="btn-block" id="loadMore">
+                            <button type="button"
+                                class="btn btn-outline-primary mr-1 mb-1 btn-sm btn-block rounded">Lihat Lagi</button>
+                        </a>
+                    </div>
+                    <!-- * timeline -->
+
+
+                </div>
+                <!-- * Laporan -->
+
+            </div>
+        </div>
+
+        <!-- Share Action Sheet -->
+        <div class="modal fade action-sheet inset" id="actionSheetShare" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content container">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Semangat Berbagi Kebaikan</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="action-button-list">
+                            <li>
+                                <a target="_blank"
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    class="btn btn-list" id="" title="" rel="">
+                                    <span class="text-primary">
+                                        <ion-icon name="logo-facebook"></ion-icon>
+                                        Facebook
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-list" data-dismiss="modal">
+                                    <span class="text-primary">
+                                        <ion-icon name="logo-instagram"></ion-icon>
+                                        Instagram
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank"
+                                    href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    class="btn btn-list" id="" title="" rel="">
+                                    <span class="text-primary">
+                                        <ion-icon name="logo-WhatsApp"></ion-icon>
+                                        WhatsApp
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+        <!-- * Share Action Sheet -->
 
-    <div class="divider"></div>
-
-    @livewire('footer')
-
-    <div class="mobile-style-1 border p-3 bg-light">
-        <div class="row position-fixed bottom-0 start-0 end-0 bg-white p-3 shadow g-1">
-            <div class="col-2">
-                <a href="/" wire:navigate class="btn btn-secondary w-100">
-                    <i class="ri-arrow-go-back-line text-warning"></i>
-                </a>
-            </div>
-            <div class="col-10">
-                <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate class="btn w-100" style="background-color: #8CC800;">
-                    <i class="ri-hand-heart-line"></i>
-                    <span class="fw-bold">
-                        Donasi Sekarang
-                    </span>
-                </a>
-            </div>
+        <!-- App Bottom Menu -->
+        <div class="appBottomMenu container">
+            <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate class="btn-block">
+                <button type="button" class="btn btn-success btn-lg btn-block">Donasi Sekarang</button>
+            </a>
         </div>
+        <!-- * App Bottom Menu -->
+
+
     </div>
-</main>
+
+</div>

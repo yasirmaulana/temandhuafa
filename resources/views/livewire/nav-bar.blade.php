@@ -1,46 +1,26 @@
-<div>
-    <div class="mobile-style-1 border p-3 bg-light">
-        <ul>
-            <li class="{{ request()->is('/') ? 'active' : '' }}">
-                <a href="/" wire:navigate class="mobile-box">
-                    <div class="mobile-icon">
-                        <i class="bi bi-house-door-fill ms-2"></i>
-                    </div>
-                    <div class="mobile-name">
-                        <h5>BERANDA</h5>
-                    </div>
-                </a>
-            </li>
-            <li class="{{ request()->is('donasi') ? 'active' : '' }}">
-                <a href="/donasi" wire:navigate class="mobile-box">
-                    <div class="mobile-icon">
-                        <i class="bi bi-heart-fill ms-2"></i>
-                    </div>
-                    <div class="mobile-name">
-                        <h5>DONASI</h5>
-                    </div>
-                </a>
-            </li>
-            <li class="{{ request()->is('ilmu') ? 'active' : '' }}">
-                <a href="/ilmu" wire:navigate class="mobile-box">
-                    <div class="mobile-icon">
-                        <i class="bi bi-book-fill ms-2"></i>
-                    </div>
-                    <div class="mobile-name">
-                        <h5>ILMU</h5>
-                    </div>
-                </a>
-            </li>
-            <li class="">
-                <a href="/login" class="mobile-box">
-                    <div class="mobile-icon">
-                        <i class="bi bi-person-fill ms-2"></i>
-                    </div>
-                    <div class="mobile-name">
-                        <h5>AKUN</h5>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
+<div class="appBottomMenu container">
+    <a href="/" wire:navigate class="item {{ request()->is('/') ? 'active' : '' }}">
+        <div class="col">
+            <ion-icon name="home"></ion-icon>
+            <strong>BERANDA</strong>
+        </div>
+    </a>
+    <a href="/program" wire:navigate class="item {{ request()->is('/program') ? 'active' : '' }}">
+        <div class="col">
+            <ion-icon name="layers-outline"></ion-icon>
+            <strong>PROGRAM</strong>
+        </div>
+    </a>
+    <a href="/faq" class="item {{ request()->is('/faq') ? 'active' : '' }}">
+        <div class="col">
+            <ion-icon name="book-outline"></ion-icon>
+            <strong>FAQ</strong>
+        </div>
+    </a>
+    <a href="/akun" class="item {{ request()->is('/akun') ? 'active' : '' }}">
+        <div class="col">
+            <ion-icon name="person-outline"></ion-icon>
+            <STRONG>AKUN</STRONG>
+        </div>
+    </a>
 </div>

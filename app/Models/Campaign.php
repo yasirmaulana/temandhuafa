@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Auth;
 
 class Campaign extends Model
 {
@@ -21,6 +22,7 @@ class Campaign extends Model
         'slug',
         'collected_amount',
         'is_delete',
+        'flag_campaign'
     ];
 
     public function fundraiser()
@@ -50,13 +52,17 @@ class Campaign extends Model
         );
     }
 
-    static public function getCampaignsPublished()
+    static public function getCampaignsPublished($flagCampaign = null)
     {
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser')
+        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
-            ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
-            ->where('status', 'published')
-            ->get();
+            ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id');
+
+        if (!is_null($flagCampaign)) {
+            $query->where('flag_campaign', $flagCampaign);
+        }
+
+        return $query->orderBy('campaigns.created_at', 'desc')->get();
     }
 
     static public function getCampaigns()
@@ -76,20 +82,19 @@ class Campaign extends Model
             ->get();
     }
 
-    static public function getCampaignBySlug($slug) 
+    static public function getCampaignBySlug($slug)
     {
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser')
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('campaigns.slug', $slug)
             ->first();
-
     }
 
-    // static public function getSingle($id)
-    // {
-    //     return Campaign::find($id);
-    // }
+    static public function getSingle($id)
+    {
+        return Campaign::find($id);
+    }
 
 
     static public function insertRecord($hashImage, $request)
@@ -117,9 +122,9 @@ class Campaign extends Model
 
     static public function updateRecordWithoutImage($id, $request)
     {
-        if(Auth::user()->role_id == 1) {
+        if (Auth::user()->role_id == 1) {
             Campaign::where('id', $id)
-            ->update(['status' => 'published']);
+                ->update(['status' => 'published']);
         } else {
             $save = Campaign::find($id);
             $save->title = $request->title;

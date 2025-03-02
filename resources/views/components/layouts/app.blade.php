@@ -1,59 +1,53 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="theme-color" content="#ff8d2f">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="temandhuafa.id">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/gaya.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/bebas.css') }}" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-        nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
-
-    <title>{{ $title ?? 'Page Title' }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Kanal donasi dan ZISWAF online">
+    <meta name="keywords" content="donasi, zakat, infak, sedekah, wakaf, donasi online, donasi mudah" />
+    <title>Temandhuafa</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/icon/192x192.png') }}">
+    <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="{{ asset('assets/css/style-fe.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick/slick-slider.css') }}">
+    {{-- <link rel="manifest" href="__manifest.json"> --}}
     @livewireStyles
 </head>
 
-<body>
+<body> 
     @livewireScripts
-
+   
     {{ $slot }}
 
-    <script src="https://tarahum.id/member/assets/js/vendors/bootstrap/bootstrap.bundle.min.js"
-        nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" nonce="yA3wKZJtinkhjAwMjIo0eqLFN7TJ3VDk">
-    </script>
-    <script src="https://tarahum.id/member/assets/js/custom_swiper.js?version=1.1" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
-    </script>
-
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"
-        nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script> --}}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK">
+    <!-- ///////////// Js Files ////////////////////  -->
+    <!-- Jquery -->
+    <script src="{{ asset('assets/js/lib/jquery-3.4.1.min.js') }}"></script>
+    <!-- Bootstrap-->
+    <script src="{{ asset('assets/js/lib/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+        <!-- Owl Carousel -->
+    <script src="{{ asset('assets/js/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+    <!-- Base Js File -->
+    <script src="{{ asset('assets/js/base.js') }}"></script>
+    <script src="https://kit.fontawesome.com/4cbe939c80.js" crossorigin="anonymous"></script>
+  	<!-- Slick Slider Slide -->
+    <script src="{{ asset('assets/js/plugins/slick/slick.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/slick/slick-slider.js') }}"></script>
+  	<!-- Load More -->
+    <script src="{{ asset('assets/js/plugins/loadMore.js') }}"></script>
+    <!-- Timeout -->
+    {{-- <script>
+          setTimeout(() => {
+              notification('notification-welcome', 5000);
+          }, 2000);
     </script> --}}
-    {{-- <script src="https://tarahum.id/member/assets/js/script.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    <script src="https://tarahum.id/member/assets/js/hide-show.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    <script src="https://tarahum.id/member/assets/js/otp-5.js" nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script>
-    <script src="https://tarahum.id/sw.js"></script>
-    <script src="https://tarahum.id/extensions/sweetalert2/sweetalert2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"
-        nonce="z6hvP1gSTt0jmJuS7AOsUzzmz5IUwMlK"></script> --}}
-
 
 </body>
 

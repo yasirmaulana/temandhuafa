@@ -1,47 +1,61 @@
 <div>
-    <div class="mt-4 px-3">
-        <h4><strong>Pengumpulan Dana Darurat</strong></h4>
-    </div>
-    <section class="section-t-space popular-course-section  pb-4">
-        <div class="custom-container">
-            <div class="row g-4">
-                @foreach ($campaigns as $campaign)
-                    <div class="col-12">
-                        <div class=" p-0 shadow">
-                            <div class="d-flex">
-                                <div class="col-6 d-flex align-items-center">
-                                    <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
-                                        <img src="{{ $campaign->image }}" class="img-fluid rounded-start" alt="">
-                                    </a>
+
+    <div class="section full mb-3">
+        <div class="row">
+            <div class="col-8">
+                <h3 class="heading ml-2">Program Terbaru</h3>
+            </div>
+            <div class="col-4 text-right pr-3">
+                <a href="/program">
+                    <h6 class="text-primary">Lihat Semua</h6>
+                </a>
+            </div>
+        </div>
+
+        <ul class="listview">
+            @foreach ($campaigns as $campaign)
+                <li style="width: 100%;">
+                    <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate style="display: block; width: 100%;">
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="mt-1 mb-1">
+                                    <img src="{{ $campaign->image }}" alt="image" class="imaged w-100" style="height:120px">
                                 </div>
-                    
-                                <div class="col-6 m-2 flex-fill d-flex flex-column">
-                                    <div class="mb-3">
-                                        <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate>
-                                            <h5 class="fw-bold">{{ $campaign->title }}</h5>
-                                        </a>
-                                        <span class="text-muted small">{{ $campaign->fundraiser }}</span>
-                                        <i class="ri-shield-check-line text-success fw-bolder"></i>
+                            </div>
+                            <div class="col-7">
+                                <div class="mt-1 mb-1">
+                                    <h5 class="mb-1 text-primary" style="font-weight:bold">{{ $campaign->title }}</h5>
+                                    <h6>{{ $campaign->fundraiser }}</h6>
+                                    <div class="progress mt-1 mb-1" style="height:5px;">
+                                        <div class="progress-bar" role="progressbar" style="width: {{ ($campaign->total_gross_amount/$campaign->target_amount)*100 }}%;"
+                                            aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
                                     </div>
-                    
-                                    <div class="mt-auto">
-                                        <div class="progress" style="height: 3px;">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 71%;"></div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h6 class="mb-0">Terkumpul</h6>
+                                            <h5 style="font-weight:bold">Rp {{ number_format($campaign->total_gross_amount, 0, ',', '.') }}</h5>
                                         </div>
-                                    </div>
-                    
-                                    <div class="mt-3">
-                                        <span class="text-muted small">Terkumpul</span>
-                                        <p class="title-color text-primary fw-bold m-0">Rp 1,000,000,000</p>
+                                        <div class="col-4 margin-top">
+                                            <h6 class="text-right mb-0">Sisa hari</h6>
+                                            <h5 class="text-right" style="font-weight:bold">{{ floor(abs(\Carbon\Carbon::parse($campaign->end_date)->diffInDays(now()))) }}</h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> 
-                    
-                @endforeach
-            </div>
-        </div>
-    </section>
+                    </a>
+                </li>
+            @endforeach
+
+        </ul>
+    </div>
+
+    <!-- load more post -->
+    {{-- <div class="section inset pt-2 pb-2">
+        <a href="#" class="btn-block" id="loadMore">
+            <button type="button" class="btn btn-outline-primary mr-1 mb-1 btn-sm btn-block rounded">Lihat Lagi</button>
+        </a>
+    </div> --}}
+    <!-- * load more post -->
 
 </div>

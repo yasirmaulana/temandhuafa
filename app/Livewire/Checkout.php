@@ -10,8 +10,6 @@ use Auth;
 
 class Checkout extends Component
 {
-    // #[Title('Checkout')]
-
     public $campaign;
     public $campaignId;
     public $fundraiserId;
@@ -23,8 +21,8 @@ class Checkout extends Component
     public $phone = '';
     public $anonim = false;
     public $doa = '';
-    public $infaqSistemAmount = 0;
-    public $totalAmount = 0;
+    public $infaqSistemAmount;
+    public $totalAmount;
     public $snapToken = '';
     public $isZiswaf;
     public $titleBayar;
@@ -36,6 +34,7 @@ class Checkout extends Component
 
     public function mount($slug)
     {
+        {{ $slug; }}
         $this->slug = $slug;
         $parts = explode('-', $slug);
         $this->titleRowBayar = $parts[0];
@@ -66,7 +65,7 @@ class Checkout extends Component
         ];
         $this->titleBayar = $mapTitle[$this->titleRowBayar] ?? "Campaign";
         $this->amount = (int) $parts[1];
-        $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
+        // $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
 
         $this->totalAmount = $this->amount + $this->infaqSistemAmount;
 
