@@ -56,7 +56,8 @@ class Campaign extends Model
     {
         $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
-            ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id');
+            ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
+            ->where('status', 'published');; 
 
         if (!is_null($flagCampaign)) {
             $query->where('flag_campaign', $flagCampaign);

@@ -161,7 +161,6 @@ class Checkout extends Component
         ];
 
         if (Auth::attempt($credentials)) {
-            // Redirect ke halaman yang sesuai
             return redirect(url('/checkout/' . $this->slug));
         } else {
             $this->addError('login', 'Email atau password salah.');

@@ -1,9 +1,9 @@
 <div class="container">
 
     <!-- loader -->
-    <div id="loader">
+    {{-- <div id="loader">
         <div class="spinner-border text-primary" role="status"></div>
-    </div>
+    </div> --}}
     <!-- * loader -->
 
     <!-- App Header -->
@@ -152,11 +152,14 @@
                                 </div>
                                 <div class="col-6">
                                     <h5 class="text-primary mt-1 mb-0">{{ $transaction->donor_name }}</h5>
-                                    <h6 class="mb-0">{{ \Carbon\Carbon::parse($transaction->transaction_time)->translatedFormat('d F Y') }}</h6>
+                                    <h6 class="mb-0">
+                                        {{ \Carbon\Carbon::parse($transaction->transaction_time)->translatedFormat('d F Y') }}
+                                    </h6>
                                     <h6 class="">{{ $transaction->pray }}</h6>
                                 </div>
                                 <div class="col-3">
-                                    <h5 class="text-right">{{ number_format($transaction->gross_amount, 0, ',', '.') }}</h5>
+                                    <h5 class="text-right">
+                                        {{ number_format($transaction->gross_amount, 0, ',', '.') }}</h5>
                                 </div>
                             </li>
                         @endforeach
@@ -258,13 +261,27 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="btn btn-list" data-dismiss="modal">
+                                <a target="_blank"
+                                    href="https://twitter.com/intent/tweet?text={{ urlencode('Cek campaign ini! ') }}{{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    class="btn btn-list" title="Bagikan ke Twitter">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-instagram"></ion-icon>
-                                        Instagram
+                                        <ion-icon name="logo-twitter"></ion-icon>
+                                        Twitter
                                     </span>
                                 </a>
                             </li>
+
+                            <li>
+                                <a target="_blank"
+                                    href="https://t.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}&text={{ urlencode('Cek campaign ini!') }}"
+                                    class="btn btn-list" title="Bagikan ke Telegram">
+                                    <span class="text-primary">
+                                        <ion-icon name="paper-plane"></ion-icon>
+                                        Telegram
+                                    </span>
+                                </a>
+                            </li>
+
                             <li>
                                 <a target="_blank"
                                     href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
@@ -293,5 +310,11 @@
 
 
     </div>
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    <!-- Base Js File -->
+    <script src="{{ asset('assets/js/base.js') }}"></script>
 
 </div>

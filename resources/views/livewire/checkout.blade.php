@@ -1,5 +1,8 @@
 <div class="container">
 
+    <style>
+
+    </style>
     <!-- loader -->
     {{-- <div id="loader">
         <div class="spinner-border text-primary" role="status"></div>
@@ -9,7 +12,7 @@
     <!-- App Header -->
     <div class="appHeader bg-primary text-light container">
         <div class="left">
-            <a href="javascript:;" class="headerButton goBack">
+            <a href="javascript:void(0)" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
         </div>
@@ -61,8 +64,8 @@
         <div class="container">
             <ul class="listview image-listview flush transparent mt-0 mb-0">
                 <li>
-                    <a href="" class="item">
-                        <div class="icon-box">
+                    <a href="javascript:void(0)" wire:click="setAmount(30000)" class="item">
+                        <div class="icon-box" wire:ignore>
                             <i class="fa-regular fa-face-smile-beam fa-lg"></i>
                         </div>
                         <div class="in">
@@ -71,8 +74,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="item">
-                        <div class="icon-box">
+                    <a href="javascript:void(0)" wire:click="setAmount(50000)" class="item">
+                        <div class="icon-box" wire:ignore>
                             <i class="fa-regular fa-face-laugh-beam fa-lg text-success"></i>
                         </div>
                         <div class="in text-success">
@@ -81,8 +84,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="item">
-                        <div class="icon-box">
+                    <a href="javascript:void(0)" wire:click="setAmount(100000)" class="item">
+                        <div class="icon-box" wire:ignore>
                             <i class="fa-regular fa-face-laugh fa-lg text-primary"></i>
                         </div>
                         <div class="in text-primary">
@@ -91,8 +94,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="item">
-                        <div class="icon-box">
+                    <a href="javascript:void(0)" wire:click="setAmount(250000)" class="item">
+                        <div class="icon-box" wire:ignore>
                             <i class="fa-regular fa-face-grin-squint fa-lg text-warning"></i>
                         </div>
                         <div class="in text-warning">
@@ -101,8 +104,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="item">
-                        <div class="icon-box">
+                    <a href="javascript:void(0)" wire:click="setAmount(750000)" class="item">
+                        <div class="icon-box" wire:ignore>
                             <i class="fa-regular fa-face-grin-hearts fa-lg text-danger"></i>
                         </div>
                         <div class="in text-danger">
@@ -119,12 +122,13 @@
                     <div class="wide-block pb-2 pt-2">
                         <div class="form-group boxed">
                             <div class="input-wrapper">
-                                <input type="number" wire:model="amount" class="form-control" placeholder="Rp">
+                                <input type="number" wire:model="amount"  class="form-control" placeholder="Rp">
                                 <i class="clear-input"> <ion-icon name="close-circle"></ion-icon></i>
                             </div>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" wire:model="infaqSistem" wire:click="togle" checked>
+                            <input class="form-check-input" type="checkbox" wire:model="infaqSistem" wire:click="togle"
+                                checked>
                             <label class="form-check-label text-secondary">
                                 <h5 class="text-secondary">Infak Sistem Rp 2.000</h5>
                             </label>
@@ -196,14 +200,4 @@
 
     </div>
 
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    <script>
-        $(document).ready(function() {
-            $('.listview li').on('click', function(e) {
-                e.preventDefault();
-                var amount = $(this).find('.in').text().replace('Rp', '').replace('.', '').trim();
-                $('#numberInput').val(amount);
-            });
-        });
-    </script>
 </div>
