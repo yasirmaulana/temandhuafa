@@ -23,9 +23,11 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use App\Livewire\Program;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', Home::class);
+Route::get('/program', Program::class);
 Route::get('/category/{kategori}', Home::class);
 Route::get('/zakat', Zakat::class);
 Route::get('/donasi', Donation::class);

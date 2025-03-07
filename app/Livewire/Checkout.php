@@ -150,6 +150,7 @@ class Checkout extends Component
             'phone' => $this->phone,
             'anonim' => $this->anonim,
             'pray' => $this->doa,
+            'gross_amount' => $this->totalAmount,
         ]);
     }
 
@@ -172,3 +173,4 @@ class Checkout extends Component
         return view('livewire.checkout');
     }
 }
+ 
