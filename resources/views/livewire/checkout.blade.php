@@ -9,126 +9,121 @@
     <!-- * loader -->
 
     <!-- App Header -->
-    <div class="appHeader bg-primary text-light container">
+    {{-- <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="javascript:void(0)" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
-                {{-- <i class="bi bi-arrow-counterclockwise"></i> --}}
             </a>
         </div>
         <div class="pageTitle"></div>
         <div class="right">
-            {{-- <i class="bi bi-box-arrow-left fs-4"></i> --}}
         </div>
-    </div>
+    </div> --}}
     <!-- * App Header -->
 
+    @livewire('header')
 
     <!-- App Capsule -->
     <div id="appCapsule">
         <div class="section mt-3 mb-0">
-            @if (
-                !in_array($this->titleRowBayar, [
-                    'infaq',
-                    'emas',
-                    'perak',
-                    'pertanian',
-                    'maal',
-                    'perniagaan',
-                    'penghasilan',
-                    'fidyah',
-                    'kafarat',
-                ]))
+            @if (!in_array($this->titleRowBayar, ['infaq', 'emas', 'perak', 'pertanian', 'fidyah', 'kafarat']))
                 <h2 class="text-primary mb-3">{{ $campaign->title }}</h2>
+                @php
+                    $nominalMapping = [
+                        'Infaq' => 'Nominal Infak',
+                        'Fidyah' => 'Nominal Fidyah',
+                        'Kafarat' => 'Nominal Kafarat',
+                        'Zakat Emas' => 'Nominal Zakat Emas',
+                        'Zakat Perak' => 'Nominal Zakat Perak',
+                        'Zakat Pertanian' => 'Nominal Zakat Pertanian',
+                        'Zakat Maal' => 'Nominal Zakat Maal',
+                        'Zakat Perniagaan' => 'Nominal Zakat Perniagaan',
+                        'Zakat Penghasilan' => 'Nominal Zakat Penghasilan',
+                    ];
+    
+                    $nominalTitle = $nominalMapping[$titleBayar] ?? 'Nominal Donasi';
+                @endphp
+    
+                <h4>Masukkan {{ $nominalTitle }}</h4>
             @else
                 <h2 class="text-primary mb-3">{{ $titleBayar }}</h2>
             @endif
 
-            @php
-                $nominalMapping = [
-                    'Infaq' => 'Nominal Infak',
-                    'Fidyah' => 'Nominal Fidyah',
-                    'Kafarat' => 'Nominal Kafarat',
-                    'Zakat Emas' => 'Nominal Zakat Emas',
-                    'Zakat Perak' => 'Nominal Zakat Perak',
-                    'Zakat Pertanian' => 'Nominal Zakat Pertanian',
-                    'Zakat Maal' => 'Nominal Zakat Maal',
-                    'Zakat Perniagaan' => 'Nominal Zakat Perniagaan',
-                    'Zakat Penghasilan' => 'Nominal Zakat Penghasilan',
-                ];
-
-                $nominalTitle = $nominalMapping[$titleBayar] ?? 'Nominal Donasi';
-            @endphp
-
-            <h4>Masukkan {{ $nominalTitle }}</h4>
         </div>
 
         <div class="container">
-            <ul class="listview image-listview flush transparent mt-0 mb-0">
-                <li>
-                    <a href="javascript:void(0)" wire:click="setAmount(30000)" class="item">
-                        <div class="icon-box">
-                            <i class="bi bi-emoji-smile"></i>
-                        </div>
-                        <div class="in">
-                            Rp 30.000
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" wire:click="setAmount(50000)" class="item">
-                        <div class="icon-box" wire:ignore>
-                            <i class="bi bi-emoji-wink text-success"></i>
-                        </div>
-                        <div class="in text-success">
-                            Rp. 50.000
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" wire:click="setAmount(100000)" class="item">
-                        <div class="icon-box" wire:ignore>
-                            <i class="bi bi-emoji-laughing text-primary"></i>
-                        </div>
-                        <div class="in text-primary">
-                            Rp 100.000
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" wire:click="setAmount(250000)" class="item">
-                        <div class="icon-box" wire:ignore>
-                            <i class="bi bi-emoji-kiss text-warning"></i>
-                        </div>
-                        <div class="in text-warning">
-                            Rp 250.000
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" wire:click="setAmount(750000)" class="item">
-                        <div class="icon-box" wire:ignore>
-                            <i class="bi bi-emoji-heart-eyes text-danger"></i>
-                        </div>
-                        <div class="in text-danger">
-                            Rp 750.000
-                        </div>
-                    </a>
-                </li>
-            </ul>
+            @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'perternakan', 'fidyah', 'kafarat']))
+                <ul class="listview image-listview flush transparent mt-0 mb-0">
+                    <li>
+                        <a href="javascript:void(0)" wire:click="setAmount(30000)" class="item">
+                            <div class="icon-box">
+                                <i class="bi bi-emoji-smile"></i>
+                            </div>
+                            <div class="in">
+                                Rp 30.000
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" wire:click="setAmount(50000)" class="item">
+                            <div class="icon-box" wire:ignore>
+                                <i class="bi bi-emoji-wink text-success"></i>
+                            </div>
+                            <div class="in text-success">
+                                Rp. 50.000
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" wire:click="setAmount(100000)" class="item">
+                            <div class="icon-box" wire:ignore>
+                                <i class="bi bi-emoji-laughing text-primary"></i>
+                            </div>
+                            <div class="in text-primary">
+                                Rp 100.000
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" wire:click="setAmount(250000)" class="item">
+                            <div class="icon-box" wire:ignore>
+                                <i class="bi bi-emoji-kiss text-warning"></i>
+                            </div>
+                            <div class="in text-warning">
+                                Rp 250.000
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" wire:click="setAmount(750000)" class="item">
+                            <div class="icon-box" wire:ignore>
+                                <i class="bi bi-emoji-heart-eyes text-danger"></i>
+                            </div>
+                            <div class="in text-danger">
+                                Rp 750.000
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            @endif
 
             <form wire:submit="createPayment">
                 {{ csrf_field() }}
 
                 <div class="section full mt-0 mb-0">
                     <div class="wide-block pb-2 pt-2">
-                        <div class="form-group boxed">
-                            <div class="input-wrapper">
-                                <input type="text" id="numberInput" class="form-control rounded-0 fw-bold"
-                                    wire:model.change="formattedAmount" placeholder="Rp" required>
-                                <i class="clear-input"> <ion-icon name="close-circle"></ion-icon></i>
+                        @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'perternakan']))
+                            <div class="form-group boxed">
+                                <div class="input-wrapper">
+                                    <input type="text" id="numberInput" class="form-control rounded-0 fw-bold"
+                                        wire:model.change="formattedAmount" placeholder="Rp" required>
+                                    <i class="clear-input"> <ion-icon name="close-circle"></ion-icon></i>
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <h2 class="text-primary">Rp {{ number_format($amount, 0, ',', '.') }}</h2>
+                        @endif
+
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" wire:model="infaqSistem" wire:click="togle"
                                 checked>
@@ -189,6 +184,21 @@
                         </div>
                     @endif
 
+                    @if (in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'perternakan']))
+                        <div class="input-wrapper wide-block pb-2 pt-2">
+                            <strong style="font-size: 1.2em;" class="text-success">Niat {{ $titleBayar }}</strong>
+                            <p></p>
+                            <p style="font-size: 1.5em;">
+                                نَوَيْتُ أَنْ أُخْرِجَ زَكاَةَ مَالِي فَرْضًالِلهِ تَعَالَى
+                            </p>
+                            <div class="fst-italic"><i>Saya berniat mengeluarkan zakat harta milikku karena Allah
+                                    Ta’ala</i></div>
+                            <p>
+                                Saya berniat mengeluarkan zakat harta milikku karena Allah Ta’ala
+                            </p>
+                        </div>
+                    @endif
+
                     <div class="appBottomMenu container">
                         <div class="col-5">
                             <h5 class="name mt-1 mb-0 text-secondary">Total Donasi</h5>
@@ -197,7 +207,6 @@
                         <div class="col-7">
                             <button type="submit" class="btn btn-success btn-lg btn-block">Lanjut Pembayaran</button>
                         </div>
-
                     </div>
             </form>
 
@@ -246,7 +255,6 @@
                                 <button type="submit" class="btn btn-success btn-block">Login</button>
                             </form>
 
-
                             <div class="col-12">
                                 <h4 class="text-center pt-3 pb-2">Atau</h4>
                             </div>
@@ -269,11 +277,6 @@
             </div>
 
             <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-            <script>
-                $(".goBack").click(function() {
-                    window.history.go(-1);
-                });
-            </script>
 
         </div>
 

@@ -1,41 +1,70 @@
-<main class="position-relative">
+<div class="container">
+    <div id="appCapsule">
 
-    @livewire('header')
+        @livewire('header')
 
-    <div class="header-divider"></div>
-
-    <img src="{{ asset('assets/img/image.jpg') }}" class="img-fluid" alt="">
-
-    <div class="container p-4">
-        <h3 class="text-success"><strong>Hitung Zakatmu Sekarang</strong></h3>
-        <div class="row mb-3">
-            <label class="col-sm-12 col-form-label">Pilih jenis zakat di bawah ini.</label>
-            <div class="col-sm-12">
-                <select class="form-select" wire:model.change="selectedZakat">
-                    <option value="">-- Pilih Jenis Zakat --</option>
-                    <option value="zakat-emas-perak">Zakat Emas & Perak</option>
-                    <option value="zakat-pertanian">Zakat Pertanian</option>
-                    {{-- <option value="zakat-peternakan">Zakat Peternakan</option> --}}
-                    <option value="zakat-maal">Zakat Maal</option>
-                    <option value="zakat-perniagaan">Zakat Perniagaan</option>
-                    <option value="zakat-penghasilan">Zakat Penghasilan</option>
-                </select>
-            </div>
+        <div class="section mt-3 mb-0">
+            <h2 class="text-primary mb-2">Hitung Zakat Maal</h2>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                @if ($selectedZakat)
-                    @livewire($selectedZakat, [], key($selectedZakat))
-                @endif
+        <div class="container">
+            <div class="form-group boxed">
+                <div class="input-wrapper wide-block pb-2 pt-2">
+                    <select class="form-select custom-select text-secondary" wire:model.change="selectedZakat">
+                        <option value="">-- Pilih Jenis Zakat Maal --</option>
+                        <option value="zakat-peternakan">Zakat Peternakan</option>
+                        <option value="zakat-pertanian">Zakat Pertanian</option>
+                        <option value="zakat-emas-perak">Zakat Emas & Perak</option>
+                    </select>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    @if ($selectedZakat)
+                        @livewire($selectedZakat, [], key($selectedZakat))
+                    @else
+                        <div class="blog-post">
+                            <div class="post-body">
+                                <p>
+                                    Zakat maal (harta) adalah zakat yang harus dikeluarkan dari harta tertentu yang kita
+                                    miliki
+                                    setelah terpenuhinya syarat umum dan khusus.
+                                </p>
+                                <p>
+                                    Syarat umum wajib zakat: baligh, berakal sehat, merdeka, pemilik harta, pemilik hak
+                                    penuh atas
+                                    harta
+                                    (tasharruf),
+                                    dan telah memenuhi jumlah kadar minimal (nishab).
+                                </p>
+                                <p>
+                                    Harta yang wajib dizakati: peternakan (unta, sapi/kerbau, kambing/domba), pertanian
+                                    (gandum, jelai, kurma, kismis), emas, dan perak.
+                                </p>
+                                Berdasarkan Fiqh Ja'fari, zakat maal hanya sebatas pada sembilan harta di atas. Namun,
+                                ijtihad
+                                Ahlus Sunnah, menerapkan qiyas pada harta lain, seperti tabungan, surat berharga,
+                                pendapatan kerja
+                                dan
+                                perdagangan,
+                                sebagaimana yang tertuang dalam Undang-undang (UU) Republik Indonesia Nomor 23 Tahun
+                                2011
+                                tentang Pengelolaan Zakat.
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+
         </div>
+
+        @if (!$selectedZakat)
+            {{-- @livewire('nav-bar')  --}}
+        @endif
+
     </div>
 
-    <div class="divider"></div>
-
-    @livewire('footer')
-
-    @livewire('nav-bar')
-
-</main>
+</div>

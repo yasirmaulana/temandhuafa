@@ -13,28 +13,28 @@
         </div>
     </a>
 
-    <a href="/category/wakaf">
+    <a href="/program/wakaf">
         <div class="slide">
             <img src="assets/img/icon/wakaf.png" alt="alt" class="imaged">
             <h5 class="mt-1 text-secondary text-center">Wakaf</h5>
         </div>
     </a>
 
-    <a href="/category/pendidikan">
+    <a href="/program/pendidikan">
         <div class="slide">
             <img src="assets/img/icon/pendidikan.png" alt="alt" class="imaged">
             <h5 class="mt-1 text-secondary text-center">Pendidikan</h5>
         </div>
     </a>
 
-    <a href="/category/sosial">
+    <a href="/program/sosial">
         <div class="slide">
             <img src="assets/img/icon/kemanusiaan.png" alt="alt" class="imaged">
             <h5 class="mt-1 text-secondary text-center">Sosial</h5>
         </div>
     </a>
 
-    <a href="/category/lingkungan">
+    <a href="/program/lingkungan">
         <div class="slide">
             <img src="assets/img/icon/lingkungan.png" alt="alt" class="imaged">
             <h5 class="mt-1 text-secondary text-center">Lingkungan</h5>

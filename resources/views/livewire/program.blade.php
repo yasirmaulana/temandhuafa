@@ -8,8 +8,8 @@
     <!-- App Header -->
     <div class="appHeader bg-primary text-light container">
         <div class="left">
-            <a href="index.html" class="headerButton">
-                <img src="assets/img/logo.png"></img>
+            <a href="/" class="headerButton">
+                <img src="{{ asset('assets/img/logo.png') }}"></img>
             </a>
         </div>
         <div class="pageTitle"></div>

@@ -34,7 +34,6 @@ class Checkout extends Component
 
     public function mount($slug)
     {
-        {{ $slug; }}
         $this->slug = $slug;
         $parts = explode('-', $slug);
         $this->titleRowBayar = $parts[0];
@@ -53,7 +52,7 @@ class Checkout extends Component
             $this->orderId = $this->titleRowBayar . '-' . rand();
         }
         $mapTitle = [
-            "infaq" => "Infaq",
+            "infaq" => "Infak",
             "emas" => "Zakat Emas",
             "perak" => "Zakat Perak",
             "pertanian" => "Zakat Pertanian",

@@ -9,9 +9,9 @@
             <strong>BERANDA</strong>
         </div>
     </a>
-    <a href="/program" wire:navigate class="item {{ Str::startsWith($currentRoute, 'program') ? 'active' : '' }}">
+    <a href="/program/all" wire:navigate class="item {{ Str::startsWith($currentRoute, 'program/') ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="{{ Str::startsWith($currentRoute, 'program') ? 'layers' : 'layers-outline' }}"></ion-icon>
+            <ion-icon name="{{ Str::startsWith($currentRoute, 'program/') ? 'layers' : 'layers-outline' }}"></ion-icon>
             <strong>PROGRAM</strong>
         </div>
     </a>
@@ -21,7 +21,7 @@
             <strong>FAQ</strong>
         </div>
     </a>
-    <a href="/akun" wire:navigate class="item {{ Str::startsWith($currentRoute, 'akun') ? 'active' : '' }}">
+    <a href="/login" wire:navigate class="item {{ Str::startsWith($currentRoute, 'akun') ? 'active' : '' }}">
         <div class="col">
             <ion-icon name="person-outline"></ion-icon>
             <strong>AKUN</strong>

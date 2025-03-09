@@ -27,7 +27,7 @@ use App\Livewire\Program;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', Home::class);
-Route::get('/program', Program::class);
+Route::get('/program/{slug}', Program::class);
 Route::get('/category/{kategori}', Home::class);
 Route::get('/zakat', Zakat::class);
 Route::get('/donasi', Donation::class);

@@ -6,17 +6,66 @@ use Livewire\Component;
 
 class ZakatPeternakan extends Component
 {
+    public $selectedTernak;
+    public $formattedJumlahTernak;
+    public $jumlahTernak;
+    public $wajibZakat;
+    public $formattedTernak;
+    public $formattedJumlahBayar;
+
+    public function mount()
+    {
+        $this->wajibZakat = "";
+
+        $this->recalculateAll();
+    }
+
+    private function recalculateAll()
+    {
+        $this->determineWajibZakat();
+        $this->calculateJumlahBayar();
+    }
+
+    private function determineWajibZakat()
+    {
+        if ($this->selectedTernak == 'kambing') {
+            $this->wajibZakat = ($this->jumlahTernak >= 40) ? 'Ya' : 'Tidak';
+        } else {
+            $this->wajibZakat = ($this->jumlahTernak >= 30) ? 'Ya' : 'Tidak';
+        }
+    }
+
+    private function calculateJumlahBayar()
+    {
+        if($this->wajibZakat == 'Ya') {
+            $this->jumlahBayar = ($this->emasPerak * $this->hargaEmasPerak) * 0.025;
+            $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');
+        } else {
+            $this->jumlahBayar = 0;
+            $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');    
+        }
+    }
+
+
+    public function updatedFormattedJumlahTernak($value)
+    {
+        $this->jumlahTernak = (int) str_replace('.', '', $value);
+        $this->formattedJumlahTernak = number_format((int) $this->jumlahTernak, 0, '', '.');
+        $this->updated('jumlahTernak');
+    }
+
+
+
+    
     public $selectedLogam;
     public $formattedEmasPerak;
-    public $emasPerak;
     public $formattedHargaEmasPerak;
+    public $emasPerak;
     public $hargaEmasPerak;
-    public $wajibZakat;
-    public $formattedJumlahBayar;
     public $jumlahBayar;
     public $perairan;
 
-    public function updatedSelectedLogam()
+    public function updatedSelectedTernak()
     {
         $this->dispatch('$refresh');
     }
@@ -41,10 +90,6 @@ class ZakatPeternakan extends Component
         $this->updated('hargaEmasPerak');
     }
 
-    public function mount()
-    {
-        $this->recalculateAll();
-    }
 
     public function updated($propertyName)
     {
@@ -60,31 +105,6 @@ class ZakatPeternakan extends Component
         }
     }
 
-    private function recalculateAll()
-    {
-        $this->determineWajibZakat();
-        $this->calculateJumlahBayar();
-    }
-
-    private function determineWajibZakat()
-    {
-        if ($this->selectedLogam == 'emas') {
-            $this->wajibZakat = ($this->emasPerak >= 85) ? 'Ya' : 'Tidak';
-        } else {
-            $this->wajibZakat = ($this->emasPerak >= 595) ? 'Ya' : 'Tidak';
-        }
-    }
-
-    private function calculateJumlahBayar()
-    {
-        if($this->wajibZakat == 'Ya') {
-            $this->jumlahBayar = ($this->emasPerak * $this->hargaEmasPerak) * 0.025;
-            $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');
-        } else {
-            $this->jumlahBayar = 0;
-            $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');    
-        }
-    }
     
     public function render()
     {

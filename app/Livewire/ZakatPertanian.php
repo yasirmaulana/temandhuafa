@@ -32,7 +32,6 @@ class ZakatPertanian extends Component
 
     public function updatedPerairan($value)
     {
-        // dd($value); 
         $this->recalculateAll();
         $this->perairan = (string) $value;
     }
@@ -52,7 +51,7 @@ class ZakatPertanian extends Component
 
         $numericProperties = [
             'jumlahHasilPertanian',
-            'perairan',
+            'perairan', 
             'hargaJual',
         ];
 
@@ -72,9 +71,9 @@ class ZakatPertanian extends Component
     {
         if($this->jumlahHasilPertanian > 0) {
             if ($this->selectedHasilPertanian == 'gabah') {
-                $this->wajibZakat = ($this->jumlahHasilPertanian >= 1481) ? 'Ya' : 'Tidak';
+                $this->wajibZakat = ($this->jumlahHasilPertanian >= 847) ? 'Ya' : 'Tidak';
             } else {
-                $this->wajibZakat = ($this->jumlahHasilPertanian >= 815) ? 'Ya' : 'Tidak';
+                $this->wajibZakat = ($this->jumlahHasilPertanian >= 207) ? 'Ya' : 'Tidak';
             }
         }
     }

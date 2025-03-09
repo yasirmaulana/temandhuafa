@@ -9,7 +9,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h5 class="card-title">Donatur Transaction List</h5>
+                                <h5 class="card-title">Donatur Transaction List</h5> << test >>
                             </div>
                             {{-- <div class="col-md-6 text-end">
                                 @if (!@empty($PermissionAdd))

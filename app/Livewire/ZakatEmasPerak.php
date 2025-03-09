@@ -69,9 +69,9 @@ class ZakatEmasPerak extends Component
     private function determineWajibZakat()
     {
         if ($this->selectedLogam == 'emas') {
-            $this->wajibZakat = ($this->emasPerak >= 85) ? 'Ya' : 'Tidak';
+            $this->wajibZakat = ($this->emasPerak >= 70) ? 'Ya' : 'Tidak';
         } else {
-            $this->wajibZakat = ($this->emasPerak >= 595) ? 'Ya' : 'Tidak';
+            $this->wajibZakat = ($this->emasPerak >= 500) ? 'Ya' : 'Tidak';
         }
     }
 

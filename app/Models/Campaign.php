@@ -66,6 +66,17 @@ class Campaign extends Model
         return $query->orderBy('campaigns.created_at', 'desc')->get();
     }
 
+    static public function getCampaignsPublishedByCategory($category)
+    {
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
+            ->join('categories', 'categories.id', '=', 'campaigns.category_id')
+            ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
+            ->where('status', 'published')
+            ->where('categories.slug', $category)
+            ->orderBy('campaigns.created_at', 'desc')
+            ->get();
+    }
+
     static public function getCampaigns()
     {
         return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser')
