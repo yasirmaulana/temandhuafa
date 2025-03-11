@@ -26,7 +26,7 @@
     <!-- App Capsule -->
     <div id="appCapsule">
         <div class="section mt-3 mb-0">
-            @if (!in_array($this->titleRowBayar, ['infaq', 'emas', 'perak', 'pertanian', 'fidyah', 'kafarat']))
+            @if (!in_array($this->titleRowBayar, ['infaq', 'emas', 'perak', 'pertanian', 'peternakan', 'fidyah', 'kafarat']))
                 <h2 class="text-primary mb-3">{{ $campaign->title }}</h2>
                 @php
                     $nominalMapping = [
@@ -52,7 +52,7 @@
         </div>
 
         <div class="container">
-            @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'perternakan', 'fidyah', 'kafarat']))
+            @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'peternakan', 'fidyah', 'kafarat']))
                 <ul class="listview image-listview flush transparent mt-0 mb-0">
                     <li>
                         <a href="javascript:void(0)" wire:click="setAmount(30000)" class="item">
@@ -112,7 +112,7 @@
 
                 <div class="section full mt-0 mb-0">
                     <div class="wide-block pb-2 pt-2">
-                        @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'perternakan']))
+                        @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'peternakan']))
                             <div class="form-group boxed">
                                 <div class="input-wrapper">
                                     <input type="text" id="numberInput" class="form-control rounded-0 fw-bold"
@@ -184,12 +184,29 @@
                         </div>
                     @endif
 
-                    @if (in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'perternakan']))
+                    @if (in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'peternakan']))
                         <div class="input-wrapper wide-block pb-2 pt-2">
                             <strong style="font-size: 1.2em;" class="text-success">Niat {{ $titleBayar }}</strong>
                             <p></p>
                             <p style="font-size: 1.5em;">
                                 نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي  قُرْبَةً اِلَى اللّهِ تَعَالَى
+                            </p>
+                            <p>
+                                Saya berniat mengeluarkan zakat harta milikku untuk mendekatkan diri kepada Allah Ta’ala
+                            </p>
+                        </div>
+                    @endif
+
+                    @if (in_array($this->titleRowBayar, ['fidyah']))
+                        <div class="input-wrapper wide-block pb-2 pt-2">
+                            <strong style="font-size: 1.2em;" class="text-success">Niat {{ $titleBayar }}</strong>
+                            <p>Untuk orang sakit</p>
+                            <p style="font-size: 1.5em;">
+                                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَ الْمَرَضِ الَّذِيْ لَا يُرْجٰى بَرَؤُهُ فَرْضًا شَرْعًا قُرْبَةً اِلَى اللّهِ تَعَالَى
+                            </p>
+                            <p>Untuk wanita hamil/menyusui</p>
+                            <p style="font-size: 1.5em;">
+                                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَ الْمُرْضِعِ فَرْضًا شَرْعًا قُرْبَةً اِلَى اللّهِ تَعَالَى
                             </p>
                             <p>
                                 Saya berniat mengeluarkan zakat harta milikku untuk mendekatkan diri kepada Allah Ta’ala

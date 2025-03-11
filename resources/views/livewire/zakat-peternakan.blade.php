@@ -20,8 +20,8 @@
             <div class="input-wrapper wide-block pb-2 pt-2 g-4">
                 <select class="form-select custom-select text-secondary" wire:model.change="selectedTernak">
                     <option value="">-- Pilih Jenis Ternak --</option>
-                    <option value="kambing">Kambing/Domba</option>
                     <option value="sapi">Sapi/Kerbau</option>
+                    <option value="kambing">Kambing/Domba</option>
                 </select>
             </div>
             <div class="input-wrapper wide-block pb-2 pt-2">
@@ -29,12 +29,11 @@
                     placeholder="Isi jumlah hewan ternak">
             </div>
             <div class="input-wrapper wide-block pb-2 pt-2">
-                <label class="form-label">Apakah saya wajib membayar zakat peternakan?</label> test
+                <label class="form-label">Apakah saya wajib membayar zakat peternakan?</label>
                 <input type="text" class="form-control" wire:model.change="wajibZakat" disabled>
             </div>
 
         </div>
-
         @if($wajibZakat == 'Ya')
             <div class="input-wrapper wide-block pb-2 pt-2">
                 <label class="form-label">Harga jual komoditas (per ekor)<span class="text-danger">*</span></label>

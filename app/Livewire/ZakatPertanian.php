@@ -71,7 +71,7 @@ class ZakatPertanian extends Component
     {
         if($this->jumlahHasilPertanian > 0) {
             if ($this->selectedHasilPertanian == 'gabah') {
-                $this->wajibZakat = ($this->jumlahHasilPertanian >= 847) ? 'Ya' : 'Tidak';
+                $this->wajibZakat = ($this->jumlahHasilPertanian >= 847.207) ? 'Ya' : 'Tidak';
             } else {
                 $this->wajibZakat = ($this->jumlahHasilPertanian >= 207) ? 'Ya' : 'Tidak';
             }

@@ -38,7 +38,7 @@ class Checkout extends Component
         $parts = explode('-', $slug);
         $this->titleRowBayar = $parts[0];
         $this->infaqSistemAmount = 2000;
-        if (!in_array($this->titleRowBayar, ["infaq", "emas", "perak", "pertanian", "maal", "perniagaan", "penghasilan", "fidyah", "kafarat"])) {
+        if (!in_array($this->titleRowBayar, ["infaq", "emas", "perak", "pertanian", "peternakan", "fidyah", "kafarat"])) {
             $this->campaign = Campaign::getCampaignBySlug($slug);
             $this->campaignId = $this->campaign->id;
             $this->totalAmount = $this->infaqSistemAmount;
@@ -56,6 +56,7 @@ class Checkout extends Component
             "emas" => "Zakat Emas",
             "perak" => "Zakat Perak",
             "pertanian" => "Zakat Pertanian",
+            "peternakan" => "Zakat Peternakan",
             "maal" => "Zakat Maal",
             "perniagaan" => "Zakat Perniagaan",
             "penghasilan" => "Zakat Penghasilan",

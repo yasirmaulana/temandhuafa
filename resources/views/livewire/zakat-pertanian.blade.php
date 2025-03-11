@@ -2,19 +2,19 @@
     <div class="blog-post">
         <div class="post-body">
             <p>Zakat pertanian meliputi empat tanaman yaitu: gandum, jelai, kurma, kismis. Padi masuk ke dalam suku padi-padian (Poaceae) atau sekelompok dengan jelai.</p>
-            <p>Nisab padi adalah 847.207 kg beras.</p>
+            <p>Nisab padi adalah 847.207 kg gabah.</p>
             <p>Jika diairi dengan air hujan, sungai atau sejenisnya, wajib dikeluarkan 1/10 dan jika diairi dengan mesin, timba dan sejenisnya adalah 1/20.</p>
         </div>
     </div>
     <div class="container">
         <div class="form-group boxed">
-            <div class="input-wrapper wide-block pb-2 pt-2 g-4">
+            {{-- <div class="input-wrapper wide-block pb-2 pt-2 g-4">
                 <label class="col-sm-12 col-form-label">Pilih Jenis Pertanian</label>
                 <select class="form-select custom-select text-secondary" wire:model.change="selectedHasilPertanian">
                     <option value="gabah">Gabah</option>
                     <option value="beras">Beras</option>
                 </select>
-            </div>
+            </div> --}}
             <div class="input-wrapper wide-block pb-2 pt-2">
                 <input type="text" id="numberInput" class="form-control"
                     wire:model.change="formattedJumlahHasilPertanian" placeholder="input hasil panen (kg)">
