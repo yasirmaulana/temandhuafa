@@ -10,6 +10,8 @@ class ZakatEmasPerak extends Component
     public $formattedEmasPerak;
     public $emasPerak;
     public $formattedHargaEmasPerak;
+    public $jumlahLebihNisab;
+    public $zakatLebihNisab;
     public $hargaEmasPerak;
     public $wajibZakat;
     public $formattedJumlahBayar;
@@ -66,7 +68,7 @@ class ZakatEmasPerak extends Component
         $this->calculateJumlahBayar();
     }
 
-    private function determineWajibZakat()
+    private function determineWajibZakat() 
     {
         if ($this->selectedLogam == 'emas') {
             $this->wajibZakat = ($this->emasPerak >= 70) ? 'Ya' : 'Tidak';
@@ -78,7 +80,15 @@ class ZakatEmasPerak extends Component
     private function calculateJumlahBayar()
     {
         if($this->wajibZakat == 'Ya') {
-            $this->jumlahBayar = ($this->emasPerak * $this->hargaEmasPerak) * 0.025;
+            if($this->selectedLogam == 'emas') {
+                $this->jumlahLebihNisab = $this->emasPerak - 70;
+                $this->zakatLebihNisab = ($this->jumlahLebihNisab/14);
+                $this->jumlahBayar = (1.75 + (floor($this->zakatLebihNisab)*0.35)) * $this->hargaEmasPerak;
+            } else {
+                $this->jumlahLebihNisab = $this->emasPerak - 500;
+                $this->zakatLebihNisab = ($this->jumlahLebihNisab/100);
+                $this->jumlahBayar = (12.5 + (floor($this->zakatLebihNisab)*2.5)) * $this->hargaEmasPerak;
+            }
             $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');
         } else {
             $this->jumlahBayar = 0;

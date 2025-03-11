@@ -41,27 +41,12 @@
 
                 <div class="input-wrapper wide-block pb-2 pt-2 g-4">
                     <label class="form-label">
-                        <strong>Jumlah yang saya harus bayar per tahun </strong>
+                        <strong>Jumlah Zakat yang harus saya tunaikan </strong>
                     </label>
                     <div class="input-group">
                         <input type="text" id="numberInput" class="form-control"
                             wire:model.change="formattedJumlahBayar" placeholder="0" disabled>
                     </div>
-                </div>
-                <div class="input-wrapper wide-block pb-2 pt-2 g-4">
-                    <strong style="font-size: 1.2em;" class="text-success">
-                        <i class="ri-hand-heart-fill"></i> Niat Zakat Emas/Perak
-                    </strong>
-                    <p></p>
-                    <p style="font-size: 1.5em;">
-                        نَوَيْتُ أَنْ أُخْرِجَ زَكاَةَ مَالِي فَرْضًالِلهِ تَعَالَى
-                    </p>
-                    <div class="fst-italic">
-                        “Nawaitu an ukhrija zakata maali fardha llillahi ta’aala”
-                    </div>
-                    <p>
-                        Saya berniat mengeluarkan zakat harta milikku karena Allah Ta’ala
-                    </p>
                 </div>
                 <div class="appBottomMenu container">
                     <div class="col-12">

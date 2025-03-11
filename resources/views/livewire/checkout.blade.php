@@ -189,12 +189,10 @@
                             <strong style="font-size: 1.2em;" class="text-success">Niat {{ $titleBayar }}</strong>
                             <p></p>
                             <p style="font-size: 1.5em;">
-                                نَوَيْتُ أَنْ أُخْرِجَ زَكاَةَ مَالِي فَرْضًالِلهِ تَعَالَى
+                                نَوَيْتُ أَنْ أُخْرِجَ زَكَاةَ مَالِي  قُرْبَةً اِلَى اللّهِ تَعَالَى
                             </p>
-                            <div class="fst-italic"><i>Saya berniat mengeluarkan zakat harta milikku karena Allah
-                                    Ta’ala</i></div>
                             <p>
-                                Saya berniat mengeluarkan zakat harta milikku karena Allah Ta’ala
+                                Saya berniat mengeluarkan zakat harta milikku untuk mendekatkan diri kepada Allah Ta’ala
                             </p>
                         </div>
                     @endif

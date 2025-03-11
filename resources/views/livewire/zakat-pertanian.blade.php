@@ -1,14 +1,9 @@
 <div>
     <div class="blog-post">
         <div class="post-body">
-            <p>Zakat yang dikeluarkan dari hasil tumbuh-tumbuhan atau tanaman yang
-                bernilai ekonomis seperti biji-bijian, umbi-umbian, sayur-mayur, buah-buahan, tanaman hias,
-                rumput-rumputan,
-                dedaunan, dan lain-lain.
-            </p>
-            <p>Nisab Zakat sama dengan/setara dengan 207 kg beras atau 847 kg gabah. Zakatnya 5% jika
-                perairan berbayar dan 10% jika perairannya menggunakan tadah hujan.
-            </p>
+            <p>Zakat pertanian meliputi empat tanaman yaitu: gandum, jelai, kurma, kismis. Padi masuk ke dalam suku padi-padian (Poaceae) atau sekelompok dengan jelai.</p>
+            <p>Nisab padi adalah 847.207 kg beras.</p>
+            <p>Jika diairi dengan air hujan, sungai atau sejenisnya, wajib dikeluarkan 1/10 dan jika diairi dengan mesin, timba dan sejenisnya adalah 1/20.</p>
         </div>
     </div>
     <div class="container">

@@ -28,10 +28,10 @@ class ZakatPeternakan extends Component
 
     private function determineWajibZakat()
     {
-        if ($this->selectedTernak == 'kambing') {
-            $this->wajibZakat = ($this->jumlahTernak >= 40) ? 'Ya' : 'Tidak';
-        } else {
+        if ($this->selectedTernak == 'sapi') {
             $this->wajibZakat = ($this->jumlahTernak >= 30) ? 'Ya' : 'Tidak';
+        } else {
+            $this->wajibZakat = ($this->jumlahTernak >= 40) ? 'Ya' : 'Tidak';
         }
     }
 
