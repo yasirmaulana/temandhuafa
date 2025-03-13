@@ -1,9 +1,9 @@
 <div>
     <div class="blog-post">
         <div class="post-body">
-            <p>Zakat pertanian meliputi empat tanaman yaitu: gandum, jelai, kurma, kismis. Padi masuk ke dalam suku padi-padian (Poaceae) atau sekelompok dengan jelai.</p>
-            <p>Nisab padi adalah 847.207 kg gabah.</p>
-            <p>Jika diairi dengan air hujan, sungai atau sejenisnya, wajib dikeluarkan 1/10 dan jika diairi dengan mesin, timba dan sejenisnya adalah 1/20.</p>
+            <p>Zakat pertanian meliputi empat tanaman yaitu: gandum, jelai, kurma, kismis.</p>
+            <p>Nisab zakat pertanian adalah 847.207 kg x hasil panen. </p>
+            <p>Jika diairi dengan air hujan, sungai atau sejenisnya (perairan tadah hujan), wajib dikeluarkan 1/10 dan jika diairi dengan mesin, timba dan sejenisnya (perairan berbayar) adalah 1/20.</p>
         </div>
     </div>
     <div class="container">

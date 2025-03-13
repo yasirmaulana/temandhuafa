@@ -112,7 +112,7 @@
 
                 <div class="section full mt-0 mb-0">
                     <div class="wide-block pb-2 pt-2">
-                        @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'peternakan']))
+                        @if (!in_array($this->titleRowBayar, ['emas', 'perak', 'pertanian', 'peternakan', 'fidyah', 'kafarat']))
                             <div class="form-group boxed">
                                 <div class="input-wrapper">
                                     <input type="text" id="numberInput" class="form-control rounded-0 fw-bold"
@@ -279,10 +279,10 @@
                             <h4 class="pt-3 mt-3">Belum punya akun? </h4>
                             <div class="form-links mt-1 mb-3">
                                 <div>
-                                    <a href="registrasi.html">Registrasi Baru</a>
+                                    <a href="/">Registrasi Baru</a>
                                 </div>
                                 <div>
-                                    <a href="lupa-password.html" class="text-muted">Lupa Password?</a>
+                                    {{-- <a href="lupa-password.html" class="text-muted">Lupa Password?</a> --}}
                                 </div>
                             </div>
 

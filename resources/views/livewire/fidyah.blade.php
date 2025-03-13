@@ -1,81 +1,74 @@
-<main class="position-relative">
+<div class="container">
 
     @livewire('header')
 
-    <div class="header-divider"></div>
-
-    <img src="{{ asset('assets/img/image.jpg') }}" class="img-fluid" alt="">
-
-    <div class="container p-4">
-        <h3 class="text-success mb-2"><strong>Fidyah</strong></h3>
-
-        <div>
-            <p>Fidyah adalah sejumlah harta benda dalam kadar tertentu yang wajib diberikan kepada fakir miskin sebagai
-                ganti suatu ibadah yang telah ditinggalkan.</p>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="form-label">Jumlah Hari tidak puasa</label>
-                    <div class="input-group">
-                        <input type="number" id="numberInput" class="form-control"
-                            wire:model.change="jumlahHariTidakPuasa" placeholder="0">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <label class="form-label">Biaya rata-rata makan 1 hari <i>(sesuai kemampuan)</i>
-                    </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">Rp.</span>
-                        <input type="number" id="numberInput" class="form-control"
-                            wire:model.change="formattedBiayaMakan" placeholder="0">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <label class="form-label">
-                        <strong>Jumlah yang saya harus bayar</strong>
-                    </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">Rp.</span>
-                        <input type="text" id="numberInput" class="form-control"
-                            wire:model.change="formattedJumlahBayar" placeholder="0" disabled>
-                    </div>
-                </div>
-            </div>
-
-            <p></p>
-            <div class="mb-2">
-
-                <strong style="font-size: 1.2em;" class="text-success">
-                    <i class="ri-hand-heart-fill"></i> Niat Fidyah
-                </strong>
-            </div>
-
-            <p>Untuk Orang Sakit</p>
-            <p style="font-size: 1.5em;">
-                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَالْمَرَضِ الَّذِيْ لاَ يُرْجٰى بَرَؤُهُ فَرْضًاشَرْعًا لِلهِ تَعَالَى
-            </p>
-            <p>Untuk Wanita hamil/menyusui</p>
-            <p style="font-size: 1.5em;">
-                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَالْمُرْضِعِ فَرْضًاشَرْعًا  لِلهِ تَعَالَى
-            </p>
-            {{-- </div> --}}
-
-            <div class="col-12">
-                <a href="/checkout/{{ 'fidyah-' . $jumlahBayar }}" class="btn w-100" style="background-color: #8CC800;">
-                    <i class="ri-hand-heart-line text-white"></i>
-                    <span class="fw-bold text-white">
-                        Bayar Fidyah Sekarang
-                    </span>
-                </a>
-            </div>
-
+    <div id="appCapsule">
+        <div class="section mt-3 mb-0">
+            <h2 class="text-primary mb-3">Hitung Fidyah</h2>
         </div>
 
+        <div class="container">
+            <div class="blog-post">
+                <div class="post-body">
+                    <p>
+                        Fidyah adalah kewajiban membayar ganti puasa bagi umat Islam yang tidak bisa
+                        berpuasa karena alasan tertentu. Fidyah dibayarkan sesuai jumlah hari puasa
+                        yang ditinggalkan.
+                    </p>
+                    <p>
+                        Fidyah puasa dapat dibayarkan kapan saja kepada fakir miskin, khususnya Ahlul Bait
+                        dalam betuk beras sebanyak 750-800 gram atau makanan siap santap, yakni nasi dan lauknya.
+                        Tidak boleh memberikannya dalam bentuk uang, kecuali sekedar menitipkan untuk dibelikan beras
+                        atau nasi.
+                    </p>
+                </div>
+                <form class="needs-validation" novalidate action="">
+                    <div class="section-full mt-0 mb-0">
+
+                    </div>
+                    <div class="wide-block pb-2 pt-2">
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="form-label">Jumlah hari tidak puasa</label>
+                                <input type="number" class="form-control" id="numberInput"
+                                    wire:model.change="jumlahHariTidakPuasa" placeholder="0">
+                                <i class="clear-input">
+                                    <ion-icon name="close-circle"></ion-icon>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="form-label">Biaya rata-rata makan satu hari</label>
+                                <input type="number" class="form-control" id="numberInput"
+                                    wire:model.change="formattedBiayaMakan" placeholder="Rp">
+                                <i class="clear-input">
+                                    <ion-icon name="close-circle"></ion-icon>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="form-label"><strong>Jumlah yang saya harus bayar</strong></label>
+                                <input type="text" id="numberInput" class="form-control"
+                                    wire:model.change="formattedJumlahBayar" placeholder="Rp" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
 
-    <div class="divider"></div>
+    @if ($jumlahBayar > 0)
+        <div class="appBottomMenu container">
+            <div class="col-12">
+                <a href="/checkout/{{ 'fidyah-' . $jumlahBayar }}" class="btn-block">
+                    <button type="button" class="btn btn-success btn-lg btn-block">Bayar Fidyah</button>
+                </a>
+            </div>
+        </div>
+    @endif
 
-    @livewire('footer')
-
-    @livewire('nav-bar')
-
-</main>
+</div>

@@ -10,7 +10,7 @@ class Fidyah extends Component
     public $formattedBiayaMakan;
     public $biayaMakan;
 
-    public $formattedJumlahBayar;
+    public $formattedJumlahBayar; 
     public $jumlahBayar;
 
     public function updatedFormattedBiayaMakan($value)

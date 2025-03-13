@@ -12,7 +12,7 @@ class Kafarat extends Component
     public $jumlahMelanggarKafarat;
     public $formattedBiayaMakan;
     public $biayaMakan;
-    public $formattedJumlahBayar;
+    public $formattedJumlahBayar; 
     public $jumlahBayar;
 
     public function updatedSelectedKafarat($value)
@@ -61,11 +61,12 @@ class Kafarat extends Component
 
     private function calculateJumlahBayar()
     {
-        if (in_array($this->selectedKafarat, ["sumpahPalsu", "ila"])) {
-            $this->jumlahBayar = $this->jumlahMelanggarKafarat * $this->biayaMakan * 10; 
-        } else {
-            $this->jumlahBayar = $this->jumlahMelanggarKafarat * $this->biayaMakan * 60;
-        }
+        // if (in_array($this->selectedKafarat, ["sumpahPalsu", "ila"])) {
+        //     $this->jumlahBayar = $this->jumlahMelanggarKafarat * $this->biayaMakan * 10; 
+        // } else {
+        //     $this->jumlahBayar = $this->jumlahMelanggarKafarat * $this->biayaMakan * 60;
+        // }
+        $this->jumlahBayar = $this->biayaMakan * 60;
         $this->formattedJumlahBayar = number_format((int) $this->jumlahBayar, 0, '', '.');
     }
 

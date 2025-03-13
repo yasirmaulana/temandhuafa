@@ -1,89 +1,77 @@
-<main class="position-relative">
+<div class="container">
 
     @livewire('header')
 
-    <div class="header-divider"></div>
+    <div id="appCapsule">
+        <div class="section mt-3 mb-0">
+            <h2 class="text-primary mb-3">Hitung Kafarat Puasa</h2>
+        </div>
 
-    <img src="{{ asset('assets/img/image.jpg') }}" class="img-fluid" alt="">
-
-    <div class="container p-4">
-        <h3 class="text-success mb-2"><strong>Kafarat</strong></h3>
-
-        <div>
-            <p>Kafarat sendiri berarti denda yang harus dibayar karena melanggar larangan Allah atau melanggar janji.
-                Kafarat ditunaikan dikarenakan melakukan sebuah kesalahan agar tidak lagi mendapat dosa akibat melakukan
-                kesalahan tersebut.
-            </p>
-            <div class="row g-3">
-                <div class="col-12">
-                    <label class="col-sm-12 col-form-label">Jenis Kafarat</label>
-                    <div class="col-sm-12">
-                        <select class="form-select" wire:model.change="selectedKafarat">
-                            <option value="sumpahPalsu">Sumpah Palsu</option>
-                            <option value="ila">Ila'</option>
-                            <option value="dzihar">Dzihar</option>
-                            <option value="jimak">Jimak</option>
-                        </select>
-                    </div>
+        <div class="container">
+            <div class="blog-post">
+                <div class="post-body">
+                    <p>
+                        Kafarah puasa adalah sebuah denda yang harus dibayar oleh mukalaf lantaran membatalkan puasa
+                        bulan Ramadan, qada puasa Ramadan setelah azan zuhur, dan puasa nazar dengan waktu yang telah
+                        ditentukan.
+                    </p>
+                    <p>
+                        Kafarah membatalkan puasa dengan sengaja adalah puasa dua bulan (31 hari harus dilakukan
+                        secara berkesinambungan) atau memberi makan 60 orang fakir.
+                    </p>
+                    <p>
+                        Kafarah membatalkan puasa dengan perbuatan haram, seperti: minum miras atau zina, mewajibkan
+                        kafarah ganda, yaitu: puasa dua bulan dan memberi makan 60 orang fakir.
+                    </p>
                 </div>
-                {{ $selectedKafarat }}
-                @if ($denda)
-                    <div class="col-12">
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            {{ $denda }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
+                <form class="needs-validation" novalidate action="">
+                    <div class="section-full mt-0 mb-0">
+
+                    </div>
+                    <div class="wide-block pb-2 pt-2"">
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="form-label">Memberi makan 60 orang fakir</label>
+                                <input type="number" class="form-control" id="numberInput"
+                                    wire:model.change="jumlahHariTidakPuasa" placeholder="60 orang fakir" disabled>
+                                <i class="clear-input">
+                                    <ion-icon name="close-circle"></ion-icon>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="form-label">Biaya makan 1 mud (750 gram gandum atau bahan makanan lain)
+                                    atau rata-rata biaya makan dalam sehari</label>
+                                <input type="number" class="form-control" id="numberInput"
+                                    wire:model.change="formattedBiayaMakan" placeholder="Rp">
+                                <i class="clear-input">
+                                    <ion-icon name="close-circle"></ion-icon>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="form-group boxed">
+                            <div class="input-wrapper">
+                                <label class="form-label"><strong>Jumlah yang saya harus bayar</strong></label>
+                                <input type="text" id="numberInput" class="form-control"
+                                    wire:model.change="formattedJumlahBayar" placeholder="Rp" disabled>
+                            </div>
                         </div>
                     </div>
-                @endif
-
-                <div class="col-12">
-                    <label class="form-label">Berapa kali anda melanggar kafarat tersebut</label>
-                    <div class="input-group">
-                        <input type="number" id="numberInput" class="form-control"
-                            wire:model.change="formattedJumlahMelanggarKafarat">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <label class="form-label">Biaya rata-rata sekali makan (1 mud - <i>sesuai kemampuan)</i>
-                    </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">Rp.</span>
-                        <input type="number" id="numberInput" class="form-control"
-                            wire:model.change="formattedBiayaMakan" placeholder="0">
-                    </div>
-                </div>
-                <div class="col-12">
-                    <label class="form-label">
-                        <strong>Jumlah yang saya harus bayar</strong>
-                    </label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">Rp.</span>
-                        <input type="text" id="numberInput" class="form-control"
-                            wire:model.change="formattedJumlahBayar" placeholder="0" disabled>
-                    </div>
-                </div>
+                </form>
             </div>
-
-            <p></p>
-
         </div>
-
-        <div class="col-12">
-            <a href="/checkout/{{ 'kafarat-' . $jumlahBayar }}" class="btn w-100"
-                style="background-color: #8CC800;">
-                <i class="ri-hand-heart-line text-white"></i>
-                <span class="fw-bold text-white">
-                    Bayar Kafarat Sekarang
-                </span>
-            </a>
-        </div>
-
     </div>
 
-    <div class="divider"></div>
+    @if ($jumlahBayar)
+        <div class="appBottomMenu container">
+            <div class="col-12">
+                <a href="/checkout/{{ 'kafarat-' . $jumlahBayar }}" class="btn-block">
+                    <button type="button" class="btn btn-success btn-lg btn-block">Bayar Kafarat</button>
+                </a>
+            </div>
+        </div>
+        
+    @endif
 
-    @livewire('footer')
-
-    @livewire('nav-bar')
-</main>
+</div>

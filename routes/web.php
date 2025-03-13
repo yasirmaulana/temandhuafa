@@ -23,6 +23,7 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use App\Livewire\Fundraiser;
 use App\Livewire\Program;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
@@ -33,6 +34,7 @@ Route::get('/zakat', Zakat::class);
 Route::get('/donasi', Donation::class);
 Route::get('/fidyah', Fidyah::class);
 Route::get('/kafarat', Kafarat::class);
+Route::get('/fundraiser', Fundraiser::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');
