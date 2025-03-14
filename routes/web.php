@@ -34,7 +34,7 @@ Route::get('/zakat', Zakat::class);
 Route::get('/donasi', Donation::class);
 Route::get('/fidyah', Fidyah::class);
 Route::get('/kafarat', Kafarat::class);
-Route::get('/fundraiser', Fundraiser::class);
+Route::get('/fundraiser/{id}', Fundraiser::class);
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
 Route::get('/payment/{snapToken}', Payment::class)->name('payment');

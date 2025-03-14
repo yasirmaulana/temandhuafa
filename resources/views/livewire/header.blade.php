@@ -7,11 +7,11 @@
             </a>
         </div>
         <div class="pageTitle"></div>
-        <div class="right">
+        {{-- <div class="right">
             <a href="javascript:;" class="headerButton toggle-searchbox">
                 <ion-icon name="search-outline"></ion-icon>
             </a>
-        </div>
+        </div> --}}
     </div>
     <!-- * App Header -->
 

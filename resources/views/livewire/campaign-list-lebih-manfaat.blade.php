@@ -12,7 +12,7 @@
 
     @foreach ($campaigns as $campaign)        
     <div class="card mb-1">
-        <a href="profil-fundriser.html">
+        <a href="/fundraiser/{{ $campaign->fundraiser_id }}">
             <img src="{{ $campaign->image }}" class="card-img-top" style="height:120px" alt="image">
             <div class="card-body pt-2">
                 <h6 class="mb-0 text-secondary">{{ $campaign->domisili_fundraiser }}</h6>

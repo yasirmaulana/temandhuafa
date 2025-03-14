@@ -18,62 +18,64 @@
                             </div>
 
                         </div>
-
-                        <table class="table table-hover datatable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Target Amount</th>
-                                    <th scope="col">End Date</th>
-                                    @if (Auth::user()->role_id == 1)
-                                        <th scope="col">Fundraiser</th>
-                                    @endif
-                                    <th scope="col">Status</th>
-                                    @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
-                                        <th scope="col">Action</th>
-                                    @endif
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($getRecord as $value)
+                        <div class="table-responsive">
+                            <table class="table table-hover datatable">
+                                <thead>
                                     <tr>
-                                        <th>{{ $value->title }}</th>
-                                        <td>{{ $value->category_name }}</td>
-                                        <td>{{ number_format($value->target_amount, 0, ',', '.') }}</td>
-                                        <td>{{ $value->end_date }}</td>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Target Amount</th>
+                                        <th scope="col">End Date</th>
                                         @if (Auth::user()->role_id == 1)
-                                            <td>{{ $value->fundraiser }}</td>
+                                            <th scope="col">Fundraiser</th>
                                         @endif
-                                        <td>{{ $value->status }}</td>
-                                        <td>
+                                        <th scope="col">Status</th>
+                                        @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
+                                            <th scope="col">Action</th>
+                                        @endif
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($getRecord as $value)
+                                        <tr>
+                                            <th>{{ $value->title }}</th>
+                                            <td>{{ $value->category_name }}</td>
+                                            <td>{{ number_format($value->target_amount, 0, ',', '.') }}</td>
+                                            <td>{{ $value->end_date }}</td>
                                             @if (Auth::user()->role_id == 1)
-                                                <a href="{{ url('panel/campaign/edit/' . $value->id) }}"
-                                                    class="btn btn-outline-success btn-sm ">Edit</a>
-                                            @else
-                                                <a href="{{ url('panel/campaign/edit/' . $value->id) }}"
-                                                    class="btn btn-outline-success btn-sm {{ $value->status == 'published' ? 'disabled' : '' }}"
-                                                    style="{{ $value->status == 'published' ? 'pointer-events: none; opacity: 0.5;' : '' }}">Edit</a>
+                                                <td>{{ $value->fundraiser }}</td>
                                             @endif
-                                            @if ($value->status == 'draft' && Auth::user()->role_id == 1)
-                                                {{-- <a href="{{ url('panel/campaign/approve/' . $value->id) }}" --}}
-                                                <a href="{{ url('panel/campaign/edit/' . $value->id) }}"
-                                                    class="btn btn-outline-warning btn-sm">Publish</a>
-                                            @endif
-                                            @if ($value->status == 'published' && Auth::user()->role_id == 1)
-                                                <a href="{{ url('panel/campaign/complate/' . $value->id) }}"
-                                                    class="btn btn-outline-info btn-sm">Complate</a>
-                                            @endif
-                                            {{-- @if (!@empty($PermissionDelete))
+                                            <td>{{ $value->status }}</td>
+                                            <td>
+                                                @if (Auth::user()->role_id == 1)
+                                                    <a href="{{ url('panel/campaign/edit/' . $value->id) }}"
+                                                        class="btn btn-outline-success btn-sm ">Edit</a>
+                                                @else
+                                                    <a href="{{ url('panel/campaign/edit/' . $value->id) }}"
+                                                        class="btn btn-outline-success btn-sm {{ $value->status == 'published' ? 'disabled' : '' }}"
+                                                        style="{{ $value->status == 'published' ? 'pointer-events: none; opacity: 0.5;' : '' }}">Edit</a>
+                                                @endif
+                                                @if ($value->status == 'draft' && Auth::user()->role_id == 1)
+                                                    {{-- <a href="{{ url('panel/campaign/approve/' . $value->id) }}" --}}
+                                                    <a href="{{ url('panel/campaign/edit/' . $value->id) }}"
+                                                        class="btn btn-outline-warning btn-sm">Publish</a>
+                                                @endif
+                                                @if ($value->status == 'published' && Auth::user()->role_id == 1)
+                                                    <a href="{{ url('panel/campaign/complate/' . $value->id) }}"
+                                                        class="btn btn-outline-info btn-sm">Complate</a>
+                                                @endif
+                                                {{-- @if (!@empty($PermissionDelete))
                                                 <a href="{{ url('panel/campaign/delete/' . $value->id) }}"
                                                     class="btn btn-outline-danger btn-sm">Delete</a>
                                             @endif --}}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
 

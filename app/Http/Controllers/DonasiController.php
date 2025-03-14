@@ -19,7 +19,7 @@ class DonasiController extends Controller
     {
         if(Auth::check()) {
             $this->email = Auth::user()->email;
-            $this->roleId = Auth::user()->role_id; 
+            $this->roleId = Auth::user()->role_id;
         }
         
         $transactionModel = new Transaction(); 
@@ -35,7 +35,6 @@ class DonasiController extends Controller
 
     public function list()
     {
-        // dd($this->data);
         return view('panel.donasi.list', $this->data);
     }
 }

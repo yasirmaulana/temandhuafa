@@ -10,73 +10,76 @@
                                 <h5 class="card-title">Fundraiser List</h5>
                             </div>
                         </div>
-
-                        <table class="table table-hover datatable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nama Lembaga</th>
-                                    <th scope="col">Jenis Badan Usaha</th>
-                                    <th scope="col">Email Lembaga</th>
-                                    <th scope="col">Nomor Lembaga</th>
-                                    <th scope="col">Status</th>`
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($getRecord as $value)
-                                    <tr data-nama-lembaga="{{ $value->nama_lembaga }}"
-                                        data-jenis-badan-usaha="{{ $value->jenis_badan_usaha }}"
-                                        data-kota-domisili="{{ $value->kota_domisili }}"
-                                        data-alamat-lembaga="{{ $value->alamat_lembaga }}"
-                                        data-email-lembaga="{{ $value->email_lembaga }}"
-                                        data-nomor-telpon="{{ $value->nomor_telpon }}"
-                                        data-nomor-ijin="{{ $value->nomor_ijin }}"
-                                        data-nomor-kemenkumham="{{ $value->nomor_kemenkumham }}"
-                                        data-nomor-npwp="{{ $value->nomor_npwp }}"
-                                        data-nama-bank="{{ $value->nama_bank }}"
-                                        data-nomor-rekening="{{ $value->nomor_rekening }}"
-                                        data-nama-rekening="{{ $value->nama_rekening }}"
-                                        data-image-ijin="{{ $value->image_ijin }}"
-                                        data-image-kemenkumham="{{ $value->image_kemenkumham }}"
-                                        data-image-npwp="{{ $value->image_npwp }}"
-                                        data-image-buku-tabungan="{{ $value->image_buku_tabungan }}"
-                                        data-nama-pj="{{ $value->nama_pj }}"
-                                        data-tempat-lahir="{{ $value->tempat_lahir }}"
-                                        data-tanggal-lahir="{{ $value->tanggal_lahir }}"
-                                        data-email-pj="{{ $value->email_pj }}" data-nomor-pj="{{ $value->nomor_pj }}"
-                                        data-jabatan="{{ $value->jabatan }}"
-                                        data-nama-pimpinan="{{ $value->nama_pimpinan }}"
-                                        data-nomor-hp-pimpinan="{{ $value->nomor_hp_pimpinan }}"
-                                        data-nama-bendahara="{{ $value->nama_bendahara }}"
-                                        data-nomor-hp-bendahara="{{ $value->nomor_hp_bendahara }}"
-                                        data-image-doc-pj="{{ $value->image_doc_pj }}"
-                                        data-image-struktur-org="{{ $value->image_struktur_org }}"
-                                        data-image-ktp="{{ $value->image_ktp }}">
-                                        <td>{{ $value->nama_lembaga }}</td>
-                                        <td>{{ $value->jenis_badan_usaha }}</td>
-                                        <td>{{ $value->email_lembaga }}</td>
-                                        <td>{{ $value->nomor_telpon }}</td>
-                                        <td>{{ $value->register_status }}</td>
-                                        <td>
-                                            @if ($value->register_status == 'register')
-                                                <!-- Tombol Approve -->
-                                                <form method="POST"
-                                                    action="{{ route('fundraiser.approve', ['id' => $value->user_id]) }}"
-                                                    style="display:inline;">
-                                                    @csrf
-                                                    <button type="submit" class="approve-btn btn btn-outline-success btn-sm"
-                                                        onclick="event.stopPropagation();">
-                                                        Approve
-                                                    </button>
-                                                </form>
-                                            @else
-                                                <button class="btn btn-outline-warning btn-sm">Non Active</button>
-                                            @endif
-                                        </td>
+                        <div class="table-responsive">
+                            <table class="table table-hover datatable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nama Lembaga</th>
+                                        <th scope="col">Jenis Badan Usaha</th>
+                                        <th scope="col">Email Lembaga</th>
+                                        <th scope="col">Nomor Lembaga</th>
+                                        <th scope="col">Status</th>`
+                                        <th scope="col">Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($getRecord as $value)
+                                        <tr data-nama-lembaga="{{ $value->nama_lembaga }}"
+                                            data-jenis-badan-usaha="{{ $value->jenis_badan_usaha }}"
+                                            data-kota-domisili="{{ $value->kota_domisili }}"
+                                            data-alamat-lembaga="{{ $value->alamat_lembaga }}"
+                                            data-email-lembaga="{{ $value->email_lembaga }}"
+                                            data-nomor-telpon="{{ $value->nomor_telpon }}"
+                                            data-nomor-ijin="{{ $value->nomor_ijin }}"
+                                            data-nomor-kemenkumham="{{ $value->nomor_kemenkumham }}"
+                                            data-nomor-npwp="{{ $value->nomor_npwp }}"
+                                            data-nama-bank="{{ $value->nama_bank }}"
+                                            data-nomor-rekening="{{ $value->nomor_rekening }}"
+                                            data-nama-rekening="{{ $value->nama_rekening }}"
+                                            data-image-ijin="{{ $value->image_ijin }}"
+                                            data-image-kemenkumham="{{ $value->image_kemenkumham }}"
+                                            data-image-npwp="{{ $value->image_npwp }}"
+                                            data-image-buku-tabungan="{{ $value->image_buku_tabungan }}"
+                                            data-nama-pj="{{ $value->nama_pj }}"
+                                            data-tempat-lahir="{{ $value->tempat_lahir }}"
+                                            data-tanggal-lahir="{{ $value->tanggal_lahir }}"
+                                            data-email-pj="{{ $value->email_pj }}"
+                                            data-nomor-pj="{{ $value->nomor_pj }}"
+                                            data-jabatan="{{ $value->jabatan }}"
+                                            data-nama-pimpinan="{{ $value->nama_pimpinan }}"
+                                            data-nomor-hp-pimpinan="{{ $value->nomor_hp_pimpinan }}"
+                                            data-nama-bendahara="{{ $value->nama_bendahara }}"
+                                            data-nomor-hp-bendahara="{{ $value->nomor_hp_bendahara }}"
+                                            data-image-doc-pj="{{ $value->image_doc_pj }}"
+                                            data-image-struktur-org="{{ $value->image_struktur_org }}"
+                                            data-image-ktp="{{ $value->image_ktp }}">
+                                            <td>{{ $value->nama_lembaga }}</td>
+                                            <td>{{ $value->jenis_badan_usaha }}</td>
+                                            <td>{{ $value->email_lembaga }}</td>
+                                            <td>{{ $value->nomor_telpon }}</td>
+                                            <td>{{ $value->register_status }}</td>
+                                            <td>
+                                                @if ($value->register_status == 'register')
+                                                    <!-- Tombol Approve -->
+                                                    <form method="POST"
+                                                        action="{{ route('fundraiser.approve', ['id' => $value->user_id]) }}"
+                                                        style="display:inline;">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="approve-btn btn btn-outline-success btn-sm"
+                                                            onclick="event.stopPropagation();">
+                                                            Approve
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <button class="btn btn-outline-warning btn-sm">Non Active</button>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>

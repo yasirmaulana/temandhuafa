@@ -133,6 +133,15 @@
             </li>
         @endif
 
+        <li class="nav-heading"><hr></li>
+
+        <li class="nav-item">
+            <a class="nav-link @if (Request::segment(2) != 'user') collapsed @endif" href="{{ url('/') }}">
+                <i class="bi bi-house"></i>
+                <span>Homepage</span>
+            </a>
+        </li>
+
         {{-- <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>

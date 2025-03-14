@@ -28,41 +28,43 @@
                                 @endif
                             </div>
                         </div>
-
-                        <table class="table table-hover datatable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
-                                    @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
-                                        <th scope="col">Action</th>
-                                    @endif
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($getRecord as $value)
+                        <div class="table-responsive">
+                            <table class="table table-hover datatable">
+                                <thead>
                                     <tr>
-                                        <th scope="row">{{ $value->id }}</th>
-                                        <td>{{ $value->name }}</td>
-                                        <td>{{ $value->email }}</td>
-                                        <td>{{ $value->role_name }}</td>
-                                        <td>
-                                            @if (!@empty($PermissionEdit))
-                                                <a href="{{ url('panel/user/edit/' . $value->id) }}"
-                                                    class="btn btn-outline-success btn-sm">Edit</a>
-                                            @endif
-                                            @if (!@empty($PermissionDelete))
-                                                <a href="{{ url('panel/user/delete/' . $value->id) }}"
-                                                    class="btn btn-outline-danger btn-sm">Delete</a>
-                                            @endif
-                                        </td>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Role</th>
+                                        @if (!@empty($PermissionEdit) || !@empty($PermissionDelete))
+                                            <th scope="col">Action</th>
+                                        @endif
                                     </tr>
-                                @endforeach
+                                </thead>
+                                <tbody>
+                                    @foreach ($getRecord as $value)
+                                        <tr>
+                                            <th scope="row">{{ $value->id }}</th>
+                                            <td>{{ $value->name }}</td>
+                                            <td>{{ $value->email }}</td>
+                                            <td>{{ $value->role_name }}</td>
+                                            <td>
+                                                @if (!@empty($PermissionEdit))
+                                                    <a href="{{ url('panel/user/edit/' . $value->id) }}"
+                                                        class="btn btn-outline-success btn-sm">Edit</a>
+                                                @endif
+                                                @if (!@empty($PermissionDelete))
+                                                    <a href="{{ url('panel/user/delete/' . $value->id) }}"
+                                                        class="btn btn-outline-danger btn-sm">Delete</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
 
