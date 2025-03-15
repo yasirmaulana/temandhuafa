@@ -14,11 +14,11 @@ class AuthController extends Controller
         //     return redirect('panel/dashboard'); 
         // }
         // return view('auth.login');
+        
         if (Auth::check()) {
             $user = Auth::user();
 
             if ($user) {
-                // Kirim event ke PostHog jika user terdeteksi
                 PostHog::capture([
                     'distinctId' => $user->id,
                     'event' => 'User Logged In',

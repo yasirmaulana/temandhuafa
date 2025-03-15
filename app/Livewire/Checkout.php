@@ -101,7 +101,6 @@ class Checkout extends Component
 
             $this->saveTransaction();
 
-            // Kirim event ke PostHog
             PostHog::capture([
                 'distinctId' => Auth::user()->id ?? session()->getId(),
                 'event' => 'User Made a Donation',

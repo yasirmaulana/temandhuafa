@@ -20,6 +20,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        PostHog::init(config('posthog.api_key'), ['host' => config('posthog.host')]);
+        // Inisialisasi PostHog hanya jika API key tersedia
+        if (!empty(config('posthog.api_key'))) {
+            PostHog::init(config('posthog.api_key'), ['host' => config('posthog.host')]);            
+        }
+
+        // Ubah path public hanya jika bukan di environment local
+        // if (config('app.env') !== 'local') {
+        //     $this->app->bind('path.public', function () {
+        //         return realpath(base_path('../app.temandhuafa.id')) ?: base_path('../app.temandhuafa.id');
+        //     });
+        // }
     }
 }

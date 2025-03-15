@@ -26,7 +26,7 @@
                                 Referensi fikih Ja'fari merujuk pada situs Wiki Syiah dan Fikih Syiah.
                             </li>
                             <li>
-                                <a href="privacy-policy.html">Privacy Polivy</a>
+                                <a href="https://www.termsfeed.com/live/5b05f87c-a53b-451b-8da8-d07284fbb59a" target="_blank">Privacy Policy</a>
                             </li>
                         </ol>
                     </div>

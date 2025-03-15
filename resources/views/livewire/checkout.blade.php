@@ -2,25 +2,6 @@
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style></style>
 
-    <!-- loader -->
-    {{-- <div id="loader">
-        <div class="spinner-border text-primary" role="status"></div>
-    </div> --}}
-    <!-- * loader -->
-
-    <!-- App Header -->
-    {{-- <div class="appHeader bg-primary text-light container">
-        <div class="left">
-            <a href="javascript:void(0)" class="headerButton goBack">
-                <ion-icon name="chevron-back-outline"></ion-icon>
-            </a>
-        </div>
-        <div class="pageTitle"></div>
-        <div class="right">
-        </div>
-    </div> --}}
-    <!-- * App Header -->
-
     @livewire('header')
 
     <!-- App Capsule -->
