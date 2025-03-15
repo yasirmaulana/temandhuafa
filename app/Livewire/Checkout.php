@@ -2,11 +2,12 @@
 
 namespace App\Livewire;
 
+use Auth;
+use PostHog\PostHog;
 use Livewire\Component;
 use App\Models\Campaign;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
-use Auth;
 
 class Checkout extends Component
 {
@@ -37,7 +38,7 @@ class Checkout extends Component
         $this->slug = $slug;
         $parts = explode('-', $slug);
         $this->titleRowBayar = $parts[0];
-        $this->infaqSistemAmount = 2000;
+        $this->infaqSistemAmount = 5000;
         if (!in_array($this->titleRowBayar, ["infaq", "emas", "perak", "pertanian", "peternakan", "fidyah", "kafarat"])) {
             $this->campaign = Campaign::getCampaignBySlug($slug);
             $this->campaignId = $this->campaign->id;
@@ -100,6 +101,15 @@ class Checkout extends Component
 
             $this->saveTransaction();
 
+            // Kirim event ke PostHog
+            PostHog::capture([
+                'distinctId' => Auth::user()->id ?? session()->getId(),
+                'event' => 'User Made a Donation',
+                'properties' => [
+                    'amount' => $this->totalAmount,
+                ],
+            ]);
+
             $snapToken = \Midtrans\Snap::getSnapToken($params);
 
             return redirect()->route('payment', ['snapToken' => $snapToken]);
@@ -126,7 +136,7 @@ class Checkout extends Component
     public function togle()
     {
         if ($this->infaqSistem) {
-            $this->infaqSistemAmount = 2000;
+            $this->infaqSistemAmount = 5000;
         } else {
             $this->infaqSistemAmount = 0;
         }
@@ -173,4 +183,3 @@ class Checkout extends Component
         return view('livewire.checkout');
     }
 }
- 

@@ -1,5 +1,7 @@
 <div>
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+    {{-- <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script> --}}
+    <script type="text/javascript" src="https://app.midtrans.com/snap/snap.js"
         data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 
     <script>
@@ -14,12 +16,12 @@
             onSuccess: function(result) {
                 // console.log('Payment Success:', result);
                 alert("Pembayaran berhasil!");
-                window.location.href = "/"; 
+                window.location.href = "/";
             },
             onPending: function(result) {
                 // console.log('Payment Pending:', result);
                 alert("Menunggu pembayaran Anda!");
-                window.location.href = "/"; 
+                window.location.href = "/";
             },
             onError: function(result) {
                 // console.log('Payment Error:', result);
@@ -28,7 +30,8 @@
             },
             onClose: function() {
                 // console.log('Payment Popup Closed');
-                alert('Anda menutup halaman pembayaran tanpa menyelesaikannya, jika ingin cancel, silakan tekan tombol back pada browser anda');
+                alert(
+                    'Anda menutup halaman pembayaran tanpa menyelesaikannya, jika ingin cancel, silakan tekan tombol back pada browser anda');
                 window.location.reload();
             }
         });

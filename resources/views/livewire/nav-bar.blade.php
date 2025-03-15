@@ -15,9 +15,9 @@
             <strong>PROGRAM</strong>
         </div>
     </a>
-    <a href="/faq" wire:navigate class="item {{ Str::startsWith($currentRoute, 'faq') ? 'active' : '' }}">
+    <a href="/faq" wire:navigate class="item {{ $currentRoute === 'faq' ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="book-outline"></ion-icon>
+            <ion-icon name="{{ $currentRoute === 'faq' ? 'book' : 'book-outline' }}"></ion-icon>
             <strong>FAQ</strong>
         </div>
     </a>

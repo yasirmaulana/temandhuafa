@@ -40,10 +40,10 @@
                         'Zakat Perniagaan' => 'Nominal Zakat Perniagaan',
                         'Zakat Penghasilan' => 'Nominal Zakat Penghasilan',
                     ];
-    
+
                     $nominalTitle = $nominalMapping[$titleBayar] ?? 'Nominal Donasi';
                 @endphp
-    
+
                 <h4>Masukkan {{ $nominalTitle }}</h4>
             @else
                 <h2 class="text-primary mb-3">{{ $titleBayar }}</h2>
@@ -126,10 +126,11 @@
 
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" wire:model="infaqSistem" wire:click="togle"
-                                checked>
-                            <label class="form-check-label text-secondary">
-                                <h5 class="text-secondary">Infak Sistem Rp 2.000</h5>
-                            </label>
+                            checked>
+                            <div class="d-flex align-items-center">
+                                <h5 class="text-secondary mb-0 mr-1">Biaya Transaksi Rp 5.000</h5>
+                                <i class="bi bi-info-circle text-secondary ms-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Biaya transaksi Rp 5.000 digunakan untuk memproses pembayaran. Anda dapat memilih untuk menanggung biaya ini, atau jika tidak dicentang, jumlahnya akan dikurangi dari total donasi Anda."></i>
+                            </div>                          
                         </div>
                     </div>
                 </div>
@@ -137,7 +138,8 @@
                 <div class="section mt-2 mb-0">
                     @if (empty(Auth::check()))
                         <h4 class="text-center">
-                            <a data-bs-toggle="modal" data-bs-target="#basicModal" href="">Login</a>
+                            {{-- <a data-bs-toggle="modal" data-bs-target="#basicModal" href="/login">Login</a> --}}
+                            <a href="/login">Login</a>
                             atau lengkapi data berikut:
                         </h4>
                     @endif
@@ -202,11 +204,13 @@
                             <strong style="font-size: 1.2em;" class="text-success">Niat {{ $titleBayar }}</strong>
                             <p>Untuk orang sakit</p>
                             <p style="font-size: 1.5em;">
-                                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَ الْمَرَضِ الَّذِيْ لَا يُرْجٰى بَرَؤُهُ فَرْضًا شَرْعًا قُرْبَةً اِلَى اللّهِ تَعَالَى
+                                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَ الْمَرَضِ الَّذِيْ لَا يُرْجٰى بَرَؤُهُ فَرْضًا شَرْعًا
+                                قُرْبَةً اِلَى اللّهِ تَعَالَى
                             </p>
                             <p>Untuk wanita hamil/menyusui</p>
                             <p style="font-size: 1.5em;">
-                                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَ الْمُرْضِعِ فَرْضًا شَرْعًا قُرْبَةً اِلَى اللّهِ تَعَالَى
+                                نَوَيْتُ أَنْ أُخْرِجَ فِدْيَةَ الْمُرْضِعِ فَرْضًا شَرْعًا قُرْبَةً اِلَى اللّهِ
+                                تَعَالَى
                             </p>
                             <p>
                                 Saya berniat mengeluarkan zakat harta milikku untuk mendekatkan diri kepada Allah Ta’ala

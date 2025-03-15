@@ -23,14 +23,16 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use App\Livewire\Faq;
 use App\Livewire\Fundraiser;
 use App\Livewire\Program;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', Home::class);
+Route::get('/faq', Faq::class);
 Route::get('/program/{slug}', Program::class);
 Route::get('/category/{kategori}', Home::class);
-Route::get('/zakat', Zakat::class);
+Route::get('/', Home::class);
 Route::get('/donasi', Donation::class);
 Route::get('/fidyah', Fidyah::class);
 Route::get('/kafarat', Kafarat::class);

@@ -100,14 +100,14 @@
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         
-                                        <div class="col-12 d-flex justify-content-between">
+                                        {{-- <div class="col-12 d-flex justify-content-between">
                                             <label for="">Belum punya akun?</label>
                                             <label for="" class="text-primary">
                                                 <a href="">
                                                     Daftar akun
                                                 </a>
                                             </label>
-                                        </div>
+                                        </div> --}}
                                     </form>
 
                                     <div class="my-4 text-center">OR</div>

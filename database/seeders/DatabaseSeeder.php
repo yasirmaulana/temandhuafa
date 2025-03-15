@@ -504,12 +504,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'kemanusiaan',
-            'slug' => 'kemanusiaan',
-            'is_active' => true,
-        ]);
-
-        Category::create([
 
             'name' => 'pendidikan',
             'slug' => 'pendidikan',

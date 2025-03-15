@@ -14,7 +14,8 @@
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
-        "midtrans/midtrans-php": "^2.6"
+        "midtrans/midtrans-php": "^2.6",
+        "posthog/posthog-php": "^3.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
