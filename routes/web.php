@@ -1,14 +1,5 @@
 <?php
 
-use App\Livewire\Home;
-use App\Livewire\Ilmu;
-use App\Livewire\Zakat;
-use App\Livewire\Fidyah;
-use App\Livewire\Kafarat;
-use App\Livewire\Payment;
-use App\Livewire\Checkout;
-use App\Livewire\Donation;
-use App\Livewire\CampaignDetail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
@@ -23,17 +14,31 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
+use App\Livewire\Home;
+use App\Livewire\Ilmu;
+use App\Livewire\Zakat;
+use App\Livewire\Fidyah;
+use App\Livewire\Kafarat;
+use App\Livewire\Payment;
+use App\Livewire\Checkout;
+use App\Livewire\Donation;
+use App\Livewire\CampaignDetail;
+use App\Livewire\DashboardDonatur;
+use App\Livewire\DashboardFundraiser;
 use App\Livewire\Faq;
 use App\Livewire\Fundraiser;
+use App\Livewire\LoginApp;
 use App\Livewire\Program;
+use App\Livewire\Registrasi;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', Home::class);
+Route::get('/zakat', Zakat::class);
 Route::get('/faq', Faq::class);
 Route::get('/program/{slug}', Program::class);
 Route::get('/category/{kategori}', Home::class);
 Route::get('/', Home::class);
-Route::get('/donasi', Donation::class);
+Route::get('/donasi', Donation::class); 
 Route::get('/fidyah', Fidyah::class);
 Route::get('/kafarat', Kafarat::class);
 Route::get('/fundraiser/{id}', Fundraiser::class);
@@ -46,6 +51,11 @@ Route::post('/payment-notification', [PaymentController::class, 'handleNotificat
     ->withoutMiddleware(VerifyCsrfToken::class)
     ->name('payment.notification');
 
+Route::get('/loginapp', LoginApp::class)->name('login');
+Route::post('/loginapp', LoginApp::class)->name('auth_login');
+Route::get('/register', Registrasi::class)->name('register');
+Route::post('/register', Registrasi::class)->name('auth_register');
+
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'auth_login']);
 Route::get('logout', [AuthController::class, 'logout']);
@@ -56,6 +66,8 @@ Route::controller(SocialiteController::class)->group(function () {
 });
 
 Route::group(['middleware' => 'useradmin'], function () {
+    Route::get('/akun/dashboard-donatur', DashboardDonatur::class);
+    Route::get('/akun/dashboard-fundraiser', DashboardFundraiser::class);
 
     Route::get('/panel/dashboard', [DashboardController::class, 'dashboard']);
 

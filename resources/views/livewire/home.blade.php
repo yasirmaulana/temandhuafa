@@ -60,7 +60,7 @@
     <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
+    {{-- <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script> --}}
         <!-- Owl Carousel -->
     <script src="{{ asset('assets/js/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
     <!-- Base Js File -->
@@ -70,7 +70,7 @@
     <script src="{{ asset('assets/js/plugins/slick/slick.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/slick/slick-slider.js') }}"></script>
   	<!-- Load More -->
-    <script src="{{ asset('assets/js/plugins/loadMore.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/plugins/loadMore.js') }}"></script> --}}
     <!-- Timeout -->
     {{-- <script>
           setTimeout(() => {

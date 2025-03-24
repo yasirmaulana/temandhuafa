@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Category;
 use App\Models\Permission;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use App\Models\PermissionRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -29,42 +30,48 @@ class DatabaseSeeder extends Seeder
             'name' => 'yasir',
             'email' => 'yasir@temandhuafa.id',
             'password' => Hash::make('yasir'),
-            'role_id' => 1
+            'role_id' => 1,
+            'user_uid' => Str::uuid()
         ]);
 
         User::create([
             'name' => 'admin',
             'email' => 'admin@temandhuafa.id',
             'password' => Hash::make('password'),
-            'role_id' => 1
+            'role_id' => 1,
+            'user_uid' => Str::uuid()
         ]);
 
         User::create([
             'name' => 'donatur',
             'email' => 'donatur@temandhuafa.id',
             'password' => Hash::make('password'),
-            'role_id' => 2
+            'role_id' => 2,
+            'user_uid' => Str::uuid()
         ]);
 
         User::create([
             'name' => 'fundraiser',
             'email' => 'fundraiser@temandhuafa.id',
             'password' => Hash::make('password'),
-            'role_id' => 3
+            'role_id' => 3,
+            'user_uid' => Str::uuid()
         ]);
 
         User::create([
             'name' => 'keuangan',
             'email' => 'keuangan@temandhuafa.id',
             'password' => Hash::make('password'),
-            'role_id' => 4
+            'role_id' => 4,
+            'user_uid' => Str::uuid()
         ]);
 
         User::create([
             'name' => 'progaram',
             'email' => 'progaram@temandhuafa.id',
             'password' => Hash::make('password'),
-            'role_id' => 5
+            'role_id' => 5,
+            'user_uid' => Str::uuid()
         ]);
 
         // ========================================================

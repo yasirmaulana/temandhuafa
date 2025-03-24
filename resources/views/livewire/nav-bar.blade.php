@@ -21,9 +21,9 @@
             <strong>FAQ</strong>
         </div>
     </a>
-    <a href="/login" wire:navigate class="item {{ Str::startsWith($currentRoute, 'akun') ? 'active' : '' }}">
+    <a href="/akun/dashboard-donatur" wire:navigate class="item {{ Str::startsWith($currentRoute, 'akun/') ? 'active' : '' }}">
         <div class="col">
-            <ion-icon name="person-outline"></ion-icon>
+            <ion-icon name="{{ Str::startsWith($currentRoute, 'akun/') ? 'person' : 'person-outline' }}"></ion-icon>
             <strong>AKUN</strong>
         </div>
     </a>

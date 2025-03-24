@@ -73,6 +73,12 @@ class Transaction extends Model
             ->get();
     }
 
+    static public function getTransactionByEmailUser($email)
+    {
+        return Transaction::where('email', $email)
+            ->get();
+    }
+
     // Relationships
     // public function campaign()
     // {
