@@ -1,4 +1,6 @@
 <div>
+    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+
     <!-- App Header -->
     <div class="appHeader bg-primary text-light container">
         <div class="left">
@@ -14,7 +16,5 @@
         </div>
     </div>
     <!-- * App Header -->
-
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 
 </div>

@@ -1,7 +1,17 @@
 <div class="container">
-    <div id="appCapsule">
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/back-arrow.png') }}" height="30"></img>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
 
-        @livewire('header')
+        </div>
+    </div>
+
+    <div id="appCapsule">
 
         <div class="section mt-3 mb-0">
             <h2 class="text-primary mb-2">Hitung Zakat Maal</h2>

@@ -1,6 +1,16 @@
 <div class="container">
 
-    @livewire('header')
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/back-arrow.png') }}" height="30"></img>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+
+        </div>
+    </div>
 
     <div id="appCapsule">
         <div class="section mt-3 mb-0">

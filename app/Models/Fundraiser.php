@@ -47,12 +47,12 @@ class Fundraiser extends Model
 
     static public function getFundraiserByUserid($userid)
     {
-        return Fundraiser::where('user_id', $userid)->get();
+        return self::where('user_id', $userid)->get();
     }
 
     static public function setRegisterStatus($userid)
     {
-        return Fundraiser::where('user_id', $userid)
+        return self::where('user_id', $userid)
             ->update(['register_status' => 'Active']);
     }
 }

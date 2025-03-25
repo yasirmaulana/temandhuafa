@@ -2,7 +2,17 @@
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style></style>
 
-    @livewire('header')
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/back-arrow.png') }}" height="30"></img>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+
+        </div>
+    </div>
 
     <!-- App Capsule -->
     <div id="appCapsule">

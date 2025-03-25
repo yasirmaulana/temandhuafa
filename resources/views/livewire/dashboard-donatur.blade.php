@@ -14,7 +14,7 @@
                         <h6 class="subtext mb-0">Sejak {{ $user->created_at->translatedFormat('d F Y') }}</h6>
                 </div>
                 <div class="col-3">
-                    <a href="/akun/dashboard-fundraiser" class="text-primary"><button type="botton"
+                    <a href="/akun/dashboard-fundraiser" wire:navigate class="text-primary"><button type="botton"
                             class="btn">Daftar Fundriser</botton></a>
                 </div>
             </li>
@@ -77,21 +77,5 @@
 
 
             @livewire('nav-bar')
-
-
-            <!-- ///////////// Js Files ////////////////////  -->
-            <!-- Jquery -->
-            <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
-            <!-- Bootstrap-->
-            <script src="assets/js/lib/popper.min.js"></script>
-            <script src="assets/js/lib/bootstrap.min.js"></script>
-            <!-- Ionicons -->
-            <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-            <!-- Owl Carousel -->
-            <script src="assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
-            <!-- Base Js File -->
-            <script src="assets/js/base.js"></script>
-            <!-- Load More -->
-            <script src="assets/js/plugins/loadMore.js"></script>
 
     </div>

@@ -6,7 +6,6 @@ use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Hash;
 
 class Registrasi extends Component
 {
@@ -19,7 +18,7 @@ class Registrasi extends Component
         'avatar.image' => 'File yang diunggah harus berupa gambar.',
         'avatar.mimes' => 'Format gambar harus jpg, jpeg, atau png.',
         'avatar.max' => 'Ukuran gambar maksimal 2MB.',
-        
+         
         'name.required' => 'Nama wajib diisi.',
         'name.max' => 'Nama maksimal :max karakter.',
     
