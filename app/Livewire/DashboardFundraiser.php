@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
+use Auth;
 use App\Models\Kota;
 use App\Models\Provinsi;
+use App\Models\Fundraiser;
+use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class DashboardFundraiser extends Component
@@ -12,59 +14,67 @@ class DashboardFundraiser extends Component
     use WithFileUploads;
 
     // Properti form
-    public $cover, $provinsi;
-    public $nama_lembaga, $jenis_badan_usaha, $nomor_ijin, $nomor_kemenkumham;
-    public $kota_domisili = [];
-    // , $alamat_lembaga, $email_lembaga;
-    public $nomor_telpon, $nomor_npwp;
-    public $nama_bank, $nomor_rekening, $nama_rekening;
-    public $nama_pj, $tempat_lahir, $tanggal_lahir, $email_pj, $nomor_pj, $jabatan;
-    public $nama_pimpinan, $nomor_hp_pimpinan, $nama_bendahara, $nomor_hp_bendahara;
-    public $register_status, $user_id;
-
+    public $nama_lembaga, $jenis_badan_usaha, $nomor_ijin, $nomor_kemenkumham, $provinsi, $kota_domisili, $alamat_lembaga;
+    public $list_kota = [];
+    public $list_provinsi = [];
+    public $nomor_rekening, $nama_rekening, $nama_bank;
+    public $nama_pimpinan, $nomor_hp_pimpinan, $email_pimpinan;
+    public $nama_bendahara, $nomor_hp_bendahara, $email_bendahara;
+    public $nama_pj, $nomor_pj, $email_pj;
+    public $cover, $file_legalitas, $file_kemenkumham, $file_rekening, $file_pernyataan, $file_struktur, $file_surat_tugas, $file_ktp;
+    public $terms, $register_status, $user_id;
     public $selectedProvinsi;
 
-    // Properti untuk unggahan file
-    public $image_ijin, $image_kemenkumham, $image_npwp, $image_buku_tabungan;
-    public $image_doc_pj, $image_struktur_org, $image_ktp;
-
     protected $messages = [
-        'avatar.image' => 'File yang diunggah harus berupa gambar.',
-        'avatar.mimes' => 'Format gambar harus jpg, jpeg, atau png.',
-        'avatar.max' => 'Ukuran gambar maksimal 2MB.',
-        
-        'name.required' => 'Nama wajib diisi.',
-        'name.max' => 'Nama maksimal :max karakter.',
-    
-        'handphone.required' => 'Nomor WA wajib diisi.',
-        'handphone.numeric' => 'Nomor WA harus berupa angka.',
-        'handphone.digits_between' => 'Nomor WA harus antara :min hingga :max digit.',
-        'handphone.unique' => 'Nomor WA sudah digunakan.',
-    
-        'email.required' => 'Email wajib diisi.',
-        'email.email' => 'Format email tidak valid.',
-        'email.unique' => 'Email sudah terdaftar.',
-    
-        'password.required' => 'Password wajib diisi.',
-        'password.min' => 'Password minimal :min karakter.',
-        'password.confirmed' => 'Password konfirmasi tidak cocok.',
-        'password_confirmation.required' => 'Konfirmasi password wajib diisi.',
+        'cover.image' => 'File yang diunggah harus berupa gambar.',
+        'cover.mimes' => 'Format gambar harus jpg, jpeg, atau png.',
+        'cover.max' => 'Ukuran gambar maksimal 2MB.',
+
+        'nama_lembaga.required' => 'Nama Lembaga wajib diisi.',
+        'nama_lembaga.max' => 'Nama Lembaga maksimal :max karakter.',
+
+        'nomor_hp_pimpinan.required' => 'Kontak WA Pimpinan wajib diisi.',
+        'nomor_hp_pimpinan.numeric' => 'Kontak WA Pimpinan harus berupa angka.',
+        'nomor_hp_pimpinan.digits_between' => 'Kontak WA Pimpinan harus antara :min hingga :max digit.',
+        // 'nomor_hp_pimpinan.unique' => 'Kontak WA Pimpinan sudah digunakan.',
+
+        'email_pimpinan.required' => 'Email Pimpinan wajib diisi.',
+        'email_pimpinan.email' => 'Format email pimpinan tidak valid.',
+        // 'email_pimpinan.unique' => 'Email sudah terdaftar.',
 
         'terms.accepted' => 'Anda harus menyetujui syarat & ketentuan.'
     ];
 
     // Aturan validasi
     protected $rules = [
+        'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'nama_lembaga' => 'required|string|max:255',
-        'email_lembaga' => 'required|email|max:255',
-        'nomor_telpon' => 'required|numeric',
-        'image_ijin' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_kemenkumham' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_npwp' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_buku_tabungan' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_doc_pj' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_struktur_org' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        'image_ktp' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'jenis_badan_usaha' => 'required|string|max:255',
+        'nomor_ijin' => 'required|string|max:255',
+        'nomor_kemenkumham' => 'required|string|max:255',
+        'alamat_lembaga' => 'required|string|max:255',
+        // 'provinsi' => 'required|string|max:255',
+        // 'kota_domisili' => 'required|string|max:255',
+        'nomor_rekening' => 'required|string|max:255',
+        'nama_rekening' => 'required|string|max:255',
+        'nama_bank' => 'required|string|max:255',
+        'nama_pimpinan' => 'required|string|max:255',
+        'nomor_hp_pimpinan' => 'required|string|max:255',
+        'email_pimpinan' => 'required|email|max:255',
+        'nama_bendahara' => 'required|string|max:255',
+        'nomor_hp_bendahara' => 'required|string|max:255',
+        'email_bendahara' => 'required|email|max:255',
+        'nama_pj' => 'required|string|max:255',
+        'nomor_pj' => 'required|string|max:255',
+        'email_pj' => 'required|string|max:255',
+        'file_legalitas' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'file_kemenkumham' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'file_rekening' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'file_pernyataan' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'file_struktur' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'file_surat_tugas' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'file_ktp' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        'terms' => 'accepted'
     ];
 
     public function auth_register()
@@ -73,37 +83,73 @@ class DashboardFundraiser extends Component
 
         // Simpan file yang diunggah
         $filePaths = [];
-        foreach (['image_ijin', 'image_kemenkumham', 'image_npwp', 'image_buku_tabungan', 'image_doc_pj', 'image_struktur_org', 'image_ktp'] as $file) {
-            if ($this->$file) {
+        $fileFields = [
+            'cover',
+            'file_legalitas',
+            'file_kemenkumham',
+            'file_rekening',
+            'file_pernyataan',
+            'file_struktur',
+            'file_surat_tugas',
+            'file_ktp'
+        ];
+
+        foreach ($fileFields as $file) {
+            if (!empty($this->$file)) { // Cek jika file tidak null
                 $filePaths[$file] = $this->$file->store('fundraisers', 'public');
             }
         }
 
-        // Simpan data ke database (contoh menggunakan model Fundraiser)
+        // Simpan data ke database dengan user_id dari Auth
         Fundraiser::create(array_merge($this->only([
-            'nama_lembaga', 'jenis_badan_usaha', 'kota_domisili', 'alamat_lembaga',
-            'email_lembaga', 'nomor_telpon', 'nomor_ijin', 'nomor_kemenkumham', 'nomor_npwp',
-            'nama_bank', 'nomor_rekening', 'nama_rekening', 'nama_pj', 'tempat_lahir',
-            'tanggal_lahir', 'email_pj', 'nomor_pj', 'jabatan', 'nama_pimpinan',
-            'nomor_hp_pimpinan', 'nama_bendahara', 'nomor_hp_bendahara',
-            'register_status', 'user_id'
-        ]), $filePaths));
+            'nama_lembaga',
+            'jenis_badan_usaha',
+            'nomor_ijin',
+            'nomor_kemenkumham',
+            'provinsi',
+            'kota_domisili',
+            'alamat_lembaga',
+            'nomor_rekening',
+            'nama_rekening',
+            'nama_bank',
+            'nama_pimpinan',
+            'nomor_hp_pimpinan',
+            'email_pimpinan',
+            'nama_bendahara',
+            'nomor_hp_bendahara',
+            'email_bendahara',
+            'nama_pj',
+            'nomor_pj',
+            'email_pj',
+            'cover',
+            'file_legalitas',
+            'file_kemenkumham',
+            'file_rekening',
+            'file_pernyataan',
+            'file_struktur',
+            'file_surat_tugas',
+            'file_ktp',
+        ]), $filePaths, [
+            'register_status' => 'register',
+            'user_id' => Auth::id()
+        ]));
 
-        session()->flash('message', 'Data fundraiser berhasil disimpan!');
+        return redirect('/akun/dashboard-donatur')->with('success', "Register fundraiser successfully");
     }
 
-    public function updatedSelectedProvinsi($value) {
-        $this->kota_domisili = Kota::getKotaByProvinsi($value);
+    public function updatedProvinsi($value)
+    {
+        $this->list_kota = Kota::getKotaByProvinsi($value);
         $this->dispatch('$refresh');
     }
 
-    public function mount() {
-        // $this->kota_domisili = Kota::getKotaByProvinsi('Aceh');
-    }
+    // public function mount() {
+    // $this->kota_domisili = Kota::getKotaByProvinsi('Aceh');
+    // }
 
     public function render()
     {
-        $this->provinsi = Provinsi::orderBy('provinsi', 'asc')->get();
+        $this->list_provinsi = Provinsi::orderBy('provinsi', 'asc')->get();
 
         return view('livewire.dashboard-fundraiser');
     }

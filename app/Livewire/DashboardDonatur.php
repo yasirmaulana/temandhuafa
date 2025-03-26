@@ -2,17 +2,27 @@
 
 namespace App\Livewire;
 
-use App\Models\Transaction;
-use Livewire\Component;
 use Auth;
+use Livewire\Component;
+use App\Models\Fundraiser;
+use App\Models\Transaction;
 
 class DashboardDonatur extends Component
 {
-    public $user, $transactions;
+    public $user, $transactions, $fundraiser_status; 
+    public $fundraiser = [];
 
     public function render()
     {
         $this->user = Auth::user();
+        
+        $this->fundraiser = Fundraiser::getFundraiserByUserid($this->user->id);
+        if (empty($this->fundraiser) || count($this->fundraiser) === 0) {
+            $this->fundraiser_status = 'not register';
+        } else {
+            $this->fundraiser_status = $this->fundraiser[0]['register_status'] ?? 'unknown';
+        }
+
         $this->transactions = Transaction::getTransactionByEmailUser($this->user->email);
 
         return view('livewire.dashboard-donatur');

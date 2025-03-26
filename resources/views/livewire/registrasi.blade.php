@@ -1,6 +1,16 @@
 <div class="container">
 
-    @livewire('header')
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/loginapp" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/back-arrow.png') }}" height="30"></img>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+
+        </div>
+    </div>
 
     <div id="appCapsule">
 
@@ -86,8 +96,8 @@
 
                 <div class="form-group  mt-2 mb-3">
                     <div class="custom-control custom-checkbox mb-1">
-                        <input type="checkbox" class="custom-control-input" id="customCheck2" wire:model="terms">
-                        <label class="custom-control-label" for="customCheck2">Saya setuju dengan
+                        <input type="checkbox" class="custom-control-input" id="terms" wire:model="terms">
+                        <label class="custom-control-label" for="terms">Saya setuju dengan
                             <a href="javascript:;">Syarat & Ketentuan</a>
                         </label>
                     </div>

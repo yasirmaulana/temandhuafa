@@ -1,5 +1,19 @@
 <div class="container">
-    @livewire('header')
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/akun/dashboard-donatur" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/logo.png') }}" height="30"></img>
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+            <a href="/logout" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/logout.png') }}" height="33"></img>
+            </a>
+        </div>
+    </div>
+
+    @include('_message')
 
     <!-- App Capsule -->
     <div id="appCapsule">
@@ -14,16 +28,21 @@
                         <h6 class="subtext mb-0">Sejak {{ $user->created_at->translatedFormat('d F Y') }}</h6>
                 </div>
                 <div class="col-3">
-                    <a href="/akun/dashboard-fundraiser" wire:navigate class="text-primary"><button type="botton"
-                            class="btn">Daftar Fundriser</botton></a>
+                    {{-- {{ $fundraiser_status }} --}}
+                    @if ($fundraiser_status == 'not register')
+                        <a href="/akun/dashboard-fundraiser" wire:navigate class="text-primary"><button type="botton"
+                            class="btn">Daftar Fundriser</botton></a> 
+                    @elseif ($fundraiser_status == 'register')
+                        <a href="">Fundraiser Detail</a>
+                    @else
+                        <a href="">Dashboard Fundraiser</a>
+                    @endif
                 </div>
             </li>
         </ul>
 
-        <! -- total donasi -->
             <div class="section inset pt-2 pb-2 mb-1">
                 <button type="button" class="btn btn-success btn-lg btn-block">Total Donasi Rp xx</button>
-                <! -- * total donasi -->
 
                     <!-- Table riwayat donasi -->
                     <div class="section full mt-1 mb-2">
