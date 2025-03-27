@@ -1,13 +1,4 @@
 <main class="container">
-    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://kit.fontawesome.com/4cbe939c80.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/lib/jquery-3.4.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/js/base.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/slick/slick.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins/slick/slick-slider.js') }}"></script>
 
     @livewire('header')
 
@@ -55,8 +46,17 @@
     </div>
     <!-- * welcome notification -->
 
-  	<!-- Load More -->
+    <script src="{{ asset('assets/js/lib/jquery-3.4.1.min.js') }}"></script> 
+    <script src="{{ asset('assets/js/lib/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/owl-carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/base.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/slick/slick.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/slick/slick-slider.js') }}"></script>
     {{-- <script src="{{ asset('assets/js/plugins/loadMore.js') }}"></script> --}}
+    {{-- <script src="https://kit.fontawesome.com/4cbe939c80.js" crossorigin="anonymous"></script> --}}
+
+  	<!-- Load More -->
     <!-- Timeout -->
     {{-- <script>
           setTimeout(() => {

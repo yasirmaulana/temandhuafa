@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Campaign;
+use App\Models\Fundraiser;
 use App\Models\Transaction;
 
 class CampaignListLebihManfaat extends Component
@@ -12,8 +13,14 @@ class CampaignListLebihManfaat extends Component
     public $campaignSettlementAmounts;
     public $campaign = "";
 
-    public function mount()
+    public $fundraisers;
+
+
+    public function render() 
     {
+        $this->fundraisers = Fundraiser::all();
+        // dd($this->fundraisers);
+
         $this->campaigns = Campaign::getCampaignsPublished('lebih-manfaat');
         $this->campaignSettlementAmounts = Transaction::getSettlementAmount();
 
@@ -25,12 +32,6 @@ class CampaignListLebihManfaat extends Component
             $campaign->total_gross_amount = $settlementAmounts[$campaign->id] ?? 0;
             return $campaign; 
         });
-
-        // dd($this->campaigns);
-    }
-
-    public function render() 
-    {
         return view('livewire.campaign-list-lebih-manfaat');
     }
 }

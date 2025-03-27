@@ -1,6 +1,38 @@
 <div class="container">
 
-    @livewire('header')
+    <style>
+        .chevron-back,
+        .logo-google {
+            filter: invert(1);
+        }
+
+        .btn-google {
+            border-color: #ccc;
+            background: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-google:hover {
+            background: #f8f9fa;
+            border-color: #bbb;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    {{-- @livewire('header')  --}}
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+            <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
+                {{-- <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline" height="24"> --}}
+            </a>
+        </div>
+    </div>
 
     <div id="appCapsule">
 
@@ -47,17 +79,19 @@
                     <div class="col-12">
                         <button type="submit" class="btn btn-success btn-block">Login</button>
                     </div>
-
-
                 </form>
+
                 <div class="col-12 mt-3 mb-3">
 
                     <h4 class="text-center">Atau</h4>
                 </div>
 
                 <div class="col-12">
-                    <a href="auth/google" class="btn btn-danger btn-block">
-                        <ion-icon name="logo-google"></ion-icon>Google</a>
+                    <a href="auth/google"
+                        class="btn btn-block border shadow-sm rounded d-flex align-items-center justify-content-center p-2 btn-google">
+                        <img src="{{ asset('assets/img/logo_google.svg') }}" class="mr-1" height="24">
+                        <span class="font-weight-bold text-dark">Google</span>
+                    </a>
                 </div>
 
 

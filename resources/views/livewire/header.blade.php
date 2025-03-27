@@ -1,7 +1,9 @@
 <div>
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-
-    <!-- App Header -->
+    <style>
+        .search-icon {
+            filter: invert(1);
+        }
+    </style>
     <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="/" wire:navigate class="headerButton">
@@ -10,11 +12,10 @@
         </div>
         <div class="pageTitle"></div>
         <div class="right">
-            <a href="javascript:;" class="headerButton toggle-searchbox">
-                <ion-icon name="search-outline"></ion-icon>
+            <a href="#" class="headerButton toggle-searchbox" aria-label="Search">
+                <img src="{{ asset('assets/img/search-outline.svg') }}" alt="Search Icon" class="search-icon" height="24">
             </a>
         </div>
     </div>
-    <!-- * App Header -->
 
 </div>

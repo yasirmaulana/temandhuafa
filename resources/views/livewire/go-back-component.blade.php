@@ -1,16 +1,13 @@
 <div class="appHeader bg-primary text-light container">
     <div class="left">
         <button id="goBackBtn" class="btn text-white">
-            <ion-icon name="chevron-back-outline"></ion-icon>
+            <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
         </button>
     </div>
     <div class="pageTitle"></div>
     <div class="right">
 
     </div>
-
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -1,6 +1,24 @@
 <div class="container">
+    <style>
+        .chevron-back, .share-outline {
+            filter: invert(1);
+        }
+    </style>
 
-    @livewire('header')
+    {{-- @livewire('header')  --}}
+    <div class="appHeader bg-primary text-light container">
+        <div class="left">
+            <a href="/" wire:navigate class="headerButton goBack">
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
+            </a>
+        </div>
+        <div class="pageTitle"></div>
+        <div class="right">
+            <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
+                <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline" height="24">
+            </a>
+        </div>
+    </div>
 
     <div id="appCapsule">
 
@@ -315,12 +333,70 @@
             </div>
 
         </div>
+
+        <!-- Share Action Sheet -->
+        {{-- <div class="modal fade action-sheet inset" id="actionSheetShare" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content container">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Semangat Berbagi Kebaikan</h5>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="action-button-list">
+                            <li>
+                                <a target="_blank"
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    class="btn btn-list" id="" title="" rel="">
+                                    <span class="text-primary">
+                                        <ion-icon name="logo-facebook"></ion-icon>
+                                        Facebook
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank"
+                                    href="https://twitter.com/intent/tweet?text={{ urlencode('Cek campaign ini! ') }}{{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    class="btn btn-list" title="Bagikan ke Twitter">
+                                    <span class="text-primary">
+                                        <ion-icon name="logo-twitter"></ion-icon>
+                                        Twitter
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a target="_blank"
+                                    href="https://t.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}&text={{ urlencode('Cek campaign ini!') }}"
+                                    class="btn btn-list" title="Bagikan ke Telegram">
+                                    <span class="text-primary">
+                                        <ion-icon name="paper-plane"></ion-icon>
+                                        Telegram
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a target="_blank"
+                                    href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    class="btn btn-list" id="" title="" rel="">
+                                    <span class="text-primary">
+                                        <ion-icon name="logo-WhatsApp"></ion-icon>
+                                        WhatsApp
+                                    </span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!-- * Share Action Sheet -->
+
     </div>
 
     @livewire('nav-bar')
+    <script src="{{ asset('assets/js/base.js') }}"></script>
 
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
 
 </div>

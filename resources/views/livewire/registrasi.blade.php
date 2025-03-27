@@ -1,9 +1,14 @@
 <div class="container">
-
+    <style>
+        .chevron-back {
+            filter: invert(1);
+        }
+    </style>
+    
     <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="/loginapp" wire:navigate class="headerButton goBack">
-                <img src="{{ asset('assets/img/back-arrow.png') }}" height="30"></img>
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
             </a>
         </div>
         <div class="pageTitle"></div>
@@ -27,17 +32,18 @@
             <form class="needs-validation" novalidate method="post" wire:submit.prevent="auth_register"
                 enctype="multipart/form-data">
                 @csrf
-				<div class="form-group basic">
+                <div class="form-group basic">
                     <div class="input-wrapper">
                         <label class="label mb-2" for="avatar">Upload Foto (Max size 2M)</label>
-						<div class="col-sm-12">
-							<input type="file" class="form-control" @error('avatar') is-invalid @enderror wire:model="avatar">
-						</div>
+                        <div class="col-sm-12">
+                            <input type="file" class="form-control" @error('avatar') is-invalid @enderror
+                                wire:model="avatar">
+                        </div>
                         @error('avatar')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-					</div>
-				</div>
+                    </div>
+                </div>
 
                 <div class="form-group basic">
                     <div class="input-wrapper">

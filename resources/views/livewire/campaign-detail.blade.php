@@ -1,31 +1,24 @@
 <div class="container">
-
-    <!-- loader -->
-    {{-- <div id="loader">
-        <div class="spinner-border text-primary" role="status"></div>
-    </div> --}}
-    <!-- * loader -->
-
-    <!-- App Header -->
+    <style>
+        .chevron-back, .share-outline {
+            filter: invert(1);
+        }
+    </style>
     <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="javascript:;" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
             </a>
         </div>
         <div class="pageTitle"></div>
         <div class="right">
-            {{-- <a href="javascript:;" class="headerButton">
-                <ion-icon name="bookmark-outline"></ion-icon>
-            </a> --}}
             <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
-                <ion-icon name="share-outline"></ion-icon>
+                <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline" height="24">
             </a>
         </div>
     </div>
-    <!-- * App Header -->
 
-    <!-- App Capsule -->
     <div id="appCapsule">
 
         <div class="blog-post">
@@ -311,9 +304,6 @@
 
     </div>
 
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     <!-- Base Js File -->
     <script src="{{ asset('assets/js/base.js') }}"></script>
 
