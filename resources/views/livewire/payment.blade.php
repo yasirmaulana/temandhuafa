@@ -13,16 +13,19 @@
         window.snap.pay(snapToken, {
             onSuccess: function(result) {
                 // console.log('Payment Success:', result);
+                sendResultToBackend(result);
                 alert("Pembayaran berhasil!");
                 window.location.href = "/";
             },
             onPending: function(result) {
                 // console.log('Payment Pending:', result);
+                sendResultToBackend(result);
                 alert("Menunggu pembayaran Anda!");
                 window.location.href = "/";
             },
             onError: function(result) {
                 // console.log('Payment Error:', result);
+                sendResultToBackend(result);
                 alert("payment failed!");
                 window.location.reload();
             },

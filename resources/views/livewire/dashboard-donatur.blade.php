@@ -44,7 +44,7 @@
                         @elseif ($fundraiser_status == 'register')
                             <a href="">Fundraiser Detail</a>
                         @else
-                            <a href="">Dashboard Fundraiser</a>
+                            <a href="/panel/campaign">Dashboard Fundraiser</a>
                         @endif
                     </div>
                 </li>

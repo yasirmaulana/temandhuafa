@@ -1,9 +1,13 @@
 <div class="container">
-
+    <style>
+        .chevron-back {
+            filter: invert(1);
+        }
+    </style>
     <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="/" wire:navigate class="headerButton goBack">
-                <img src="{{ asset('assets/img/back-arrow.png') }}" height="30"></img>
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="chevron Icon" class="chevron-back" height="24">
             </a>
         </div>
         <div class="pageTitle"></div>

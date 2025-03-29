@@ -16,7 +16,7 @@
 
         @foreach ($fundraisers as $fundraiser)
         <div class="card mb-1">
-                <a href="/fundraiser/{{ $fundraiser->id }}">
+                <a href="{{ route('fundraiserDetail', ['slug' => $fundraiser->slug]) }}">
                     <img src="{{ asset('storage/' . $fundraiser->cover) }}" class="card-img-top" style="height:120px" alt="image">
                     <div class="card-body pt-2">
                         <h6 class="mb-0 text-secondary">{{ $fundraiser->kota_domisili }}</h6>

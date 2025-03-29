@@ -41,6 +41,7 @@ class Fundraiser extends Model
         'file_ktp',
         'register_status',
         'user_id',
+        'slug',
     ];
 
     static public function getFundraiserByUserid($userid)

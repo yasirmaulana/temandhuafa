@@ -1,12 +1,24 @@
 <div class="container">
+    <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
+
     <style>
-        .chevron-back, .share-outline {
+        .chevron-back,
+        .share-outline,
+        .logo-whatsApp {
             filter: invert(1);
+        }
+
+        .person {
+            background-color: #255C34;
+            -webkit-mask-image: url("{{ asset('assets/img/person.svg') }}");
+            mask-image: url("{{ asset('assets/img/person.svg') }}");
+            -webkit-mask-size: contain;
+            mask-size: contain;
         }
     </style>
     <div class="appHeader bg-primary text-light container">
         <div class="left">
-            <a href="javascript:;" class="headerButton goBack">
+            <a href="/" wire:navigate class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
                 <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
             </a>
@@ -14,7 +26,8 @@
         <div class="pageTitle"></div>
         <div class="right">
             <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
-                <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline" height="24">
+                <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline"
+                    height="24">
             </a>
         </div>
     </div>
@@ -144,7 +157,11 @@
                                         class="imaged w48 rounded mr-05">
                                 </div>
                                 <div class="col-6">
-                                    <h5 class="text-primary mt-1 mb-0">{{ $transaction->donor_name }}</h5>
+                                    @if ($transaction->anonim == 1)
+                                        <h5 class="text-primary mt-1 mb-0">Teman Baik</h5>
+                                    @else
+                                        <h5 class="text-primary mt-1 mb-0">{{ $transaction->donor_name }}</h5>
+                                    @endif
                                     <h6 class="mb-0">
                                         {{ \Carbon\Carbon::parse($transaction->transaction_time)->translatedFormat('d F Y') }}
                                     </h6>
@@ -152,7 +169,7 @@
                                 </div>
                                 <div class="col-3">
                                     <h5 class="text-right">
-                                        {{ number_format($transaction->gross_amount, 0, ',', '.') }}</h5>
+                                        {{ number_format($transaction->amount, 0, ',', '.') }}</h5>
                                 </div>
                             </li>
                         @endforeach
@@ -280,7 +297,10 @@
                                     href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
                                     class="btn btn-list" id="" title="" rel="">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-WhatsApp"></ion-icon>
+                                        {{-- <ion-icon name="logo-WhatsApp"></ion-icon> --}}
+                                        {{-- <img src="{{ asset('assets/img/logo-whatsApp.svg') }}" alt="chevron Icon"
+                                            class="logo-whatsApp" height="24"> --}}
+                                        <div class="person"></div>
                                         WhatsApp
                                     </span>
                                 </a>

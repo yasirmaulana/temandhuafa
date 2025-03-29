@@ -3,13 +3,22 @@
         .chevron-back, .share-outline {
             filter: invert(1);
         }
+
+        .checkmark-circle {
+            background-color: #198754 !important;
+            -webkit-mask-image: url("{{ asset('assets/img/checkmark-circle.svg') }}");
+            mask-image: url("{{ asset('assets/img/checkmark-circle.svg') }}");
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            margin-bottom: 10px;
+        }
     </style>
 
     {{-- @livewire('header')  --}}
     <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="/" wire:navigate class="headerButton goBack">
-                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="chevron Icon" class="chevron-back" height="24">
             </a>
         </div>
         <div class="pageTitle"></div>
@@ -22,11 +31,17 @@
 
     <div id="appCapsule">
 
-        <div class="section full mb-3">
-            <img src="assets/img/contents/gambar.png" alt="image" class="imaged square w-100">
-            <img src="assets/img/contents/avatar.jpg" alt="avatar" class="imaged  rounded w86"
-                style="margin-top: -130px; margin-left:15px">
-
+        <div class="section full mb-3"> 
+            <div class="section full mb-3 position-relative" style="height: 230px; overflow: hidden;">
+                <img src="{{ asset('storage/' . $fundraiser->cover) }}" 
+                     alt="image" 
+                     class="w-100 h-100 object-cover">
+            
+                <img src="{{ $user->avatar }}" 
+                     alt="avatar" 
+                     class="imaged rounded-circle position-absolute shadow" 
+                     style="width: 86px; height: 86px; bottom: 5px; left: 15px;">
+            </div>
 
             <!-- informasi campaigner -->
             <div class="section inset mb-2">
@@ -35,63 +50,30 @@
                         <span style="font-size:10pt">Lembaga/Organisasi</span>
                     </div>
                     <div class="col-8 text-right">
-                        <span style="font-size:10pt; font-weight:bold"">Kabupaten Jepara</span>
+                        <span style="font-size:10pt; font-weight:bold">{{ $fundraiser->kota_domisili }}</span>
                     </div>
                 </div>
 
                 <!-- nama akun personal / non personal max. 21 karakter -->
-                <h2 class="title text-primary">Pesantren Bintulhuda</h2>
-                <h6>Akun telah terverifikasi<span class="text-success"><ion-icon
-                            name="checkmark-circle"></ion-icon></span></h6>
+                <h2 class="title text-primary">{{ $fundraiser->nama_lembaga }}</h2>
+                <h6>Akun telah terverifikasi<span class="text-success">
+                    {{-- <ion-icon name="checkmark-circle"></ion-icon></span></h6> --}}
+                    <img src="{{ asset('assets/img/checkmark-circle.svg') }}" alt="" height="15" class="checkmark-circle">
             </div>
 
             <!-- capaian crowdfunding semua program -->
             <div class="section wide-block pt-2 pb-3 mb-3">
                 <h4 class="text-secondary">Total Penghimpunan</h4>
-                <span class="text-primary" style="font-size:15pt; font-weight:bold">Rp 1.987.908.000</span>
-                <span style="font-size:10pt">sejak 12 Januari 2020</span>
-                <h5>Total Penerima Manfaat: 250 orang dari 50 program</h5>
+                <span class="text-primary" style="font-size:15pt; font-weight:bold">Rp xx</span>
+                <span style="font-size:10pt">sejak {{ $fundraiser->created_at->translatedFormat('d F Y') }}</span>
+                <h5>Total Penerima Manfaat: xx</h5>
             </div>
-
 
             <!-- profil lembaga -->
             <div class="section inset mb-3">
 
                 <h3 class="mb-1">Profil Fundriser</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at magna porttitor lorem mollis
-                    ornare. Fusce varius varius massa. Vivamus nec odio tempus, condimentum ex eget, varius diam.
-                </p>
-                <p>
-                    Ut id fermentum nisi. In hac habitasse platea dictumst. Praesent ornare eget neque ut cursus. Nunc
-                    efficitur laoreet vulputate. Curabitur mi ligula, aliquet commodo leo in, consectetur venenatis
-                    tellus. Maecenas quis vehicula erat, vitae finibus tellus.
-                </p>
-                <p>
-                    Cras rhoncus ipsum quis lacus aliquam, quis euismod ligula varius. Phasellus ac odio rhoncus,
-                    aliquet nisl lobortis, commodo orci. Quisque bibendum est ut pellentesque hendrerit.
-                </p>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at magna porttitor lorem mollis
-                    ornare. Fusce varius varius massa. Vivamus nec odio tempus, condimentum ex eget, varius diam.
-                </p>
-
-                <p>
-                    Ut id fermentum nisi. In hac habitasse platea dictumst. Praesent ornare eget neque ut cursus. Nunc
-                    efficitur laoreet vulputate. Curabitur mi ligula, aliquet commodo leo in, consectetur venenatis
-                    tellus. Maecenas quis vehicula erat, vitae finibus tellus.
-                </p>
-                <h4>Subtitle</h4>
-                <p>
-                    Cras rhoncus ipsum quis lacus aliquam, quis euismod ligula varius. Phasellus ac odio rhoncus,
-                    aliquet nisl lobortis, commodo orci. Quisque bibendum est ut pellentesque hendrerit.
-                </p>
-                <h4>Subtitle</h4>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at magna porttitor lorem mollis
-                    ornare. Fusce varius varius massa. Vivamus nec odio tempus, condimentum ex eget, varius diam.
-                </p>
+                {{ $fundraiser->profile_lembaga }}
             </div>
 
             <div class="section pt-3 pb-3 mt-3 mb-3">
@@ -335,7 +317,7 @@
         </div>
 
         <!-- Share Action Sheet -->
-        {{-- <div class="modal fade action-sheet inset" id="actionSheetShare" tabindex="-1" role="dialog">
+        <div class="modal fade action-sheet inset" id="actionSheetShare" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content container">
                     <div class="modal-header">
@@ -345,7 +327,7 @@
                         <ul class="action-button-list">
                             <li>
                                 <a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    href="https://www.facebook.com/sharer/sharer.php?u={{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}"
                                     class="btn btn-list" id="" title="" rel="">
                                     <span class="text-primary">
                                         <ion-icon name="logo-facebook"></ion-icon>
@@ -355,7 +337,7 @@
                             </li>
                             <li>
                                 <a target="_blank"
-                                    href="https://twitter.com/intent/tweet?text={{ urlencode('Cek campaign ini! ') }}{{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    href="https://twitter.com/intent/tweet?text={{ urlencode('Cek fundraiser ini! ') }}{{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}"
                                     class="btn btn-list" title="Bagikan ke Twitter">
                                     <span class="text-primary">
                                         <ion-icon name="logo-twitter"></ion-icon>
@@ -366,7 +348,7 @@
 
                             <li>
                                 <a target="_blank"
-                                    href="https://t.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}&text={{ urlencode('Cek campaign ini!') }}"
+                                    href="https://t.me/share/url?url={{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}&text={{ urlencode('Cek fundraiser ini!') }}"
                                     class="btn btn-list" title="Bagikan ke Telegram">
                                     <span class="text-primary">
                                         <ion-icon name="paper-plane"></ion-icon>
@@ -377,7 +359,7 @@
 
                             <li>
                                 <a target="_blank"
-                                    href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
+                                    href="https://wa.me/?text={{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}"
                                     class="btn btn-list" id="" title="" rel="">
                                     <span class="text-primary">
                                         <ion-icon name="logo-WhatsApp"></ion-icon>
@@ -390,12 +372,13 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- * Share Action Sheet -->
 
     </div>
 
     @livewire('nav-bar')
+
     <script src="{{ asset('assets/js/base.js') }}"></script>
 
 

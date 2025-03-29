@@ -44,7 +44,7 @@ class Checkout extends Component
             $this->campaignId = $this->campaign->id;
             $this->totalAmount = $this->infaqSistemAmount;
             $this->orderId = $this->campaignId . '-' . rand();
-            $this->fundraiserId = $this->campaign->fundraiserId;
+            $this->fundraiserId = $this->campaign->fundraiser_id;
         } elseif ($this->titleRowBayar == "infaq") {
             $this->isZiswaf = false;
             $this->orderId = $this->titleRowBayar . '-' . rand();
@@ -149,7 +149,7 @@ class Checkout extends Component
 
     public function saveTransaction()
     {
-        $transaction = Transaction::create([
+        Transaction::create([
             'order_id' => $this->orderId,
             'campaign_id' => $this->campaignId ?? null,
             'fundraiser_id' => $this->fundraiserId ?? null,
@@ -160,6 +160,7 @@ class Checkout extends Component
             'anonim' => $this->anonim,
             'pray' => $this->doa,
             'gross_amount' => $this->totalAmount,
+            'amount' => $this->amount,
         ]);
     }
 

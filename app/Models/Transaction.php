@@ -30,6 +30,7 @@ class Transaction extends Model
         'phone',
         'anonim',
         'pray',
+        'amount',
     ];
 
     public function campaign()
@@ -60,9 +61,17 @@ class Transaction extends Model
 
     static public function getSettlementAmount()
     {
-        return Transaction::select('campaign_id', DB::raw('SUM(gross_amount) as total_gross_amount'), DB::raw('COUNT(gross_amount) as total_donatur'))
+        return Transaction::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
             ->where('transaction_status', 'settlement')
             ->groupBy('campaign_id')
+            ->get();
+    }
+
+    static public function getSettlementAmountGroupByFundraiser()
+    {
+        return Transaction::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
+            ->where('transaction_status', 'settlement')
+            ->groupBy('fundraiser_id')
             ->get();
     }
 
