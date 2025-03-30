@@ -24,7 +24,7 @@ class CampaignList extends Component
 
         $this->campaigns = $this->campaigns->map(function ($campaign) use ($settlementAmounts) {
             $campaign->total_gross_amount = $settlementAmounts[$campaign->id] ?? 0;
-            return $campaign; // 
+            return $campaign;
         });
 
     }

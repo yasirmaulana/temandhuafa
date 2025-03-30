@@ -9,7 +9,8 @@
     <div class="appHeader bg-primary text-light container">
         <div class="left">
             <a href="/" wire:navigate class="headerButton goBack">
-                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="chevron Icon" class="chevron-back" height="24">
+                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="chevron Icon" class="chevron-back"
+                    height="24">
             </a>
         </div>
         <div class="pageTitle"></div>
@@ -121,11 +122,13 @@
 
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" wire:model="infaqSistem" wire:click="togle"
-                            checked>
+                                checked>
                             <div class="d-flex align-items-center">
                                 <h5 class="text-secondary mb-0 mr-1">Biaya Transaksi Rp 5.000</h5>
-                                <i class="bi bi-info-circle text-secondary ms-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Biaya transaksi Rp 5.000 digunakan untuk memproses pembayaran. Anda dapat memilih untuk menanggung biaya ini, atau jika tidak dicentang, jumlahnya akan dikurangi dari total donasi Anda."></i>
-                            </div>                          
+                                <i class="bi bi-info-circle text-secondary ms-2" data-bs-toggle="tooltip"
+                                    data-bs-placement="right"
+                                    title="Biaya transaksi Rp 5.000 digunakan untuk memproses pembayaran. Anda dapat memilih untuk menanggung biaya ini, atau jika tidak dicentang, jumlahnya akan dikurangi dari total donasi Anda."></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -149,12 +152,14 @@
                                 <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
                             </div>
                         </div>
-                        <div class="form-check form-switch">
-                            <input wire:model="anonim" class="form-check-input" type="checkbox">
-                            <label class="form-check-label text-secondary">
-                                <h5 class="text-secondary">Sembunyikan nama saya (Donasi Teman Baik)</h5>
-                            </label>
-                        </div>
+                    @endif
+                    <div class="form-check form-switch">
+                        <input wire:model="anonim" class="form-check-input" type="checkbox">
+                        <label class="form-check-label text-secondary">
+                            <h5 class="text-secondary">Sembunyikan nama saya (Donasi Teman Baik)</h5>
+                        </label>
+                    </div>
+                    @if (empty(Auth::check()))
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <input type="number" wire:model="phone" class="form-control" placeholder="No. Whatsapp"

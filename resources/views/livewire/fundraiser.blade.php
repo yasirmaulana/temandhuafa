@@ -1,49 +1,17 @@
 <div class="container">
-    <style>
-        .chevron-back, .share-outline {
-            filter: invert(1);
-        }
 
-        .checkmark-circle {
-            background-color: #198754 !important;
-            -webkit-mask-image: url("{{ asset('assets/img/checkmark-circle.svg') }}");
-            mask-image: url("{{ asset('assets/img/checkmark-circle.svg') }}");
-            -webkit-mask-size: contain;
-            mask-size: contain;
-            margin-bottom: 10px;
-        }
-    </style>
-
-    {{-- @livewire('header')  --}}
-    <div class="appHeader bg-primary text-light container">
-        <div class="left">
-            <a href="/" wire:navigate class="headerButton goBack">
-                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="chevron Icon" class="chevron-back" height="24">
-            </a>
-        </div>
-        <div class="pageTitle"></div>
-        <div class="right">
-            <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
-                <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline" height="24">
-            </a>
-        </div>
-    </div>
+    @livewire('header-back')
 
     <div id="appCapsule">
 
-        <div class="section full mb-3"> 
+        <div class="section full mb-3">
             <div class="section full mb-3 position-relative" style="height: 230px; overflow: hidden;">
-                <img src="{{ asset('storage/' . $fundraiser->cover) }}" 
-                     alt="image" 
-                     class="w-100 h-100 object-cover">
-            
-                <img src="{{ $user->avatar }}" 
-                     alt="avatar" 
-                     class="imaged rounded-circle position-absolute shadow" 
-                     style="width: 86px; height: 86px; bottom: 5px; left: 15px;">
+                <img src="{{ asset('storage/' . $fundraiser->cover) }}" alt="image" class="w-100 h-100 object-cover">
+
+                <img src="{{ $user->avatar }}" alt="avatar" class="imaged rounded-circle position-absolute shadow"
+                    style="width: 86px; height: 86px; bottom: 5px; left: 15px;">
             </div>
 
-            <!-- informasi campaigner -->
             <div class="section inset mb-2">
                 <div class="row">
                     <div class="col-4">
@@ -54,24 +22,20 @@
                     </div>
                 </div>
 
-                <!-- nama akun personal / non personal max. 21 karakter -->
                 <h2 class="title text-primary">{{ $fundraiser->nama_lembaga }}</h2>
                 <h6>Akun telah terverifikasi<span class="text-success">
-                    {{-- <ion-icon name="checkmark-circle"></ion-icon></span></h6> --}}
-                    <img src="{{ asset('assets/img/checkmark-circle.svg') }}" alt="" height="15" class="checkmark-circle">
+                        <img src="{{ asset('assets/img/checkmark-circle.svg') }}" alt="" height="15"
+                            class="checkmark-circle">
             </div>
 
-            <!-- capaian crowdfunding semua program -->
             <div class="section wide-block pt-2 pb-3 mb-3">
                 <h4 class="text-secondary">Total Penghimpunan</h4>
-                <span class="text-primary" style="font-size:15pt; font-weight:bold">Rp xx</span>
+                <span class="text-primary" style="font-size:15pt; font-weight:bold">Rp {{ number_format($fundraiser->total_gross_amount ?? 0, 0, ',', '.') }}</span>
                 <span style="font-size:10pt">sejak {{ $fundraiser->created_at->translatedFormat('d F Y') }}</span>
-                <h5>Total Penerima Manfaat: xx</h5>
+                <h5>Total Penerima Manfaat: 0</h5>
             </div>
 
-            <!-- profil lembaga -->
             <div class="section inset mb-3">
-
                 <h3 class="mb-1">Profil Fundriser</h3>
                 {{ $fundraiser->profile_lembaga }}
             </div>
@@ -85,136 +49,128 @@
             </div>
         </div>
 
-
-        <!-- Tabs Program Aktif dan non aktif/selesai -->
         <div class="section full mt-1 mb-3">
 
             <ul class="nav nav-tabs lined" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#donatur" role="tab">
+                    <a class="nav-link active" data-toggle="tab" href="#programAktif" role="tab">
                         <span>Program Aktif</span>
                         <span>&nbsp</span>
-                        <span class="badge badge-secondary">4</span>
+                        <span class="badge badge-secondary">{{ $campaigns->count() }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#laporan" role="tab">
+                    <a class="nav-link" data-toggle="tab" href="#programSelesai" role="tab">
                         <span>Program Selesai</span>
                         <span>&nbsp</span>
-                        <span class="badge badge-secondary">3</span>
+                        <span class="badge badge-danger">{{ $campaignComplateds->count() }}</span>
                     </a>
                 </li>
             </ul>
 
             <div class="tab-content">
 
-                <!-- Dafar Program Aktif -->
-                <div class="tab-pane fade show active" id="donatur" role="tabpanel">
+                <div class="tab-pane fade show active" id="programAktif" role="tabpanel">
 
                     <ul class="listview">
-                        <li>
-                            <a href="profil-program.html">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="mt-1 mb-1">
-                                            <img src="assets/img/contents/gambar.png" alt="image"
-                                                class="imaged w-100" style="height:120px">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="mt-1 mb-1">
-                                            <h5 class="text-primary mb-1" style="font-weight:bold">#BisaMakan - Donasi
-                                                untuk berbagi Makanan</h5>
-                                            <h6>Pesantren Bintulhuda</h6>
-                                            <div class="progress mt-1 mb-1" style="height:5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;"
-                                                    aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <h6 class="mb-0">Terkumpul</h6>
-                                                    <h5 style="font-weight:bold">Rp 1.987.908.000</h5>
-                                                </div>
-                                                <div class="col-4 margin-top">
-                                                    <h6 class="text-right mb-0">Sisa hari</h6>
-                                                    <h5 class="text-right" style="font-weight:bold">9</h6>
-                                                </div>
+                        @foreach ($campaigns as $campaign)
+                            <li style="width: 100%;">
+                                <a href="{{ url('campaign/' . $campaign->slug) }}" wire:navigate
+                                    style="display: block; width: 100%;">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="mt-1 mb-1">
+                                                <img src="{{ $campaign->image }}" alt="image" class="imaged w-100"
+                                                    style="height:120px">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="profil-program.html">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="mt-1 mb-1">
-                                            <img src="assets/img/contents/gambar.png" alt="image"
-                                                class="imaged w-100" style="height:120px">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="mt-1 mb-1">
-                                            <h5 class="text-primary mb-1" style="font-weight:bold">#BisaMakan - Donasi
-                                                untuk berbagi Makanan</h5>
-                                            <h6>Pesantren Bintulhuda</h6>
-                                            <div class="progress mt-1 mb-1" style="height:5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;"
-                                                    aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <h6 class="mb-0">Terkumpul</h6>
-                                                    <h5 style="font-weight:bold">Rp 1.987.908.000</h5>
+                                        <div class="col-7">
+                                            <div class="mt-1 mb-1">
+                                                <h5 class="mb-1 text-primary" style="font-weight:bold">
+                                                    {{ $campaign->title }}</h5>
+                                                <h6>{{ $campaign->fundraiser }}</h6>
+                                                <div class="progress mt-1 mb-1" style="height:5px;">
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ ($campaign->total_gross_amount / $campaign->target_amount) * 100 }}%;"
+                                                        aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
                                                 </div>
-                                                <div class="col-4 margin-top">
-                                                    <h6 class="text-right mb-0">Sisa hari</h6>
-                                                    <h5 class="text-right" style="font-weight:bold">9</h6>
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6 class="mb-0">Terkumpul</h6>
+                                                        <h5 style="font-weight:bold">Rp
+                                                            {{ number_format($campaign->total_gross_amount, 0, ',', '.') }}
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-4 margin-top">
+                                                        <h6 class="text-right mb-0">Sisa hari</h6>
+                                                        <h5 class="text-right" style="font-weight:bold">
+                                                            {{ floor(abs(\Carbon\Carbon::parse($campaign->end_date)->diffInDays(now()))) }}
+                                                            </h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="profil-program.html">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="mt-1 mb-1">
-                                            <img src="assets/img/contents/gambar.png" alt="image"
-                                                class="imaged w-100" style="height:120px">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="mt-1 mb-1">
-                                            <h5 class="text-primary mb-1" style="font-weight:bold">#BisaMakan - Donasi
-                                                untuk berbagi Makanan</h5>
-                                            <h6>Pesantren Bintulhuda</h6>
-                                            <div class="progress mt-1 mb-1" style="height:5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;"
-                                                    aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <h6 class="mb-0">Terkumpul</h6>
-                                                    <h5 style="font-weight:bold">Rp 1.987.908.000</h5>
-                                                </div>
-                                                <div class="col-4 margin-top">
-                                                    <h6 class="text-right mb-0">Sisa hari</h6>
-                                                    <h5 class="text-right" style="font-weight:bold">9</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
+                    {{-- <div class="section inset pt-2 pb-2">
+                        <a href="#" class="btn-block" id="loadMore">
+                            <button type="button"
+                                class="btn btn-outline-primary mr-1 mb-1 btn-sm btn-block rounded">Lihat Lagi</button>
+                        </a>
+                        </a>
+                    </div> --}}
+
+                </div>
+
+                <div class="tab-pane fade" id="programSelesai" role="tabpanel">
+
+                    <ul class="listview">
+                        @foreach ($campaignComplateds as $campaignComplated)
+                            <li style="width: 100%;">
+                                <a href="{{ url('campaign/' . $campaignComplated->slug) }}" wire:navigate
+                                    style="display: block; width: 100%;">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="mt-1 mb-1">
+                                                <img src="{{ $campaignComplated->image }}" alt="image" class="imaged w-100"
+                                                    style="height:120px">
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="mt-1 mb-1">
+                                                <h5 class="mb-1 text-primary" style="font-weight:bold">
+                                                    {{ $campaignComplated->title }}</h5>
+                                                <h6>{{ $campaignComplated->fundraiser }}</h6>
+                                                <div class="progress mt-1 mb-1" style="height:5px;">
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ ($campaignComplated->total_gross_amount / $campaignComplated->target_amount) * 100 }}%;"
+                                                        aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-8">
+                                                        <h6 class="mb-0">Terkumpul</h6>
+                                                        <h5 style="font-weight:bold">Rp
+                                                            {{ number_format($campaignComplated->total_gross_amount, 0, ',', '.') }}
+                                                        </h5>
+                                                    </div>
+                                                    <div class="col-4 margin-top">
+                                                        <h6 class="text-right mb-0">Sisa hari</h6>
+                                                        <h5 class="text-right" style="font-weight:bold">
+                                                            {{ floor(abs(\Carbon\Carbon::parse($campaignComplated->end_date)->diffInDays(now()))) }}
+                                                            </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+
                     <!-- load more post -->
                     <div class="section inset pt-2 pb-2">
                         <a href="#" class="btn-block" id="loadMore">
@@ -225,92 +181,6 @@
                     </div>
 
                 </div>
-                <!-- * Daftar Program Aktif -->
-
-                <!-- Daftar Program Selesai -->
-                <div class="tab-pane fade" id="laporan" role="">
-
-                    <ul class="listview">
-                        <li>
-                            <a href="profil-program.html">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="mt-1 mb-1">
-                                            <img src="assets/img/contents/gambar.png" alt="image"
-                                                class="imaged w-100" style="height:120px">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="mt-1 mb-1">
-                                            <h5 class="text-primary mb-1" style="font-weight:bold">#BisaMakan - Donasi
-                                                untuk berbagi Makanan</h5>
-                                            <h6>Pesantren Bintulhuda</h6>
-                                            <div class="progress mt-1 mb-1" style="height:5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;"
-                                                    aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <h6 class="mb-0">Terkumpul</h6>
-                                                    <h5 style="font-weight:bold">Rp 1.987.908.000</h5>
-                                                </div>
-                                                <div class="col-4 margin-top">
-                                                    <h6 class="text-right mb-0">Sisa hari</h6>
-                                                    <h5 class="text-right" style="font-weight:bold">9</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="profil-program.html">
-                                <div class="row">
-                                    <div class="col-5">
-                                        <div class="mt-1 mb-1">
-                                            <img src="assets/img/contents/gambar.png" alt="image"
-                                                class="imaged w-100" style="height:120px">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="mt-1 mb-1">
-                                            <h5 class="text-primary mb-1" style="font-weight:bold">#BisaMakan - Donasi
-                                                untuk berbagi Makanan</h5>
-                                            <h6>Pesantren Bintulhuda</h6>
-                                            <div class="progress mt-1 mb-1" style="height:5px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%;"
-                                                    aria-valuenow="25" aria-valuemin="25" aria-valuemax="100"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <h6 class="mb-0">Terkumpul</h6>
-                                                    <h5 style="font-weight:bold">Rp 1.987.908.000</h5>
-                                                </div>
-                                                <div class="col-4 margin-top">
-                                                    <h6 class="text-right mb-0">Sisa hari</h6>
-                                                    <h5 class="text-right" style="font-weight:bold">9</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <!-- load more post -->
-                    <div class="section inset pt-2 pb-2">
-                        <a href="#" class="btn-block" id="loadMore">
-                            <button type="button"
-                                class="btn btn-outline-primary mr-1 mb-1 btn-sm btn-block rounded">Lihat Lagi</button>
-                        </a>
-                        </a>
-                    </div>
-
-                </div>
-                <!-- * Daftar Program Selesai -->
 
             </div>
 
@@ -328,9 +198,9 @@
                             <li>
                                 <a target="_blank"
                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}"
-                                    class="btn btn-list" id="" title="" rel="">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-facebook"></ion-icon>
+                                        <div class="icon-social logo-facebook mr-1"></div>
                                         Facebook
                                     </span>
                                 </a>
@@ -338,48 +208,42 @@
                             <li>
                                 <a target="_blank"
                                     href="https://twitter.com/intent/tweet?text={{ urlencode('Cek fundraiser ini! ') }}{{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}"
-                                    class="btn btn-list" title="Bagikan ke Twitter">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-twitter"></ion-icon>
+                                        <div class="icon-social logo-twitter mr-1"></div>
                                         Twitter
                                     </span>
                                 </a>
                             </li>
-
                             <li>
                                 <a target="_blank"
                                     href="https://t.me/share/url?url={{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}&text={{ urlencode('Cek fundraiser ini!') }}"
-                                    class="btn btn-list" title="Bagikan ke Telegram">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="paper-plane"></ion-icon>
+                                        <div class="icon-social paper-plane mr-1"></div>
                                         Telegram
                                     </span>
                                 </a>
                             </li>
-
                             <li>
                                 <a target="_blank"
                                     href="https://wa.me/?text={{ url('/fundraiser/' . $fundraiser?->slug ?? '') }}"
-                                    class="btn btn-list" id="" title="" rel="">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-WhatsApp"></ion-icon>
+                                        <div class="icon-social logo-whatsapp mr-1"></div>
                                         WhatsApp
                                     </span>
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- * Share Action Sheet -->
 
     </div>
 
     @livewire('nav-bar')
-
-    <script src="{{ asset('assets/js/base.js') }}"></script>
 
 
 </div>

@@ -69,7 +69,7 @@ class Transaction extends Model
 
     static public function getSettlementAmountGroupByFundraiser()
     {
-        return Transaction::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
+        return Transaction::select('fundraiser_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
             ->where('transaction_status', 'settlement')
             ->groupBy('fundraiser_id')
             ->get();

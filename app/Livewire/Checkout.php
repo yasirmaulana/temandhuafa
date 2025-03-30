@@ -149,6 +149,9 @@ class Checkout extends Component
 
     public function saveTransaction()
     {
+        if($this->infaqSistem == 0) {
+            $this->amount = max(0, $this->amount - 5000);
+        }
         Transaction::create([
             'order_id' => $this->orderId,
             'campaign_id' => $this->campaignId ?? null,

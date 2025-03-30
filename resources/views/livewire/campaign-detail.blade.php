@@ -1,36 +1,5 @@
 <div class="container">
-    <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>
-
-    <style>
-        .chevron-back,
-        .share-outline,
-        .logo-whatsApp {
-            filter: invert(1);
-        }
-
-        .person {
-            background-color: #255C34;
-            -webkit-mask-image: url("{{ asset('assets/img/person.svg') }}");
-            mask-image: url("{{ asset('assets/img/person.svg') }}");
-            -webkit-mask-size: contain;
-            mask-size: contain;
-        }
-    </style>
-    <div class="appHeader bg-primary text-light container">
-        <div class="left">
-            <a href="/" wire:navigate class="headerButton goBack">
-                <ion-icon name="chevron-back-outline"></ion-icon>
-                <img src="{{ asset('assets/img/chevron-back.svg') }}" alt="Search Icon" class="chevron-back" height="24">
-            </a>
-        </div>
-        <div class="pageTitle"></div>
-        <div class="right">
-            <a href="#" class="headerButton" data-toggle="modal" data-target="#actionSheetShare">
-                <img src="{{ asset('assets/img/share-outline.svg') }}" alt="Search Icon" class="share-outline"
-                    height="24">
-            </a>
-        </div>
-    </div>
+    @livewire('header-back')
 
     <div id="appCapsule">
 
@@ -39,10 +8,8 @@
                 <img src="{{ $campaign?->image ?? '' }}" alt="image" class="imaged square w-100">
             </div>
 
-            <!-- judul galang dana (buat max. 45 karakter -->
             <h2 class="title mb-3 text-primary">{{ $campaign?->title ?? '' }}</h2>
 
-            <!-- capaian crowdfunding -->
             <div class="section wide-block pt-2 pb-3 mb-3">
                 <h6 class="">Jumlah Penghimpunan</h6>
                 <span class="text-primary" style="font-size:15pt; font-weight:bold">Rp
@@ -71,7 +38,6 @@
                 </div>
             </div>
 
-            <!-- informasi campaigner -->
             <div class="section inset mb-4">
                 <a href="profil-fundriser.html">
                     <div class="row">
@@ -89,14 +55,12 @@
                 </a>
             </div>
 
-            <!-- tanggal posting dipublish (setelah melewati verifikasi -->
             <div class="section inset mb-3">
                 <h5 class="">Kategori: {{ $campaign->category_name }}</h5>
                 <div class="row mb-1">
                     <div class="col-8">
                         <span style="font-size:10pt; font-weight:normal">Status:</span>
                         <span>&nbsp</span>
-                        <!-- aktif warna hijau, tidak aktif warna merah, krn sebab sudah selesai -->
                         <span class="text-success"> Aktif</span>
                     </div>
                     <div class="col-4 text-right">
@@ -105,10 +69,9 @@
                     </div>
                 </div>
                 <h5 class="mb-0">Lokasi Penyaluran: xx</h5>
-                <h5>Target Penerima Manfaat: xx orang</h5>
+                <h5>Target Penerima Manfaat: xx</h5>
             </div>
 
-            <!-- konten crowdfunding -->
             <div class="section inset mb-3">
                 {!! $campaign?->description ?? '' !!}
             </div>
@@ -116,7 +79,6 @@
             <div class="section pt-3 pb-3 mt-3 mb-3">
                 <button type="button" class="btn btn-outline-primary btn-block rounded" data-toggle="modal"
                     data-target="#actionSheetShare">
-                    <ion-icon name="share-outline"></ion-icon>
                     Bagikan Informasi Program
                 </button>
             </div>
@@ -138,7 +100,6 @@
                     <a class="nav-link" data-toggle="tab" href="#laporan2" role="tab">
                         <span>Laporan</span>
                         <span>&nbsp</span>
-                        {{-- <span class="badge badge-secondary">3</span> --}}
                         <span class="badge badge-danger">comming soon</span>
                     </a>
                 </li>
@@ -185,10 +146,6 @@
                     </div> --}}
 
                 </div>
-
-
-
-                <!-- * Daftar Donatur -->
 
                 <!-- Laporan -->
                 <div class="tab-pane fade" id="laporan" role="tabpanel">
@@ -246,7 +203,6 @@
 
 
                 </div>
-                <!-- * Laporan -->
 
             </div>
         </div>
@@ -263,9 +219,9 @@
                             <li>
                                 <a target="_blank"
                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url('/campaign/' . $campaign?->slug ?? '') }}"
-                                    class="btn btn-list" id="" title="" rel="">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-facebook"></ion-icon>
+                                        <div class="icon-social logo-facebook mr-1"></div>
                                         Facebook
                                     </span>
                                 </a>
@@ -273,34 +229,29 @@
                             <li>
                                 <a target="_blank"
                                     href="https://twitter.com/intent/tweet?text={{ urlencode('Cek campaign ini! ') }}{{ url('/campaign/' . $campaign?->slug ?? '') }}"
-                                    class="btn btn-list" title="Bagikan ke Twitter">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="logo-twitter"></ion-icon>
+                                        <div class="icon-social logo-twitter mr-1"></div>
                                         Twitter
                                     </span>
                                 </a>
                             </li>
-
                             <li>
                                 <a target="_blank"
                                     href="https://t.me/share/url?url={{ url('/campaign/' . $campaign?->slug ?? '') }}&text={{ urlencode('Cek campaign ini!') }}"
-                                    class="btn btn-list" title="Bagikan ke Telegram">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        <ion-icon name="paper-plane"></ion-icon>
+                                        <div class="icon-social paper-plane mr-1"></div>
                                         Telegram
                                     </span>
                                 </a>
                             </li>
-
                             <li>
                                 <a target="_blank"
                                     href="https://wa.me/?text={{ url('/campaign/' . $campaign?->slug ?? '') }}"
-                                    class="btn btn-list" id="" title="" rel="">
+                                    class="btn btn-list d-flex align-items-center">
                                     <span class="text-primary">
-                                        {{-- <ion-icon name="logo-WhatsApp"></ion-icon> --}}
-                                        {{-- <img src="{{ asset('assets/img/logo-whatsApp.svg') }}" alt="chevron Icon"
-                                            class="logo-whatsApp" height="24"> --}}
-                                        <div class="person"></div>
+                                        <div class="icon-social logo-whatsapp mr-1"></div>
                                         WhatsApp
                                     </span>
                                 </a>
@@ -311,7 +262,6 @@
                 </div>
             </div>
         </div>
-        <!-- * Share Action Sheet -->
 
         <!-- App Bottom Menu -->
         <div class="appBottomMenu container">
@@ -319,12 +269,10 @@
                 <button type="button" class="btn btn-success btn-lg btn-block">Donasi Sekarang</button>
             </a>
         </div>
-        <!-- * App Bottom Menu -->
 
 
     </div>
 
-    <!-- Base Js File -->
     <script src="{{ asset('assets/js/base.js') }}"></script>
 
 </div>

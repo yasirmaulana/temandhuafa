@@ -16,22 +16,21 @@ class CampaignListLebihManfaat extends Component
     public $fundraisers;
 
 
-    public function render() 
+    public function render()
     {
         $this->fundraisers = Fundraiser::all();
 
-        // $this->campaigns = Campaign::getCampaignsPublished('lebih-manfaat');
-        // $this->campaignSettlementAmounts = Transaction::getSettlementAmount();
+        $this->campaignSettlementAmounts = Transaction::getSettlementAmountGroupByFundraiser();
 
-        // $settlementAmounts = collect($this->campaignSettlementAmounts)
-        //     ->keyBy('campaign_id')
-        //     ->map(fn($item) => $item['total_gross_amount']);
+        $settlementAmounts = collect($this->campaignSettlementAmounts)
+            ->keyBy('fundraiser_id')
+            ->map(fn($item) => $item['total_gross_amount']);
 
-        // $this->campaigns = $this->campaigns->map(function ($campaign) use ($settlementAmounts) {
-        //     $campaign->total_gross_amount = $settlementAmounts[$campaign->id] ?? 0;
-        //     return $campaign; 
-        // });
+        $this->fundraisers = $this->fundraisers->map(function ($fundraiser) use ($settlementAmounts) {
+            $fundraiser->total_gross_amount = $settlementAmounts[$fundraiser->id] ?? 0;
+            return $fundraiser; 
+        });
+        
         return view('livewire.campaign-list-lebih-manfaat');
     }
-
 }
