@@ -29,7 +29,11 @@ class CampaignController extends Controller
             $data['getRecord'] = Campaign::getCampaigns();
         } else {
             $fundraiser = Fundraiser::getFundraiserByUserid(Auth::user()->id)->first();
-
+ 
+            if (!$fundraiser) {
+                return redirect('panel/dashboard')->with('error', 'Akun fundraiser tidak ditemukan.');
+            }
+ 
             $data['getRecord'] = Campaign::getCampaignByUserId($fundraiser->id);
         }
 

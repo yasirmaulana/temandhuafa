@@ -1,5 +1,22 @@
 <?php
 
+use App\Livewire\Faq;
+use App\Livewire\Home;
+use App\Livewire\Ilmu;
+use App\Livewire\Zakat;
+use App\Livewire\Fidyah;
+use App\Livewire\Kafarat;
+use App\Livewire\Payment;
+use App\Livewire\Program;
+use App\Livewire\Checkout;
+use App\Livewire\Donation;
+use App\Livewire\LoginApp;
+use App\Livewire\Fundraiser;
+use App\Livewire\Registrasi;
+use App\Livewire\CampaignDetail;
+use App\Livewire\DashboardDonatur;
+use App\Livewire\FundraiserDetail;
+use App\Livewire\DashboardFundraiser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
@@ -14,23 +31,7 @@ use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
-use App\Livewire\Home;
-use App\Livewire\Ilmu;
-use App\Livewire\Zakat;
-use App\Livewire\Fidyah;
-use App\Livewire\Kafarat;
-use App\Livewire\Payment;
-use App\Livewire\Checkout;
-use App\Livewire\Donation;
-use App\Livewire\CampaignDetail;
-use App\Livewire\DashboardDonatur;
-use App\Livewire\DashboardFundraiser;
-use App\Livewire\Faq;
-use App\Livewire\Fundraiser;
-use App\Livewire\FundraiserDetail;
-use App\Livewire\LoginApp;
-use App\Livewire\Program;
-use App\Livewire\Registrasi;
+use App\Http\Controllers\CampaignReportController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/', Home::class);
@@ -88,6 +89,10 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/campaign/approve/{id}', [CampaignController::class, 'approve']);
     Route::get('/panel/campaign/complate/{id}', [CampaignController::class, 'complate']);
 
+    Route::get('/panel/campaignreport/{id}/{title}', [CampaignReportController::class, 'index']);
+    Route::get('/panel/campaignreport/add', [CampaignReportController::class, 'add']);
+    Route::get('/panel/campaignreport/edit/{id}', [CampaignReportController::class, 'edit']);
+
     Route::get('/panel/donatur', [DonaturController::class, 'list']);
 
     Route::get('/panel/donasi', [DonasiController::class, 'list']);
@@ -95,7 +100,6 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/fundraiser', [FundraiserController::class, 'list']); 
     Route::post('/fundraiser/store', [FundraiserController::class, 'store'])->name('fundraiser.store');
     Route::post('/fundraiser/approve/{id}', [FundraiserController::class, 'approveFundriserRegister'])->name('fundraiser.approve');
-
 
     Route::get('/panel/keuangan', [KeuanganController::class, 'list']);
 

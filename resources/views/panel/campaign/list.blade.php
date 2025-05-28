@@ -67,7 +67,10 @@
                                                 {{-- @if (!@empty($PermissionDelete))
                                                 <a href="{{ url('panel/campaign/delete/' . $value->id) }}"
                                                     class="btn btn-outline-danger btn-sm">Delete</a>
-                                            @endif --}}
+                                                @endif --}}
+                                                <a href="{{ url('panel/campaignreport/' . $value->id . '/' . $value->title) }}"
+                                                    class="btn btn-outline-primary btn-sm">
+                                                    Report</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -19,10 +19,12 @@ class Campaign extends Model
         'status', // draft, published, rejected, completed
         'fundraiser_id',
         'start_date',
+        'target_penerima_manfaat',
+        'lokasi_penyaluran',
         'slug',
         'collected_amount',
         'is_delete',
-        'flag_campaign'
+        'flag_campaign' 
     ];
 
     public function fundraiser()
@@ -38,6 +40,16 @@ class Campaign extends Model
     public function donations()
     {
         return $this->hasMany(Donation::class);
+    }
+
+    public function laporan()
+    {
+        return $this->hasMany(LaporanCampaign::class);
+    }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaction::class);
     }
 
     /**
@@ -73,7 +85,7 @@ class Campaign extends Model
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('fundraiser_id', $fundraiserId)
             ->where('status', 'published');
-
+ 
         return $query->orderBy('campaigns.created_at', 'desc')->get();
     }
 
@@ -144,6 +156,8 @@ class Campaign extends Model
         $save->end_date = $request->end_date;
         $save->fundraiser_id = $request->fundraiser_id;
         $save->slug = $request->slug;
+        $save->target_penerima_manfaat = $request->target_penerima_manfaat;
+        $save->lokasi_penyaluran = $request->lokasi_penyaluran;    
         $save->save();
     }
 
@@ -169,6 +183,8 @@ class Campaign extends Model
             $save->start_date = $request->start_date;
             $save->end_date = $request->end_date;
             $save->slug = $request->slug;
+            $save->target_penerima_manfaat = $request->target_penerima_manfaat;
+            $save->lokasi_penyaluran = $request->lokasi_penyaluran;    
             $save->save();
         }
     }
@@ -186,6 +202,8 @@ class Campaign extends Model
         $save->end_date = $request->end_date;
         $save->fundraiser_id = $request->fundraiser_id;
         $save->slug = $request->slug;
+        $save->target_penerima_manfaat = $request->target_penerima_manfaat;
+        $save->lokasi_penyaluran = $request->lokasi_penyaluran;
         $save->save();
     }
 }

@@ -68,8 +68,8 @@
                             style="font-size:10pt">{{ \Carbon\Carbon::parse($campaign->created_at)->translatedFormat('d F Y') }}</span>
                     </div>
                 </div>
-                <h5 class="mb-0">Lokasi Penyaluran: xx</h5>
-                <h5>Target Penerima Manfaat: xx</h5>
+                <h5 class="mb-0">Lokasi Penyaluran: {{ $campaign->lokasi_penyaluran }}</h5>
+                <h5>Target Penerima Manfaat: {{ $campaign->target_penerima_manfaat }}</h5>
             </div>
 
             <div class="section inset mb-3">
@@ -97,10 +97,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#laporan2" role="tab">
+                    <a class="nav-link" data-toggle="tab" href="#laporan" role="tab">
                         <span>Laporan</span>
-                        <span>&nbsp</span>
-                        <span class="badge badge-danger">comming soon</span>
+                        {{-- <span>&nbsp</span>
+                        <span class="badge badge-danger">comming soon</span> --}}
                     </a>
                 </li>
             </ul>
@@ -153,7 +153,22 @@
                     <!-- timeline -->
                     <div class="timeline timed">
 
+                        @foreach ($campaignReport as $report)
                         <div class="item">
+                            <span class="time">{{ \Carbon\Carbon::parse($report->tgl_laporan)->translatedFormat('d F Y') }}</span>
+                            <div class="dot bg-primary"></div>
+                            <div class="content">
+                                <img src="{{ asset('assets/img/contents/gambar.png') }}" alt="avatar"
+                                    class="imaged w-100 mb-1">
+                                <h4 class="title text-primary">{{ $report->judul }}</h4>
+                                <h6 class="sub-title mt-1 mb-0">Penerima Manfaat: {{ $report->penerima_manfaat }}</h6>
+                                <h6 class="mb-0">Lokasi di: {{ $report->lokasi_penyaluran }}</h6>
+                                <div class="text">{{ $report->deskripsi }}</div>
+                            </div>
+                        </div>                            
+                        @endforeach
+                        
+                        {{-- <div class="item">
                             <span class="time">5 April 2020</span>
                             <div class="dot bg-primary"></div>
                             <div class="content">
@@ -190,7 +205,7 @@
                                 <h6 class="mb-0">Lokasi di: Depok</h6>
                                 <div class="text">Deskripsi laporan penyaluran dana ke penerima manfaat.</div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- load more post -->
                     <div class="section inset pt-2 pb-2 mb-3">

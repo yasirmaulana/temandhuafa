@@ -51,7 +51,7 @@
             </ul>
 
             <div class="section inset pt-2 pb-2 mb-1">
-                <button type="button" class="btn btn-success btn-lg btn-block">Total Donasi Rp xx</button>
+                <button type="button" class="btn btn-success btn-lg btn-block">Total Donasi Rp {{ number_format($total_donasi->total_gross_amount ?? 0, 0, ',', '.') }}</button>
 
                 <!-- Table riwayat donasi -->
                 <div class="section full mt-1 mb-2">
@@ -73,11 +73,11 @@
                                 <tbody>
                                     @foreach ($transactions as $transaksi)
                                         <tr>
-                                            <td>{{ $transaksi->transaction_time }}</td>
-                                            <td>{{ $transaksi->order_id }}</td>
-                                            <td>{{ $transaksi->gross_amount }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($transaksi->transaction_time)->translatedFormat('d F Y') }}</td>
+                                            <td>{{ $transaksi->campaign_title }}</td>
+                                            <td>{{ number_format($transaksi->gross_amount, 0, ',', '.')  }}</td>
                                             <td>{{ $transaksi->transaction_status }}</td>
-                                            <td>Lihat</td>
+                                            <td><a href="{{ $transaksi->pdf_url }}" target="_blank" rel="noopener noreferrer">Lihat</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

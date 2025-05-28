@@ -9,7 +9,7 @@ use App\Models\Transaction;
 
 class DashboardDonatur extends Component
 {
-    public $user, $transactions, $fundraiser_status; 
+    public $user, $transactions, $fundraiser_status, $total_donasi;
     public $fundraiser = [];
 
     public function render()
@@ -24,7 +24,8 @@ class DashboardDonatur extends Component
         }
 
         $this->transactions = Transaction::getTransactionByEmailUser($this->user->email);
-
+        $this->total_donasi = Transaction::getSettlementAmountByEmail($this->user->email);
+        // dd($this->total_donasi);
         return view('livewire.dashboard-donatur');
     }
 }

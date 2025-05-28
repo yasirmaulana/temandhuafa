@@ -15,16 +15,16 @@ class LoginApp extends Component
         if (Auth::check()) {
             $user = Auth::user();
 
-            if ($user) {
-                PostHog::capture([
-                    'distinctId' => $user->id,
-                    'event' => 'User Logged In',
-                    'properties' => [
-                        'email' => $user->email,
-                        'role' => $user->role ?? 'user',
-                    ],
-                ]);
-            }
+            // if ($user) {
+            //     PostHog::capture([
+            //         'distinctId' => $user->id,
+            //         'event' => 'User Logged In',
+            //         'properties' => [
+            //             'email' => $user->email,
+            //             'role' => $user->role ?? 'user',
+            //         ],
+            //     ]);
+            // }
 
             return redirect('/akun/dashboard-donatur'); 
         }

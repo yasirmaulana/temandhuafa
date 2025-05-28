@@ -174,6 +174,7 @@ class Checkout extends Component
             'password' => $this->password,
         ];
 
+        // dd($credentials);
         if (Auth::attempt($credentials)) {
             return redirect(url('/checkout/' . $this->slug));
         } else {
@@ -183,6 +184,6 @@ class Checkout extends Component
 
     public function render()
     {
-        return view('livewire.checkout');
+        return view('livewire.checkout'); 
     }
 }

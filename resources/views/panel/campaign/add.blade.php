@@ -54,6 +54,20 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-12 col-form-label">Target Penerima Manfaat</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="target_penerima_manfaat" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-12 col-form-label">Lokasi Penyaluran</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="lokasi_penyaluran" required>
+                                </div>
+                            </div>
+
                             <label for="inputText" class="col-sm-12 col-form-label">Description</label>
                             <textarea class="tinymce-editor" name="description">
                                 {{ old('description') }}

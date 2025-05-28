@@ -20,15 +20,15 @@ class Home extends Component
         $this->campaigns = Campaign::getCampaignsPublished();
 
         // Tangkap data pengunjung
-        PostHog::capture([
-            'distinctId' => session()->getId(), // Gunakan session ID sebagai ID unik untuk guest
-            'event' => 'User Visited Website',
-            'properties' => [
-                'ip' => $request->ip(),
-                'url' => $request->fullUrl(),
-                'user_agent' => $request->header('User-Agent'),
-            ],
-        ]);
+        // PostHog::capture([
+        //     'distinctId' => session()->getId(), // Gunakan session ID sebagai ID unik untuk guest
+        //     'event' => 'User Visited Website',
+        //     'properties' => [
+        //         'ip' => $request->ip(),
+        //         'url' => $request->fullUrl(),
+        //         'user_agent' => $request->header('User-Agent'),
+        //     ],
+        // ]);
     }
     
     public function render()

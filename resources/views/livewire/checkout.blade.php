@@ -137,7 +137,7 @@
                     @if (empty(Auth::check()))
                         <h4 class="text-center">
                             {{-- <a data-bs-toggle="modal" data-bs-target="#basicModal" href="/login">Login</a> --}}
-                            <a href="/login">Login</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
                             atau lengkapi data berikut:
                         </h4>
                     @endif
@@ -298,5 +298,36 @@
             <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
         </div>
+
+        <!-- Modal Login -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              {{-- <form method="POST" action="{{ route('login') }}"> --}}
+              <form class="needs-validation" method="post" wire:submit="authLogin" novalidate>
+            
+                @csrf
+                <div class="modal-header">
+                  <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="modalEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="modalEmail" name="email" wire:model="email" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="modalPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="modalPassword" name="password" wire:model="password" required>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- End Modal Login -->
 
     </div>

@@ -35,8 +35,21 @@ class Transaction extends Model
 
     public function campaign()
     {
-        return $this->belongsTo(Campaign::class, 'campaign_id');
+        return $this->belongsTo(Campaign::class);
     }
+
+
+    // Relationships
+    // public function campaign()
+    // {
+    //     return $this->belongsTo(Campaign::class);
+    // }
+
+    // public function donor()
+    // {
+    //     return $this->belongsTo(User::class, 'donor_id');
+    // }
+
 
     public function getTransaction()
     {
@@ -61,7 +74,7 @@ class Transaction extends Model
 
     static public function getSettlementAmount()
     {
-        return Transaction::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
+        return self::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
             ->where('transaction_status', 'settlement')
             ->groupBy('campaign_id')
             ->get();
@@ -69,7 +82,7 @@ class Transaction extends Model
 
     static public function getSettlementAmountGroupByFundraiser()
     {
-        return Transaction::select('fundraiser_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
+        return self::select('fundraiser_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
             ->where('transaction_status', 'settlement')
             ->groupBy('fundraiser_id')
             ->get();
@@ -77,27 +90,27 @@ class Transaction extends Model
 
     static public function getTransactionByCampaignId($campaignId)
     {
-        return Transaction::where('campaign_id', $campaignId)
+        return self::where('campaign_id', $campaignId)
             ->where('transaction_status', 'settlement')
             ->get();
     }
 
     static public function getTransactionByEmailUser($email)
     {
-        return Transaction::where('email', $email)
+        return self::select('transactions.*', 'campaigns.title as campaign_title')
+            ->join('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
+            ->where('transactions.email', $email)
             ->get();
     }
 
-    // Relationships
-    // public function campaign()
-    // {
-    //     return $this->belongsTo(Campaign::class);
-    // }
-
-    // public function donor()
-    // {
-    //     return $this->belongsTo(User::class, 'donor_id');
-    // }
+    static public function getSettlementAmountByEmail($email)
+    {
+        return self::select('email', DB::raw('SUM(gross_amount) as total_gross_amount'), DB::raw('COUNT(gross_amount) as total_donatur'))
+            ->where('transaction_status', 'settlement')
+            ->where('email', $email)
+            ->groupBy('email')
+            ->first();
+    }
 
     /**
      * createdAt
