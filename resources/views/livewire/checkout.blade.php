@@ -37,7 +37,7 @@
                         'Zakat Penghasilan' => 'Nominal Zakat Penghasilan',
                     ];
 
-                    $nominalTitle = $nominalMapping[$titleBayar] ?? 'Nominal Donasi';
+                    $nominalTitle = $nominalMapping[$titleBayar] ?? 'Nominal Donasi'; 
                 @endphp
 
                 <h4>Masukkan {{ $nominalTitle }}</h4>
@@ -103,7 +103,7 @@
                 </ul>
             @endif
 
-            <form wire:submit="createPayment">
+            <form wire:submit.prevent="createTransaction">
                 {{ csrf_field() }}
 
                 <div class="section full mt-0 mb-0">
@@ -219,21 +219,21 @@
                     @endif
 
                     <div class="appBottomMenu container">
-                        <div class="col-5">
+                        {{-- <div class="col-4">
                             <h5 class="name mt-1 mb-0 text-secondary">Total Donasi</h5>
                             <h4 class="text-primary">Rp {{ number_format($totalAmount, 0, ',', '.') }}</h4>
-                        </div>
-                        <div class="col-7">
-                            <button type="submit" class="btn btn-success btn-lg btn-block">Lanjut Pembayaran</button>
+                        </div> --}}
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Pilih Metode Pembayaran</button>
                         </div>
                     </div>
+
             </form>
 
         </div>
         <!-- * App Capsule -->
 
         <!-- Basic Modal -->
-
         <div class="modal fade" id="basicModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">

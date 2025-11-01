@@ -280,7 +280,7 @@
 
         <!-- App Bottom Menu -->
         <div class="appBottomMenu container">
-            <a href="{{ url('checkout/' . $campaign?->slug ?? '') }}" wire:navigate class="btn-block">
+            <a href="{{ url('donasi/' . $campaign?->slug ?? '') }}" wire:navigate class="btn-block">
                 <button type="button" class="btn btn-success btn-lg btn-block">Donasi Sekarang</button>
             </a>
         </div>

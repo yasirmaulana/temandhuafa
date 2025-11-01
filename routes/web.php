@@ -8,11 +8,13 @@ use App\Livewire\Fidyah;
 use App\Livewire\Kafarat;
 use App\Livewire\Payment;
 use App\Livewire\Program;
-use App\Livewire\Checkout;
 use App\Livewire\Donation;
+use App\Livewire\PaymentMethod;
 use App\Livewire\LoginApp;
+use App\Livewire\Checkout;
 use App\Livewire\Fundraiser;
 use App\Livewire\Registrasi;
+use App\Livewire\Pos\Terminal;
 use App\Livewire\CampaignDetail;
 use App\Livewire\DashboardDonatur;
 use App\Livewire\FundraiserDetail;
@@ -39,14 +41,16 @@ Route::get('/zakat', Zakat::class);
 Route::get('/faq', Faq::class);
 Route::get('/program/{slug}', Program::class);
 Route::get('/category/{kategori}', Home::class);
-Route::get('/', Home::class);
-Route::get('/donasi', Donation::class); 
 Route::get('/fidyah', Fidyah::class);
 Route::get('/kafarat', Kafarat::class);
 Route::get('/fundraiser/{slug}', FundraiserDetail::class)->name('fundraiserDetail');
+Route::get('/donasi/{slug}', Donation::class); 
+Route::get('/payment-method', PaymentMethod::class)->name('payment.method');
+Route::get('/payment', Payment::class)->name('payment');
+
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
-Route::get('/payment/{snapToken}', Payment::class)->name('payment');
+// Route::get('/payment/{snapToken}', Payment::class)->name('payment');
 
 Route::post('/payment-callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
 Route::post('/payment-notification', [PaymentController::class, 'handleNotification'])

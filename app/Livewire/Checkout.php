@@ -22,7 +22,7 @@ class Checkout extends Component
     public $phone = '';
     public $anonim = false;
     public $doa = '';
-    public $infaqSistemAmount;
+    public $infaqSistemAmount; 
     public $totalAmount;
     public $snapToken = '';
     public $isZiswaf;
@@ -32,6 +32,7 @@ class Checkout extends Component
     public $password = '';
     public $slug;
     public $addError;
+    public $transaksi = [];
 
     public function mount($slug)
     {
@@ -78,6 +79,25 @@ class Checkout extends Component
         }
     }
 
+    public function createTransaction() {
+        $this->transaksi = [
+            'order_id' => $this->orderId,
+            'campaign_id' => $this->campaignId ?? null,
+            'fundraiser_id' => $this->fundraiserId ?? null,
+            'infaq_sistem' => $this->infaqSistem,
+            'donor_name' => $this->namaLengkap,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'anonim' => $this->anonim,
+            'pray' => $this->doa,
+            'gross_amount' => $this->totalAmount,
+            'amount' => $this->amount,
+        ];
+
+        // dd($this->transaksi);
+        return view('livewire.payment-method'); 
+    }
+
     public function createPayment()
     {
 
@@ -100,14 +120,6 @@ class Checkout extends Component
             ];
 
             $this->saveTransaction();
-
-            PostHog::capture([
-                'distinctId' => Auth::user()->id ?? session()->getId(),
-                'event' => 'User Made a Donation',
-                'properties' => [
-                    'amount' => $this->totalAmount,
-                ],
-            ]);
 
             $snapToken = \Midtrans\Snap::getSnapToken($params);
 

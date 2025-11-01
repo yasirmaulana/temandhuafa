@@ -528,5 +528,7 @@ class DatabaseSeeder extends Seeder
             'slug' => 'lingkungan',
             'is_active' => true,
         ]);
+
+        $this->call(PosSeeder::class);
     }
 }

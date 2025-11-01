@@ -52,7 +52,7 @@
             </div>
             <div class="appBottomMenu container">
                 <div class="col-12">
-                    <a href="/checkout/{{ 'peternakan-' . $jumlahBayar }}" class="btn-block">
+                    <a href="/donasi/{{ 'peternakan-' . $jumlahBayar }}" class="btn-block">
                         <button type="button" class="btn btn-success btn-lg btn-block">Bayar Zakat Sekarang</button>
                     </a>
                 </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="appBottomMenu container">
                 <div class="col-12">
-                    <a href="/checkout/infaq-0" class="btn-block">
+                    <a href="/donasi/infaq-0" class="btn-block">
                         <button type="button" class="btn btn-success btn-lg btn-block">Berinfak</button>
                     </a>
                 </div>
