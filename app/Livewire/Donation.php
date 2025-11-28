@@ -75,10 +75,10 @@ class Donation extends Component
     }
 
     public function loginForm($currentUrl) {
-        // dd($currentUrl);
         session([
             'intended_url' => $currentUrl,
         ]);
+        redirect()->route('login');
     }
 
     public function createTransaction() {
