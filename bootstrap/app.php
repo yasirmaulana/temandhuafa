@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         App\Providers\EventServiceProvider::class,
     ])
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
         $middleware->alias([
             'useradmin' => AdminUserMiddleware::class,
         ]);
