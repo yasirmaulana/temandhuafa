@@ -58,6 +58,9 @@
                                 </i>
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Masukkan alamat email.</div>
+                                @error('email')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -71,6 +74,9 @@
                                 </i>
                                 <div class="valid-feedback"></div>
                                 <div class="invalid-feedback">Password harap dilengkapi.</div>
+                                @error('password')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
