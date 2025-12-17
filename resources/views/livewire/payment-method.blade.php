@@ -28,20 +28,20 @@
         <div class="container">
             <ul class="listview image-listview flush transparent mt-0 mb-0">
                 @foreach ($paymentMethods as $method)
-                    <li>
-                        <label class="item" style="display: flex; align-items: center; cursor: pointer; gap: 10px;"
-                            wire:click="selectMethod('{{ $method['id'] }}')">
-                            <div class="icon-box">
-                                <input class="form-check-input" type="radio" name="paymethod"
-                                    value="{{ $method['id'] }}" {{ $loop->first ? 'required' : '' }}>
-                            </div>
-                            <div class="in" style="display: flex; align-items: center; gap: 8px;">
-                                <img src="{{ $method['image'] }}" alt="{{ $method['title'] }}"
-                                    style="height: 20px; width: auto;">
-                                {{ $method['title'] }}
-                            </div>
-                        </label>
-                    </li>
+                <li>
+                    <label class="item" style="display: flex; align-items: center; cursor: pointer; gap: 10px;"
+                        wire:click="selectMethod('{{ $method['id'] }}')">
+                        <div class="icon-box">
+                            <input class="form-check-input" type="radio" name="paymethod"
+                                value="{{ $method['id'] }}" {{ $loop->first ? 'required' : '' }}>
+                        </div>
+                        <div class="in" style="display: flex; align-items: center; gap: 8px;">
+                            <img src="{{ asset($method['image']) }}" alt="{{ $method['title'] }}"
+                                style="height: 20px; width: auto;">
+                            {{ $method['title'] }}
+                        </div>
+                    </label>
+                </li>
                 @endforeach
 
             </ul>
@@ -81,7 +81,8 @@
                             checked>
                         <div class="d-flex align-items-center">
                             <h5 class="text-secondary mb-0 mr-1">Biaya Transaksi Rp
-                                {{ $infakSistem ? number_format($infakSistemAmount, 0, ',', '.') : 0 }}</h5>
+                                {{ $infakSistem ? number_format($infakSistemAmount, 0, ',', '.') : 0 }}
+                            </h5>
                             <i class="bi bi-info-circle text-secondary ms-2" data-bs-toggle="tooltip"
                                 data-bs-placement="right"
                                 title="Biaya transaksi digunakan untuk memproses pembayaran. Anda dapat memilih untuk menanggung biaya ini, atau jika tidak dicentang, jumlahnya akan dikurangi dari total donasi Anda."></i>

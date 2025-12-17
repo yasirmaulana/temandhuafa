@@ -21,32 +21,34 @@ class PaymentMethod extends Component
     {
         $this->dataDonasi = session('donasi');
 
-        if(empty($this->dataDonasi)) { return redirect('/'); }
+        if (empty($this->dataDonasi)) {
+            return redirect('/');
+        }
 
         $this->paymentMethods = [
             [
                 'id' => 'gopay',
-                'image' => asset('assets/img/payment-method/qris.svg'),
+                'image' => 'assets/img/payment-method/qris.svg',
                 'title' => 'QRIS - Gopay',
             ],
             [
                 'id' => 'channel',
-                'image' => asset('assets/img/payment-method/mandiri.svg'),
+                'image' => 'assets/img/payment-method/mandiri.svg',
                 'title' => 'Mandiri Virtual Account'
             ],
             [
                 'id' => 'bni-va',
-                'image' => asset('assets/img/payment-method/bni.svg'),
+                'image' => 'assets/img/payment-method/bni.svg',
                 'title' => 'BNI Virtual Account'
             ],
             [
                 'id' => 'bri-va',
-                'image' => asset('assets/img/payment-method/bri.svg'),
+                'image' => 'assets/img/payment-method/bri.svg',
                 'title' => 'BRI Virtual Account'
             ],
             [
                 'id' => 'permata-va',
-                'image' => asset('assets/img/payment-method/permata.svg'),
+                'image' => 'assets/img/payment-method/permata.svg',
                 'title' => 'Permata Virtual Account'
             ]
         ];
@@ -89,13 +91,12 @@ class PaymentMethod extends Component
         $this->createTransaction($midtransResponse);
 
         return redirect()->route('payment');
-
     }
 
     public function createTransaction($midtransResponse)
     {
         $grossAmount = $midtransResponse['gross_amount'] ?? $this->dataDonasi['amount'] + $this->infakSistemAmount;
-        
+
         $transaction = Transaction::create([
             'order_id' => $this->dataDonasi['order_id'],
             'campaign_id' => $this->dataDonasi['campaign_id'] ?? null,
