@@ -19,7 +19,7 @@ class Donation extends Component
     public $phone;
     public $anonim = false;
     public $doa;
-    public $infaqSistemAmount; 
+    public $infaqSistemAmount;
     public $totalAmount;
     public $isZiswaf;
     public $titleBayar;
@@ -74,14 +74,20 @@ class Donation extends Component
         }
     }
 
-    public function loginForm($currentUrl) {
+    public function loginForm($currentUrl)
+    {
+        // Override URL untuk memastikan tidak redirect ke /livewire/update
+        // Karena saat update via ajax (pilih nominal), url()->current() di blade jadi /livewire/update
+        $targetUrl = url('/donasi/' . $this->slug);
+
         session([
-            'intended_url' => $currentUrl,
+            'intended_url' => $targetUrl,
         ]);
         redirect()->route('login');
     }
 
-    public function createTransaction() {
+    public function createTransaction()
+    {
         session([
             'donasi' => [
                 'order_id' => $this->orderId,
@@ -133,6 +139,6 @@ class Donation extends Component
 
     public function render()
     {
-        return view('livewire.donation'); 
+        return view('livewire.donation');
     }
 }
