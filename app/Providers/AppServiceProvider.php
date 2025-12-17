@@ -20,9 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('production')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
         // Inisialisasi PostHog hanya jika API key tersedia
         if (!empty(config('posthog.api_key'))) {
-            PostHog::init(config('posthog.api_key'), ['host' => config('posthog.host')]);            
+            PostHog::init(config('posthog.api_key'), ['host' => config('posthog.host')]);
         }
 
         // Ubah path public hanya jika bukan di environment local
