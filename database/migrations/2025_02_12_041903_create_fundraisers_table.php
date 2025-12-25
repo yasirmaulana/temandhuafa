@@ -45,7 +45,6 @@ return new class extends Migration
             $table->string('file_ktp')->nullable();
 
             $table->string('register_status')->nullable();
-            $table->integer('user_id')->nullable();
 
             $table->timestamps();
         });

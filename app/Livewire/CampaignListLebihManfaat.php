@@ -18,7 +18,7 @@ class CampaignListLebihManfaat extends Component
 
     public function render()
     {
-        $this->fundraisers = Fundraiser::all();
+        $this->fundraisers = Fundraiser::where('register_status', 'Active')->get();
 
         $this->campaignSettlementAmounts = Transaction::getSettlementAmountGroupByFundraiser();
 

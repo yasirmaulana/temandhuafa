@@ -40,11 +40,12 @@
                         {{-- {{ $fundraiser_status }} --}}
                         @if ($fundraiser_status == 'not register')
                             <a href="/akun/dashboard-fundraiser" wire:navigate class="text-primary"><button
-                                    type="botton" class="btn">Daftar Fundriser</botton></a>
+                                    type="botton" class="btn btn-sm btn-outline-primary">Daftar Fundriser</botton></a>
                         @elseif ($fundraiser_status == 'register')
-                            <a href="">Fundraiser Detail</a>
-                        @else
-                            <a href="/panel/campaign">Dashboard Fundraiser</a>
+                            <span class="badge badge-warning">Menunggu Persetujuan</span>
+                        @elseif ($fundraiser_status == 'Active')
+                            <a href="/akun/dashboard-fundraiser-main" wire:navigate class="text-primary"><button
+                                    type="botton" class="btn btn-sm btn-outline-primary">Dashboard Fundraiser</botton></a>
                         @endif
                     </div>
                 </li>

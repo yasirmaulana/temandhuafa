@@ -19,6 +19,7 @@ use App\Livewire\CampaignDetail;
 use App\Livewire\DashboardDonatur;
 use App\Livewire\FundraiserDetail;
 use App\Livewire\DashboardFundraiser;
+use App\Livewire\DashboardFundraiserMain;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
@@ -58,7 +59,6 @@ Route::post('/payment-notification', [PaymentController::class, 'handleNotificat
     ->name('payment.notification');
 
 Route::get('/loginapp', LoginApp::class)->name('login');
-Route::post('/loginapp', LoginApp::class)->name('auth_login');
 Route::get('/register', Registrasi::class)->name('register');
 Route::post('/register', Registrasi::class)->name('auth_register');
 
@@ -74,6 +74,7 @@ Route::controller(SocialiteController::class)->group(function () {
 Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/akun/dashboard-donatur', DashboardDonatur::class);
     Route::get('/akun/dashboard-fundraiser', DashboardFundraiser::class);
+    Route::get('/akun/dashboard-fundraiser-main', DashboardFundraiserMain::class)->name('fundraiser.dashboard');
 
     Route::get('/panel/dashboard', [DashboardController::class, 'dashboard']);
 
@@ -104,6 +105,7 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/fundraiser', [FundraiserController::class, 'list']); 
     Route::post('/fundraiser/store', [FundraiserController::class, 'store'])->name('fundraiser.store');
     Route::post('/fundraiser/approve/{id}', [FundraiserController::class, 'approveFundriserRegister'])->name('fundraiser.approve');
+    Route::post('/fundraiser/deactivate/{id}', [FundraiserController::class, 'deactivateFundriserRegister'])->name('fundraiser.deactivate');
 
     Route::get('/panel/keuangan', [KeuanganController::class, 'list']);
 

@@ -29,7 +29,7 @@ class Campaign extends Model
 
     public function fundraiser()
     {
-        return $this->belongsTo(User::class, 'fundraiser_id');
+        return $this->belongsTo(Fundraiser::class, 'fundraiser_id');
     }
 
     public function category()
@@ -66,7 +66,7 @@ class Campaign extends Model
 
     static public function getCampaignsPublished($flagCampaign = null)
     {
-        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
+        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('status', 'published');; 
@@ -80,7 +80,7 @@ class Campaign extends Model
 
     static public function getCampaignsPublishedByFundraiser($fundraiserId)
     {
-        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
+        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('fundraiser_id', $fundraiserId)
@@ -91,7 +91,7 @@ class Campaign extends Model
 
     static public function getCampaignsComplatedByFundraiser($fundraiserId)
     {
-        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
+        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('fundraiser_id', $fundraiserId)
@@ -102,7 +102,7 @@ class Campaign extends Model
 
     static public function getCampaignsPublishedByCategory($category)
     {
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('status', 'published')
@@ -113,7 +113,7 @@ class Campaign extends Model
 
     static public function getCampaigns()
     {
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser')
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->get();
@@ -121,7 +121,7 @@ class Campaign extends Model
 
     static public function getCampaignByUserId($userId)
     {
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser')
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('fundraiser_id', '=', $userId)
@@ -130,7 +130,7 @@ class Campaign extends Model
 
     static public function getCampaignBySlug($slug)
     {
-        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser')
+        return Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
             ->join('categories', 'categories.id', '=', 'campaigns.category_id')
             ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
             ->where('campaigns.slug', $slug)

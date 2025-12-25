@@ -39,7 +39,7 @@
             </div>
 
             <div class="section inset mb-4">
-                <a href="profil-fundriser.html">
+                <a href="{{ route('fundraiserDetail', $campaign?->fundraiser_slug ?? '') }}" wire:navigate>
                     <div class="row">
                         <div class="col-3">
                             <img src="{{ asset('assets/img/contents/avatar.jpg') }}" alt="avatar"

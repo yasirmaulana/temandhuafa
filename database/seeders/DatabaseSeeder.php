@@ -529,6 +529,8 @@ class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        $this->call(PosSeeder::class);
+        $this->call(ProvinsiSeeder::class);
+        $this->call(KotaSeeder::class);
+        // $this->call(PosSeeder::class);
     }
 }

@@ -105,8 +105,14 @@ class FundraiserController extends Controller
     }
 
     public function approveFundriserRegister($userid) {
-        Fundraiser::setRegisterStatus($userid);
+        Fundraiser::setRegisterStatus($userid, 'Active');
         User::setRoleFundraiser($userid);
         return redirect('panel/fundraiser')->with('success', 'Approve success!');
+    }
+
+    public function deactivateFundriserRegister($userid) {
+        Fundraiser::setRegisterStatus($userid, 'register');
+        User::setRoleDonatur($userid);
+        return redirect('panel/fundraiser')->with('success', 'Deactivation success!');
     }
 }

@@ -70,6 +70,12 @@ class User extends Authenticatable
             ->update(['role_id' => 3]);
     }
 
+    static public function setRoleDonatur($userid)
+    {
+        return User::where('id', $userid)
+            ->update(['role_id' => 2]);
+    }
+
 
     // Relationships
     public function campaigns()

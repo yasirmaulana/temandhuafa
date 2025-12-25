@@ -31,7 +31,7 @@
                                     <select class="form-select" name="category_id" required>
                                         <option value="">Select</option>
                                         @foreach ($getCategories as $value)
-                                            <option {{ old('name') == $value->id ? 'selected' : '' }}
+                                            <option {{ old('category_id') == $value->id ? 'selected' : '' }}
                                                 value="{{ $value->id }}">{{ $value->name }}</option>
                                         @endforeach
                                     </select>

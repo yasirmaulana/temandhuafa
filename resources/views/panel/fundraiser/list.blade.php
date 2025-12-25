@@ -72,7 +72,17 @@
                                                         </button>
                                                     </form>
                                                 @else
-                                                    <button class="btn btn-outline-warning btn-sm">Non Active</button>
+                                                    <!-- Tombol Non Active -->
+                                                    <form method="POST"
+                                                        action="{{ route('fundraiser.deactivate', ['id' => $value->user_id]) }}"
+                                                        style="display:inline;">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="deactivate-btn btn btn-outline-warning btn-sm"
+                                                            onclick="event.stopPropagation();">
+                                                            Non Active
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             </td>
                                         </tr>
@@ -396,7 +406,15 @@
         document.querySelectorAll('.approve-btn').forEach(button => {
             button.addEventListener('click', function(event) {
                 if (!confirm('Are you sure you want to approve this fundraiser?')) {
-                    event.preventDefault(); // Cancel the form submission if user cancels
+                    event.preventDefault(); 
+                }
+            });
+        });
+
+        document.querySelectorAll('.deactivate-btn').forEach(button => {
+            button.addEventListener('click', function(event) {
+                if (!confirm('Are you sure you want to deactivate this fundraiser?')) {
+                    event.preventDefault(); 
                 }
             });
         });

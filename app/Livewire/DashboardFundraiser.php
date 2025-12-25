@@ -8,6 +8,7 @@ use App\Models\Provinsi;
 use App\Models\Fundraiser;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 
 class DashboardFundraiser extends Component
 {
@@ -131,7 +132,8 @@ class DashboardFundraiser extends Component
             'file_ktp',
         ]), $filePaths, [
             'register_status' => 'register',
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'slug' => Str::slug($this->nama_lembaga)
         ]));
 
         return redirect('/akun/dashboard-donatur')->with('success', "Register fundraiser successfully");
@@ -143,14 +145,13 @@ class DashboardFundraiser extends Component
         $this->dispatch('$refresh');
     }
 
-    // public function mount() {
-    // $this->kota_domisili = Kota::getKotaByProvinsi('Aceh');
-    // }
+    public function mount()
+    {
+        $this->list_provinsi = Provinsi::orderBy('provinsi', 'asc')->get();
+    }
 
     public function render()
     {
-        $this->list_provinsi = Provinsi::orderBy('provinsi', 'asc')->get();
-
         return view('livewire.dashboard-fundraiser');
     }
 }

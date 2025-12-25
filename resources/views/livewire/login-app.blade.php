@@ -46,8 +46,7 @@
         <div class="secton full pb-3">
             <div class="section wide-block pt-3 pb-3">
                 @include('_message')
-                <form class="needs-validation" method="post" wire:submit="auth_login" novalidate>
-                    {{ csrf_field() }}
+                <form class="needs-validation" wire:submit="auth_login" novalidate>
                     <div class="col-12">
                         <div class="form-group basic">
                             <div class="input-wrapper">

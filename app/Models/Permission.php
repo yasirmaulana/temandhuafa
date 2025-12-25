@@ -10,19 +10,21 @@ class Permission extends Model
 
     static public function getRecord()
     {
-        $getPermission = Permission::groupBy('groupby')->get();
+        $permissions = Permission::all();
+        $grouped = $permissions->groupBy('groupby');
+
         $result = array();
-        foreach ($getPermission as $value) {
+        foreach ($grouped as $groupby => $groupPermissions) {
+            $first = $groupPermissions->first();
             $data = array();
-            $data['id'] = $value->id;
-            $data['name'] = $value->name;
+            $data['id'] = $first->id;
+            $data['name'] = $first->name;
 
             $group = array();
-            $getPermissionGroup = Permission::getPermissionGroup($value->groupby);
-            foreach ($getPermissionGroup as $valueG) {
+            foreach ($groupPermissions as $permission) {
                 $dataG = array();
-                $dataG['id'] = $valueG->id;
-                $dataG['name'] = $valueG->name;
+                $dataG['id'] = $permission->id;
+                $dataG['name'] = $permission->name;
                 $group[] = $dataG;
             }
 
@@ -39,6 +41,6 @@ class Permission extends Model
 
     static public function getSingle($id)
     {
-        return Role::find($id);
+        return Permission::find($id);
     }
 }

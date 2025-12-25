@@ -13,6 +13,13 @@ class LoginApp extends Component
     public $password;
     public $previousUrl;
 
+    public function mount()
+    {
+        if (Auth::check()) {
+            return redirect()->intended('/akun/dashboard-donatur');
+        }
+    }
+
     public function render()
     {
         return view('livewire.login-app');

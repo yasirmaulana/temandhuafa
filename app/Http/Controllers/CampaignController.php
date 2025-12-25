@@ -47,7 +47,7 @@ class CampaignController extends Controller
             abort(404);
         }
 
-        $data['getPermission'] = Permission::getRecord();
+        // $data['getPermission'] = Permission::getRecord(); // Unused in this view
         $data['getCategories'] = Category::getRecordActive();
         return view('panel.campaign.add', $data);
     }
@@ -66,9 +66,13 @@ class CampaignController extends Controller
  
         $fundraiser = Fundraiser::getFundraiserByUserid(Auth::user()->id)->first();
 
+        if (!$fundraiser) {
+            return redirect()->back()->with('error', 'Akun fundraiser belum terdaftar. Silakan hubungi admin atau daftar sebagai fundraiser terlebih dahulu.');
+        }
+
         $request['status'] = "draft";
         $request['fundraiser_id'] = $fundraiser->id;
-        $request['start_date'] = now()->format('Y-m-d');;
+        $request['start_date'] = now()->format('Y-m-d');
         $request['slug'] = Str::slug($request->title, '-');
 
         Campaign::insertRecord($hashImage, $request);
@@ -91,7 +95,7 @@ class CampaignController extends Controller
         }
 
         $data['getRecord'] = Campaign::getSingle($id);
-        $data['getPermission'] = Permission::getRecord();
+        // $data['getPermission'] = Permission::getRecord(); // Unused in this view
         $data['getCategories'] = Category::getRecordActive();
 
         return view('panel.campaign.edit', $data);
