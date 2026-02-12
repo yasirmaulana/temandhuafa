@@ -72,18 +72,23 @@
 
                 @if($showCreateForm)
                     <div class="section full mt-2 mb-2">
-                        <div class="section-title">Form Tambah Campaign</div>
+                        <div class="section-title">{{ $isEditing ? 'Edit Campaign' : 'Form Tambah Campaign' }}</div>
                         <div class="wide-block pt-2 pb-2">
                             <form wire:submit.prevent="saveCampaign">
                                 <div class="form-group boxed">
                                     <div class="input-wrapper">
-                                        <label class="label" for="image">Banner Campaign</label>
+                                        <label class="label" for="image">Banner Campaign {{ $isEditing ? '(Opsional)' : '' }}</label>
                                         <input type="file" wire:model="image" class="form-control" id="image">
                                         @error('image') <span class="text-danger small">{{ $message }}</span> @enderror
                                         <div wire:loading wire:target="image" class="text-info small">Uploading...</div>
                                         @if ($image)
                                             <div class="mt-1">
                                                 <img src="{{ $image->temporaryUrl() }}" class="imaged w-100 rounded">
+                                            </div>
+                                        @elseif ($isEditing && $currentImage)
+                                            <div class="mt-1">
+                                                <p class="small text-muted">Banner saat ini:</p>
+                                                <img src="{{ $currentImage }}" class="imaged w-100 rounded">
                                             </div>
                                         @endif
                                     </div>
@@ -152,7 +157,7 @@
 
                                 <div class="mt-2">
                                     <button type="submit" class="btn btn-primary btn-block btn-lg" wire:loading.attr="disabled">
-                                        Daftarkan Campaign
+                                        {{ $isEditing ? 'Update Campaign' : 'Daftarkan Campaign' }}
                                     </button>
                                 </div>
                             </form>
@@ -200,7 +205,11 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="/panel/campaign/edit/{{ $campaign->id }}" class="btn btn-sm btn-text-primary">Edit</a>
+                                                @if($campaign->status == 'draft')
+                                                    <button wire:click="editCampaign({{ $campaign->id }})" class="btn btn-sm btn-text-primary">Edit</button>
+                                                @else
+                                                    <span class="text-muted small">-</span>
+                                                @endif
                                             </td>
                                         </tr>
                                     @empty

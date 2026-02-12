@@ -30,6 +30,15 @@ class Payment extends Component
             'channel' => 'Bank Mandiri',
         ];
         $this->bank = $banks[$this->id] ?? 'Unknown Bank';
+
+        // Check DB for status immediately
+        $orderId = $this->paymentData['order_id'] ?? null;
+        if ($orderId) {
+            $transaction = Transaction::where('order_id', $orderId)->first();
+            if ($transaction && $transaction->transaction_status === 'settlement') {
+                return redirect()->route('donation.success', ['order_id' => $orderId]);
+            }
+        }
     }
 
     public function render()
@@ -39,6 +48,9 @@ class Payment extends Component
 
     public function checkPaymentStatus()
     {
+        $this->statusMessage = null;
+        $this->statusError = null;
+
         $orderId = $this->paymentData['order_id'] ?? null;
         if (!$orderId) {
             $message = 'Order ID tidak ditemukan.';
@@ -63,6 +75,11 @@ class Payment extends Component
                     'type' => 'error',
                 ]);
                 return;
+            }
+
+            // If settled, redirect to success
+            if ($transaction->transaction_status === 'settlement') {
+                return redirect()->route('donation.success', ['order_id' => $orderId]);
             }
 
             $statusMessage = 'Status pembayaran: ' . ($transaction->transaction_status ?? 'tidak diketahui');

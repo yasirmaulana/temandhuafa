@@ -60,22 +60,43 @@ class Campaign extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => url('/storage/assets/img/campaigns/' . $value),
+            get: function ($value) {
+                if ($value) {
+                    // Check if file exists in the old path (admin upload)
+                    if (file_exists(storage_path('app/public/assets/img/campaigns/' . $value))) {
+                        return url('/storage/assets/img/campaigns/' . $value);
+                    }
+                    
+                    // Check if file exists in the new path (fundraiser upload)
+                    if (file_exists(storage_path('app/public/campaigns/' . $value))) {
+                        return url('/storage/campaigns/' . $value);
+                    }
+                    
+                    // Fallback to old path if checking fails but value exists
+                    return url('/storage/assets/img/campaigns/' . $value);
+                }
+                
+                return null;
+            },
         );
     }
 
     static public function getCampaignsPublished($flagCampaign = null)
     {
-        $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
-            ->join('categories', 'categories.id', '=', 'campaigns.category_id')
-            ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
-            ->where('status', 'published');; 
+        $cacheKey = 'campaigns_published_' . ($flagCampaign ?? 'all');
 
-        if (!is_null($flagCampaign)) {
-            $query->where('flag_campaign', $flagCampaign);
-        }
+        return \Illuminate\Support\Facades\Cache::remember($cacheKey, 60, function () use ($flagCampaign) {
+            $query = Campaign::select('campaigns.*', 'categories.name as category_name', 'fundraisers.nama_lembaga as fundraiser', 'fundraisers.kota_domisili as domisili_fundraiser', 'fundraisers.slug as fundraiser_slug')
+                ->join('categories', 'categories.id', '=', 'campaigns.category_id')
+                ->join('fundraisers', 'fundraisers.id', '=', 'campaigns.fundraiser_id')
+                ->where('status', 'published');
 
-        return $query->orderBy('campaigns.created_at', 'desc')->get();
+            if (!is_null($flagCampaign)) {
+                $query->where('flag_campaign', $flagCampaign);
+            }
+
+            return $query->orderBy('campaigns.created_at', 'desc')->get();
+        });
     }
 
     static public function getCampaignsPublishedByFundraiser($fundraiserId)
@@ -170,23 +191,23 @@ class Campaign extends Model
 
     static public function updateRecordWithoutImage($id, $request)
     {
-        if (Auth::user()->role_id == 1) {
-            Campaign::where('id', $id)
-                ->update(['status' => 'published']);
-        } else {
-            $save = Campaign::find($id);
-            $save->title = $request->title;
-            $save->category_id = $request->category_id;
-            $save->target_amount = $request->target_amount;
-            $save->description = $request->description;
+        $save = Campaign::find($id);
+        $save->title = $request->title;
+        $save->category_id = $request->category_id;
+        $save->target_amount = $request->target_amount;
+        $save->description = $request->description;
+        $save->end_date = $request->end_date;
+        $save->target_penerima_manfaat = $request->target_penerima_manfaat;
+        $save->lokasi_penyaluran = $request->lokasi_penyaluran;
+        $save->slug = $request->slug;
+
+        if (Auth::user()->role_id == 1 && $save->status == 'draft') {
+            $save->status = 'published';
+        } elseif (isset($request->status)) {
             $save->status = $request->status;
-            $save->start_date = $request->start_date;
-            $save->end_date = $request->end_date;
-            $save->slug = $request->slug;
-            $save->target_penerima_manfaat = $request->target_penerima_manfaat;
-            $save->lokasi_penyaluran = $request->lokasi_penyaluran;    
-            $save->save();
         }
+
+        $save->save();
     }
 
     static public function updateRecord($id, $hashImage, $request)
@@ -197,13 +218,17 @@ class Campaign extends Model
         $save->category_id = $request->category_id;
         $save->target_amount = $request->target_amount;
         $save->description = $request->description;
-        $save->status = $request->status;
-        $save->start_date = $request->start_date;
         $save->end_date = $request->end_date;
-        $save->fundraiser_id = $request->fundraiser_id;
         $save->slug = $request->slug;
         $save->target_penerima_manfaat = $request->target_penerima_manfaat;
         $save->lokasi_penyaluran = $request->lokasi_penyaluran;
+
+        if (Auth::user()->role_id == 1 && $save->status == 'draft') {
+            $save->status = 'published';
+        } elseif (isset($request->status)) {
+            $save->status = $request->status;
+        }
+
         $save->save();
     }
 }

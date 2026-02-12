@@ -74,18 +74,22 @@ class Transaction extends Model
 
     static public function getSettlementAmount()
     {
-        return self::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
-            ->where('transaction_status', 'settlement')
-            ->groupBy('campaign_id')
-            ->get();
+        return \Illuminate\Support\Facades\Cache::remember('settlement_amounts_all', 60, function () {
+            return self::select('campaign_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
+                ->where('transaction_status', 'settlement')
+                ->groupBy('campaign_id')
+                ->get();
+        });
     }
 
     static public function getSettlementAmountGroupByFundraiser()
     {
-        return self::select('fundraiser_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
-            ->where('transaction_status', 'settlement')
-            ->groupBy('fundraiser_id')
-            ->get();
+        return \Illuminate\Support\Facades\Cache::remember('settlement_amounts_by_fundraiser', 60, function () {
+            return self::select('fundraiser_id', DB::raw('SUM(amount) as total_gross_amount'), DB::raw('COUNT(amount) as total_donatur'))
+                ->where('transaction_status', 'settlement')
+                ->groupBy('fundraiser_id')
+                ->get();
+        });
     }
 
     static public function getTransactionByCampaignId($campaignId)
@@ -98,14 +102,44 @@ class Transaction extends Model
     static public function getTransactionByEmailUser($email)
     {
         return self::select('transactions.*', 'campaigns.title as campaign_title')
-            ->join('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
+            ->leftJoin('campaigns', 'campaigns.id', '=', 'transactions.campaign_id')
             ->where('transactions.email', $email)
+            ->orderBy('transactions.created_at', 'desc')
             ->get();
+    }
+
+    protected function programName(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value, $attributes) {
+                if (!empty($attributes['campaign_title'])) {
+                    return $attributes['campaign_title'];
+                }
+
+                $orderId = $attributes['order_id'] ?? '';
+                $type = explode('-', $orderId)[0] ?? '';
+
+                $mapTitle = [
+                    "infaq" => "Infak",
+                    "emas" => "Zakat Emas",
+                    "perak" => "Zakat Perak",
+                    "pertanian" => "Zakat Pertanian",
+                    "peternakan" => "Zakat Peternakan",
+                    "maal" => "Zakat Maal",
+                    "perniagaan" => "Zakat Perniagaan",
+                    "penghasilan" => "Zakat Penghasilan",
+                    "fidyah" => "Fidyah",
+                    "kafarat" => "Kafarat",
+                ];
+
+                return $mapTitle[$type] ?? 'Infak/Zakat';
+            },
+        );
     }
 
     static public function getSettlementAmountByEmail($email)
     {
-        return self::select('email', DB::raw('SUM(gross_amount) as total_gross_amount'), DB::raw('COUNT(gross_amount) as total_donatur'))
+        return self::select('email', DB::raw('SUM(amount) as total_amount'), DB::raw('COUNT(amount) as total_donatur'))
             ->where('transaction_status', 'settlement')
             ->where('email', $email)
             ->groupBy('email')

@@ -109,8 +109,8 @@ class CampaignController extends Controller
         }
 
         if ($request->file('image') == '') {
-            $campaign = Campaign::updateRecordWithoutImage($id, $request);
-            return redirect('panel/campaign')->with('success', "Campaign published");
+            Campaign::updateRecordWithoutImage($id, $request);
+            return redirect('panel/campaign')->with('success', "Campaign updated successfully");
         } else {
             $campaign = Campaign::getSingle($id);
 

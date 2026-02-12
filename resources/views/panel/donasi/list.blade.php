@@ -43,6 +43,7 @@
                                                 <td>
                                                     @if ($value->transaction_status == 'pending')
                                                         <span class="btn btn-outline-warning btn-sm">Pending</span>
+                                                        <a href="javascript:void(0)" onclick="confirmSettlement('{{ url('/panel/donasi/settlement/' . $value->id) }}')" class="btn btn-primary btn-sm mt-1">Set Settlement</a>
                                                     @elseif ($value->transaction_status == 'settlement')
                                                         <span class="btn btn-outline-success btn-sm">Settlement</span>
                                                     @endif
@@ -64,4 +65,24 @@
 
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmSettlement(url) {
+            Swal.fire({
+                title: 'Konfirmasi Settlement',
+                text: "Apakah Anda yakin ingin mengubah status transaksi ini menjadi settlement?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Set Settlement!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            })
+        }
+    </script>
 </x-layout>

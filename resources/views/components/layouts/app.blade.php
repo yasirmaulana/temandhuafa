@@ -14,6 +14,7 @@
     <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="{{ asset('assets/css/style-fe.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/slick/slick-slider.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <link rel="manifest" href="__manifest.json"> --}}
 
     <script>

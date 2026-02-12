@@ -12,6 +12,7 @@ use App\Livewire\Donation;
 use App\Livewire\PaymentMethod;
 use App\Livewire\LoginApp;
 use App\Livewire\Checkout;
+use App\Livewire\DonationSuccess;
 use App\Livewire\Fundraiser;
 use App\Livewire\Registrasi;
 use App\Livewire\Pos\Terminal;
@@ -25,6 +26,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DonasiController;
+use App\Http\Controllers\DonationReceiptController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\PaymentController;
@@ -32,6 +34,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WhatsappController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\FundraiserController;
 use App\Http\Controllers\CampaignReportController;
@@ -51,6 +54,8 @@ Route::get('/payment', Payment::class)->name('payment');
 
 Route::get('/campaign/{slug}', CampaignDetail::class);
 Route::get('/checkout/{slug}', Checkout::class);
+Route::get('/donation/success/{order_id}', DonationSuccess::class)->name('donation.success');
+Route::get('/donation/receipt/{order_id}', [DonationReceiptController::class, 'download'])->name('donation.receipt');
 // Route::get('/payment/{snapToken}', Payment::class)->name('payment');
 
 Route::post('/payment-callback', [PaymentController::class, 'handleCallback'])->name('payment.callback');
@@ -101,6 +106,7 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::get('/panel/donatur', [DonaturController::class, 'list']);
 
     Route::get('/panel/donasi', [DonasiController::class, 'list']);
+    Route::get('/panel/donasi/settlement/{id}', [DonasiController::class, 'settlement']);
 
     Route::get('/panel/fundraiser', [FundraiserController::class, 'list']); 
     Route::post('/fundraiser/store', [FundraiserController::class, 'store'])->name('fundraiser.store');
@@ -108,6 +114,8 @@ Route::group(['middleware' => 'useradmin'], function () {
     Route::post('/fundraiser/deactivate/{id}', [FundraiserController::class, 'deactivateFundriserRegister'])->name('fundraiser.deactivate');
 
     Route::get('/panel/keuangan', [KeuanganController::class, 'list']);
+
+    Route::get('/panel/whatsapp', [WhatsappController::class, 'list']);
 
     Route::get('/panel/slider', [SliderController::class, 'list']);
     Route::get('/panel/slider/add', [SliderController::class, 'add']);

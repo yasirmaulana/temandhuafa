@@ -79,18 +79,34 @@ class PaymentMethod extends Component
 
     public function createMidtransPayment()
     {
-        $midtransResponse = MidtransIntegration::createCoreApiPayment($this->dataDonasi);
+        try {
+            $midtransResponse = MidtransIntegration::createCoreApiPayment($this->dataDonasi);
 
-        session(
-            [
-                'midtrans_response' => $midtransResponse,
-                'id' => $this->id,
-            ]
-        );
+            if (isset($midtransResponse['status_code']) && !in_array($midtransResponse['status_code'], ['200', '201'])) {
+                $errorMessage = $midtransResponse['status_message'] ?? 'Gagal membuat pembayaran. Silakan coba lagi.';
+                $this->addError('payment', $errorMessage);
+                return;
+            }
 
-        $this->createTransaction($midtransResponse);
+            if (isset($midtransResponse['status']) && $midtransResponse['status'] === 'error') {
+                $this->addError('payment', $midtransResponse['message'] ?? 'Terjadi kesalahan sistem.');
+                return;
+            }
 
-        return redirect()->route('payment');
+            session(
+                [
+                    'midtrans_response' => $midtransResponse,
+                    'id' => $this->id,
+                ]
+            );
+
+            $this->createTransaction($midtransResponse);
+
+            return redirect()->route('payment');
+        } catch (\Exception $e) {
+            \Log::error('PaymentMethod Exception: ' . $e->getMessage());
+            $this->addError('payment', 'Terjadi kesalahan saat memproses pembayaran.');
+        }
     }
 
     public function createTransaction($midtransResponse)

@@ -17,8 +17,6 @@ class Home extends Component
     {
         $this->category = $category; 
 
-        $this->campaigns = Campaign::getCampaignsPublished();
-
         // Tangkap data pengunjung
         // PostHog::capture([
         //     'distinctId' => session()->getId(), // Gunakan session ID sebagai ID unik untuk guest

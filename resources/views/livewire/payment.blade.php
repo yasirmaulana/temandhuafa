@@ -28,10 +28,10 @@
 
     <div id="appCapsule">
         <div class="section mt-3 mb-0 text-center">
-            <h2 class="mb-2">Rp{{ number_format($paymentData['gross_amount'], 0, ',', '.') }}</h2>
-            <small>Order ID #{{ $paymentData['order_id'] }}</small>
+            <h2 class="mb-2">Rp{{ isset($paymentData['gross_amount']) ? number_format($paymentData['gross_amount'], 0, ',', '.') : '0' }}</h2>
+            <small>Order ID #{{ $paymentData['order_id'] ?? 'N/A' }}</small>
             <div class="text-muted mt-2">Bayar sebelum <span
-                    class="fw-bold text-danger">{{ $paymentData['expiry_time'] }}</span></div>
+                    class="fw-bold text-danger">{{ $paymentData['expiry_time'] ?? '-' }}</span></div>
         </div>
 
         <div class="wide-block mt-3 p-3">
@@ -40,42 +40,42 @@
 
             @if ($id == 'permata-va')
                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                    <span id="vaNumber" class="fw-bold text-dark">{{ $paymentData['permata_va_number'] }}</span>
+                    <span id="vaNumber" class="fw-bold text-dark">{{ $paymentData['permata_va_number'] ?? '-' }}</span>
                     <button type="button" class="btn btn-link btn-sm copy-btn"
-                        data-copy="{{ $paymentData['permata_va_number'] }}">Salin</button>
+                        data-copy="{{ $paymentData['permata_va_number'] ?? '' }}">Salin</button>
                 </div>
             @endif
 
             @if ($id == 'bni-va')
                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
                     <span id="vaNumber"
-                        class="fw-bold text-dark">{{ $paymentData['va_numbers'][0]['va_number'] }}</span>
+                        class="fw-bold text-dark">{{ $paymentData['va_numbers'][0]['va_number'] ?? '-' }}</span>
                     <button type="button" class="btn btn-link btn-sm copy-btn"
-                        data-copy="{{ $paymentData['va_numbers'][0]['va_number'] }}">Salin</button>
+                        data-copy="{{ $paymentData['va_numbers'][0]['va_number'] ?? '' }}">Salin</button>
                 </div>
             @endif
 
             @if ($id == 'bri-va')
                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
                     <span id="vaNumber"
-                        class="fw-bold text-dark">{{ $paymentData['va_numbers'][0]['va_number'] }}</span>
+                        class="fw-bold text-dark">{{ $paymentData['va_numbers'][0]['va_number'] ?? '-' }}</span>
                     <button type="button" class="btn btn-link btn-sm copy-btn"
-                        data-copy="{{ $paymentData['va_numbers'][0]['va_number'] }}">Salin</button>
+                        data-copy="{{ $paymentData['va_numbers'][0]['va_number'] ?? '' }}">Salin</button>
                 </div>
             @endif
 
             @if ($id == 'channel')
                 Nomor Virtual Account:
                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                    <span id="vaNumber" class="fw-bold text-dark">{{ $paymentData['bill_key'] }}</span>
+                    <span id="vaNumber" class="fw-bold text-dark">{{ $paymentData['bill_key'] ?? '-' }}</span>
                     <button type="button" class="btn btn-link btn-sm copy-btn"
-                        data-copy="{{ $paymentData['bill_key'] }}">Salin</button>
+                        data-copy="{{ $paymentData['bill_key'] ?? '' }}">Salin</button>
                 </div>
                 Kode Bank:
                 <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded">
-                    <span id="vaNumber" class="fw-bold text-dark">{{ $paymentData['biller_code'] }}</span>
+                    <span id="vaNumber" class="fw-bold text-dark">{{ $paymentData['biller_code'] ?? '-' }}</span>
                     <button type="button" class="btn btn-link btn-sm copy-btn"
-                        data-copy="{{ $paymentData['biller_code'] }}">Salin</button>
+                        data-copy="{{ $paymentData['biller_code'] ?? '' }}">Salin</button>
                 </div>
             @endif
 
@@ -360,10 +360,14 @@
             </div>
         @endif
 
-        <div class="appBottomMenu container mt-3">
+        <div class="appBottomMenu container mt-0">
             <div class="col-12">
-                <button type="button" wire:click="checkPaymentStatus" class="btn btn-success btn-lg btn-block">
-                    Cek status
+                <button type="button" wire:click="checkPaymentStatus" class="btn btn-success btn-lg btn-block" wire:loading.attr="disabled">
+                    <span wire:loading.remove>Cek status</span>
+                    <span wire:loading>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </span>
                 </button>
             </div>
         </div>
@@ -467,5 +471,19 @@
     document.addEventListener('livewire:navigated', () => {
         attachCopyHandlers();
         initAccordion();
+    });
+
+    window.addEventListener('payment-status-checked', event => {
+        const data = Array.isArray(event.detail) ? event.detail[0] : event.detail;
+        Swal.fire({
+            title: data.type === 'success' ? 'Berhasil' : 'Informasi',
+            text: data.message,
+            icon: data.type,
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#3085d6',
+            customClass: {
+                confirmButton: 'btn btn-primary'
+            }
+        });
     });
 </script>

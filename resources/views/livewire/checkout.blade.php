@@ -144,7 +144,6 @@
                 </div>
 
                 <div class="wide-block pb-1 pt-1">
-                    @if (empty(Auth::check()))
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <input type="text" wire:model="namaLengkap" class="form-control" placeholder="Nama"
@@ -152,14 +151,12 @@
                                 <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
                             </div>
                         </div>
-                    @endif
                     <div class="form-check form-switch">
                         <input wire:model="anonim" class="form-check-input" type="checkbox">
                         <label class="form-check-label text-secondary">
                             <h5 class="text-secondary">Sembunyikan nama saya (Donasi Teman Baik)</h5>
                         </label>
                     </div>
-                    @if (empty(Auth::check()))
                         <div class="form-group boxed">
                             <div class="input-wrapper">
                                 <input type="number" wire:model="phone" class="form-control" placeholder="No. Whatsapp"
@@ -174,7 +171,6 @@
                                 <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
                             </div>
                         </div>
-                    @endif
 
                     @if (!$isZiswaf)
                         <div class="form-group boxed">

@@ -21,6 +21,11 @@
     <div id="appCapsule">
 
         <div class="section mt-3 mb-0">
+            @error('payment')
+                <div class="alert alert-danger mb-2">
+                    {{ $message }}
+                </div>
+            @enderror
             <h2 class="text-primary mb-3">{{ $dataDonasi['campaign_title'] }}</h2>
             <h4>Pilih Metode Pembayaran</h4>
         </div>

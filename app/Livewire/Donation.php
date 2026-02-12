@@ -99,9 +99,9 @@ class Donation extends Component
                 'phone' => $this->phone,
                 'anonim' => $this->anonim,
                 'pray' => $this->doa,
-                'gross_amount' => $this->amount,
+                'gross_amount' => $this->totalAmount,
                 'amount' => $this->amount,
-                'campaign_title' => $this->campaign->title ?? null,
+                'campaign_title' => $this->campaign->title ?? $this->titleBayar,
             ]
         ]);
 

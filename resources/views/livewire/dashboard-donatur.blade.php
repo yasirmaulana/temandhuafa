@@ -52,7 +52,7 @@
             </ul>
 
             <div class="section inset pt-2 pb-2 mb-1">
-                <button type="button" class="btn btn-success btn-lg btn-block">Total Donasi Rp {{ number_format($total_donasi->total_gross_amount ?? 0, 0, ',', '.') }}</button>
+                <button type="button" class="btn btn-success btn-lg btn-block">Total Donasi Rp {{ number_format($total_donasi->total_amount ?? 0, 0, ',', '.') }}</button>
 
                 <!-- Table riwayat donasi -->
                 <div class="section full mt-1 mb-2">
@@ -75,10 +75,12 @@
                                     @foreach ($transactions as $transaksi)
                                         <tr>
                                             <td>{{ \Carbon\Carbon::parse($transaksi->transaction_time)->translatedFormat('d F Y') }}</td>
-                                            <td>{{ $transaksi->campaign_title }}</td>
-                                            <td>{{ number_format($transaksi->gross_amount, 0, ',', '.')  }}</td>
-                                            <td>{{ $transaksi->transaction_status }}</td>
-                                            <td><a href="{{ $transaksi->pdf_url }}" target="_blank" rel="noopener noreferrer">Lihat</a></td>
+                                            <td>{{ $transaksi->program_name }}</td>
+                                            <td>{{ number_format($transaksi->amount, 0, ',', '.')  }}</td>
+                                            <td class="{{ $transaksi->transaction_status == 'settlement' ? 'text-success' : ($transaksi->transaction_status == 'pending' ? 'text-danger' : 'text-warning') }}">
+                                                {{ $transaksi->transaction_status }}
+                                            </td>
+                                            <td><a href="{{ url('donation/receipt/'.$transaksi->order_id) }}" target="_blank" rel="noopener noreferrer">Lihat</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

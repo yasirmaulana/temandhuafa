@@ -82,6 +82,9 @@
                                 </div>
                             </div>
 
+                            {{-- Hidden field to preserve slug --}}
+                            <input type="hidden" name="slug" value="{{ $getRecord->slug }}">
+
                             <label for="inputText" class="col-sm-12 col-form-label">Description</label>
                             <textarea class="tinymce-editor" name="description">
                                 {{ $getRecord->description }}

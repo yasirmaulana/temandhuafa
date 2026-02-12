@@ -10,10 +10,10 @@
         <br />
 
         <div class="section full">
-            @livewire('category')
-            @livewire('campaign-list-sangat-dibutuhkan')
-            @livewire('campaign-list-lebih-manfaat')
-            @livewire('campaign-list')
+            <livewire:category />
+            <livewire:campaign-list-sangat-dibutuhkan lazy />
+            <livewire:campaign-list-lebih-manfaat lazy />
+            <livewire:campaign-list lazy />
         </div>
 
     </div>

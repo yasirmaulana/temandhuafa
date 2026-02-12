@@ -37,4 +37,16 @@ class DonasiController extends Controller
     {
         return view('panel.donasi.list', $this->data);
     }
+
+    public function settlement($id)
+    {
+        $transaction = Transaction::find($id);
+        if ($transaction) {
+            $transaction->transaction_status = 'settlement';
+            $transaction->save();
+            return redirect()->back()->with('success', 'Status transaksi berhasil diubah menjadi settlement.');
+        }
+
+        return redirect()->back()->with('error', 'Transaksi tidak ditemukan.');
+    }
 }

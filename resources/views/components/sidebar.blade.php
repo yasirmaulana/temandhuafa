@@ -11,6 +11,7 @@
             $PermissionDonasi = App\Models\PermissionRole::getPermission('Donasi', Auth::user()->role_id);
             $PermissionFundraiser = App\Models\PermissionRole::getPermission('Fundraiser', Auth::user()->role_id);
             $PermissionKeuangan = App\Models\PermissionRole::getPermission('Keuangan', Auth::user()->role_id);
+            $PermissionWhatsapp = App\Models\PermissionRole::getPermission('Whatsapp', Auth::user()->role_id);
         @endphp
 
         @if (!empty($PermissionDasboard))
@@ -99,6 +100,16 @@
                     href="{{ url('panel/keuangan') }}">
                     <i class="bi bi-bank"></i>
                     <span>Keuangan</span>
+                </a>
+            </li>
+        @endif
+
+        @if (!empty($PermissionWhatsapp))
+            <li class="nav-item">
+                <a class="nav-link @if (Request::segment(2) != 'whatsapp') collapsed @endif"
+                    href="{{ url('panel/whatsapp') }}">
+                    <i class="bi bi-whatsapp"></i>
+                    <span>WhatsApp</span>
                 </a>
             </li>
         @endif

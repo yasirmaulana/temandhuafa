@@ -44,14 +44,14 @@ class Checkout extends Component
             $this->campaign = Campaign::getCampaignBySlug($slug);
             $this->campaignId = $this->campaign->id;
             $this->totalAmount = $this->infaqSistemAmount;
-            $this->orderId = $this->campaignId . '-' . rand();
+            $this->orderId = $this->campaignId . '-' . now()->timestamp . '-' . \Illuminate\Support\Str::random(4);
             $this->fundraiserId = $this->campaign->fundraiser_id;
         } elseif ($this->titleRowBayar == "infaq") {
             $this->isZiswaf = false;
-            $this->orderId = $this->titleRowBayar . '-' . rand();
+            $this->orderId = $this->titleRowBayar . '-' . now()->timestamp . '-' . \Illuminate\Support\Str::random(4);
         } else {
             $this->isZiswaf = true;
-            $this->orderId = $this->titleRowBayar . '-' . rand();
+            $this->orderId = $this->titleRowBayar . '-' . now()->timestamp . '-' . \Illuminate\Support\Str::random(4);
         }
         $mapTitle = [
             "infaq" => "Infak",
@@ -67,12 +67,11 @@ class Checkout extends Component
         ];
         $this->titleBayar = $mapTitle[$this->titleRowBayar] ?? "Campaign";
         $this->amount = (int) $parts[1];
-        // $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
+        $this->formattedAmount = number_format((int) $this->amount, 0, '', '.');
 
         $this->totalAmount = $this->amount + $this->infaqSistemAmount;
 
-        if (!empty(Auth::check())) {
-            // return redirect('panel/dashboard');
+        if (Auth::check()) {
             $this->namaLengkap = Auth::user()->name;
             $this->email = Auth::user()->email;
             $this->phone = Auth::user()->handphone;
@@ -80,9 +79,17 @@ class Checkout extends Component
     }
 
     public function createTransaction() {
+        $this->validate([
+            'namaLengkap' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'amount' => 'required|numeric|min:1',
+        ]);
+
         $this->transaksi = [
             'order_id' => $this->orderId,
             'campaign_id' => $this->campaignId ?? null,
+            'campaign_title' => $this->campaign->title ?? $this->titleBayar,
             'fundraiser_id' => $this->fundraiserId ?? null,
             'infaq_sistem' => $this->infaqSistem,
             'donor_name' => $this->namaLengkap,
@@ -94,8 +101,9 @@ class Checkout extends Component
             'amount' => $this->amount,
         ];
 
-        // dd($this->transaksi);
-        return view('livewire.payment-method'); 
+        session(['donasi' => $this->transaksi]);
+
+        return redirect()->route('payment.method'); 
     }
 
     public function createPayment()
