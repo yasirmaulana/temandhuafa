@@ -33,8 +33,15 @@
                         <img src="{{ $user->avatar }}" alt="image" class="imaged w64 rounded mr-05">
                     </div>
                     <div class="col-6">
-                        <h4 class="name mt-1 mb-0 text-primary">{{ $user->name }}</h5>
-                            <h6 class="subtext mb-0">Sejak {{ $user->created_at->translatedFormat('d F Y') }}</h6>
+                        <h4 class="name mt-1 mb-0 text-primary">{{ $user->name }}</h4>
+                        <h6 class="subtext mb-0">Sejak {{ $user->created_at->translatedFormat('d F Y') }}</h6>
+                        <h6 class="subtext mb-0">{{ $user->email }}</h6>
+                        <h6 class="subtext mb-0">{{ $user->handphone }}</h6>
+                        <div class="mt-1">
+                            @if(!$isEditing)
+                            <button class="btn btn-outline-primary btn-sm" wire:click="editProfile">Edit Profile</button>
+                            @endif
+                        </div>
                     </div>
                     <div class="col-3">
                         {{-- {{ $fundraiser_status }} --}}
@@ -50,6 +57,69 @@
                     </div>
                 </li>
             </ul>
+
+            @if ($isEditing)
+            <div class="section mt-2 mb-2">
+                <div class="section-title">Edit Profil</div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="photo">Foto Profil</label>
+                                <input type="file" class="form-control" id="photo" wire:model="photo" accept="image/*">
+                                @if ($photo)
+                                    <div class="mt-2">
+                                        <img src="{{ $photo->temporaryUrl() }}" alt="Preview" class="imaged w64 rounded">
+                                    </div>
+                                @endif
+                                @error('photo') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="name">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" wire:model="name">
+                                @error('name') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="email">Email</label>
+                                <input type="email" class="form-control" id="email" wire:model="email">
+                                @error('email') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="phone">No HP</label>
+                                <input type="text" class="form-control" id="phone" wire:model="phone">
+                                @error('phone') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="password">Password Baru (Opsional)</label>
+                                <input type="password" class="form-control" id="password" wire:model="password" placeholder="Kosongkan jika tidak ingin mengubah">
+                                @error('password') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="password_confirmation">Konfirmasi Password</label>
+                                <input type="password" class="form-control" id="password_confirmation" wire:model="password_confirmation">
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <button class="btn btn-primary btn-block" wire:click="updateProfile">Simpan Perubahan</button>
+                            <button class="btn btn-outline-secondary btn-block" wire:click="cancelEdit">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
 
             <div class="section inset pt-2 pb-2 mb-1">
                 <button type="button" class="btn btn-success btn-lg btn-block">Total Donasi Rp {{ number_format($total_donasi->total_amount ?? 0, 0, ',', '.') }}</button>
