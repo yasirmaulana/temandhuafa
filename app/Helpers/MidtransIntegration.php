@@ -83,12 +83,7 @@ class MidtransIntegration
         // 4. Konfigurasi payment type
         $paymentTypes = [
             'gopay' => [
-                'payment_type' => 'gopay',
-                // 'gopay'        => [
-                //     'enable_callback' => true,
-                //     'callback_url'    => config('midtrans.callbackUrl'),
-                //     'account_id'      => 'gopay',
-                // ],
+                'payment_type' => 'qris',
                 'qris' => [
                     'acquirer' => 'gopay'
                 ],

@@ -79,6 +79,38 @@
                 </div>
             @endif
 
+            @if ($id == 'gopay')
+                <div class="text-center">
+                    <p>Scan kode QR di bawah ini menggunakan aplikasi pembayaran pilihan Anda.</p>
+                    @php
+                        $qrCodeUrl = null;
+                        if (isset($paymentData['actions'])) {
+                            foreach ($paymentData['actions'] as $action) {
+                                if ($action['name'] === 'generate-qr-code') {
+                                    $qrCodeUrl = $action['url'];
+                                    break;
+                                }
+                            }
+                        }
+                    @endphp
+
+                    @if ($qrCodeUrl)
+                        <div class="bg-white p-3 rounded mb-3 d-inline-block mx-auto">
+                            <img src="{{ $qrCodeUrl }}" alt="QRIS QR Code" class="img-fluid" style="max-width: 250px;">
+                        </div>
+                        <div class="mt-2 text-center">
+                            <a href="{{ $qrCodeUrl }}" target="_blank" class="btn btn-primary btn-sm">
+                                <i class="bi bi-download"></i> Unduh QR Code
+                            </a>
+                        </div>
+                    @else
+                        <div class="alert alert-warning">
+                            Gagal memuat QR Code. Silakan coba cek status secara manual atau hubungi dukungan.
+                        </div>
+                    @endif
+                </div>
+            @endif
+
         </div>
 
         @if ($id == 'permata-va')
